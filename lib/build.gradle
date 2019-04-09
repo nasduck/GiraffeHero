@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.decendents.android-maven'
+apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.nasduck'
 
 android {
