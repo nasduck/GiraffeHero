@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
+import android.support.annotation.IntDef;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
@@ -13,6 +14,9 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 public class BaseViewHolder extends RecyclerView.ViewHolder {
 
@@ -121,7 +125,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
-    public BaseViewHolder setGone(@IdRes int viewId, boolean visible) {
+    /*public BaseViewHolder setGone(@IdRes int viewId, boolean visible) {
         View view = getView(viewId);
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
         return this;
@@ -131,6 +135,18 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         View view = getView(viewId);
         view.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
         return this;
-    }
+    }*/
 
+    @IntDef({View.VISIBLE, View.INVISIBLE, View.GONE})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface holderVisibility {}
+
+    /**
+     * 设置可见性
+     * */
+    public BaseViewHolder setVibility(@IdRes int viewId, @holderVisibility int visibility) {
+        View view = getView(viewId);
+        view.setVisibility(visibility);
+        return this;
+    }
 }
