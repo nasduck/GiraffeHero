@@ -2,6 +2,7 @@ package com.nasduck.lib;
 
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
+import android.view.View;
 
 public abstract class LoadMoreView {
 
@@ -24,38 +25,26 @@ public abstract class LoadMoreView {
     public void convert(BaseViewHolder holder) {
         switch (mStatus) {
             case STATUS_LOADING:
-                setLoadingGone(holder, true);
-                setLoadFailGone(holder, false);
-                setLoadEndGone(holder, false);
+                holder.setVibility(getLoadingViewId(), View.VISIBLE);
+                holder.setVibility(getLoadFailViewId(), View.GONE);
+                holder.setVibility(getLoadEndViewId(), View.GONE);
                 break;
             case STATUS_FAIL:
-                setLoadingGone(holder, false);
-                setLoadFailGone(holder, true);
-                setLoadEndGone(holder, false);
+                holder.setVibility(getLoadingViewId(), View.GONE);
+                holder.setVibility(getLoadFailViewId(), View.VISIBLE);
+                holder.setVibility(getLoadEndViewId(), View.GONE);
                 break;
             case STATUS_END:
-                setLoadingGone(holder, false);
-                setLoadFailGone(holder, false);
-                setLoadEndGone(holder, true);
+                holder.setVibility(getLoadingViewId(), View.GONE);
+                holder.setVibility(getLoadFailViewId(), View.GONE);
+                holder.setVibility(getLoadEndViewId(), View.VISIBLE);
                 break;
             case STATUS_DEFAULT:
-                setLoadingGone(holder, false);
-                setLoadFailGone(holder, false);
-                setLoadEndGone(holder, false);
+                holder.setVibility(getLoadingViewId(), View.GONE);
+                holder.setVibility(getLoadFailViewId(), View.GONE);
+                holder.setVibility(getLoadEndViewId(), View.GONE);
                 break;
         }
-    }
-
-    private void setLoadingGone(BaseViewHolder holder, boolean visible) {
-        holder.setGone(getLoadingViewId(), visible);
-    }
-
-    private void setLoadFailGone(BaseViewHolder holder, boolean visible) {
-        holder.setGone(getLoadFailViewId(), visible);
-    }
-
-    private void setLoadEndGone(BaseViewHolder holder, boolean visible) {
-        holder.setGone(getLoadEndViewId(), visible);
     }
 
     public final void setLoadMoreEndGone(boolean loadMoreEndGone) {
