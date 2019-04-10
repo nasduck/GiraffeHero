@@ -11,4 +11,11 @@
 		android:onClick="onAnimationClick"
 		android:text="recyclerView animation "/>
 
+	<Button
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:text="@string/oreo"
+		android:onClick="onOreoClick"/>
+
 </LinearLayout>
