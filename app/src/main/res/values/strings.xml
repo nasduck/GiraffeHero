@@ -1,7 +1,3 @@
 <resources>
-    <string name="app_name">RVProvider</string>
-    <string name="oreo">Oreo</string>
-    <string name="visible">VISIBLE</string>
-    <string name="invisible">INVISIBLE</string>
-    <string name="gone">GONE</string>
+	<string name="app_name">RVProvider</string>
 </resources>
