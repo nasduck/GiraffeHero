@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.nasduck.rvprovider.RVAnimation.RVAnimationActivity;
+import com.nasduck.rvprovider.oreo.OreoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,5 +19,9 @@ public class MainActivity extends AppCompatActivity {
 	public void onAnimationClick(View view) {
 		Intent intent = new Intent(MainActivity.this, RVAnimationActivity.class);
 		startActivity(intent);
+	}
+
+	public void onOreoClick(View view) {
+		startActivity(new Intent(this, OreoActivity.class));
 	}
 }
