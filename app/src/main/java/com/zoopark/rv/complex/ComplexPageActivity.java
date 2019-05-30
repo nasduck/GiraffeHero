@@ -1,4 +1,4 @@
-package com.zoopark.rv;
+package com.zoopark.rv.complex;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

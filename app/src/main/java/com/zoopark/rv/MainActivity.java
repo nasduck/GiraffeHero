@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.nasduck.rvprovider.R;
 import com.zoopark.rv.RVAnimation.RVAnimationActivity;
+import com.zoopark.rv.complex.ComplexPageActivity;
 import com.zoopark.rv.oreo.OreoActivity;
 
 public class MainActivity extends AppCompatActivity {
