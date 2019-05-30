@@ -8,6 +8,7 @@
 		android:id="@+id/btn_rv_animation"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
 		android:onClick="onAnimationClick"
 		android:text="recyclerView animation "/>
 
@@ -17,5 +18,12 @@
 		android:layout_margin="16dp"
 		android:text="@string/oreo"
 		android:onClick="onOreoClick"/>
+
+	<Button
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:text="@string/complex_page"
+		android:onClick="onComplexPageClick"/>
 
 </LinearLayout>

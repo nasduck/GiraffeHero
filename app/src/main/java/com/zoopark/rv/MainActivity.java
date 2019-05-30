@@ -25,4 +25,8 @@ public class MainActivity extends AppCompatActivity {
 	public void onOreoClick(View view) {
 		startActivity(new Intent(this, OreoActivity.class));
 	}
+
+	public void onComplexPageClick(View view) {
+		startActivity(new Intent(this, ComplexPageActivity.class));
+	}
 }
