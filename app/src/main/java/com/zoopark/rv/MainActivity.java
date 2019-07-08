@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.nasduck.rvprovider.R;
+import com.zoopark.rvprovider.R;
 import com.zoopark.rv.RVAnimation.RVAnimationActivity;
 import com.zoopark.rv.complex.ComplexPageActivity;
 import com.zoopark.rv.oreo.OreoActivity;

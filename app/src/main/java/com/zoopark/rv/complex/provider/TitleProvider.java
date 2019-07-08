@@ -2,7 +2,7 @@ package com.zoopark.rv.complex.provider;
 
 import android.content.Context;
 
-import com.nasduck.rvprovider.R;
+import com.zoopark.rvprovider.R;
 import com.zoopark.rv.BaseItemProvider;
 import com.zoopark.rv.BaseViewHolder;
 import com.zoopark.rv.IndexPath;

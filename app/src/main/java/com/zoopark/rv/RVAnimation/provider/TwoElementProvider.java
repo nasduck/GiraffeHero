@@ -5,7 +5,7 @@ import android.content.Context;
 import com.zoopark.rv.BaseItemProvider;
 import com.zoopark.rv.BaseViewHolder;
 import com.zoopark.rv.IndexPath;
-import com.nasduck.rvprovider.R;
+import com.zoopark.rvprovider.R;
 
 public class TwoElementProvider extends BaseItemProvider {
 

@@ -3,7 +3,7 @@ package com.zoopark.rv.complex;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.nasduck.rvprovider.R;
+import com.zoopark.rvprovider.R;
 
 public class ComplexPageActivity extends AppCompatActivity {
 

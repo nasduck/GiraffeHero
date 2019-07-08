@@ -1,6 +1,6 @@
 package com.zoopark.rv;
 
-import com.nasduck.lib.R;
+import com.zoopark.lib.R;
 
 /**
  * Default Load More View

@@ -1,4 +1,4 @@
-package com.nasduck.rvprovider;
+package com.zoopark.rvprovider;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

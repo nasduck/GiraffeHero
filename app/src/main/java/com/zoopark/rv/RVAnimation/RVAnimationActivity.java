@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.zoopark.rv.animation.FlipItemAnimator;
 import com.zoopark.rv.animation.enums.Benchmark;
-import com.nasduck.rvprovider.R;
+import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,13 +1,12 @@
 package com.zoopark.rv.RVAnimation.provider;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 
 import com.zoopark.rv.BaseItemProvider;
 import com.zoopark.rv.BaseViewHolder;
 import com.zoopark.rv.IndexPath;
-import com.nasduck.rvprovider.R;
+import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;

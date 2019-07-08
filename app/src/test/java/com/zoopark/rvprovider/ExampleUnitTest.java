@@ -1,4 +1,4 @@
-package com.nasduck.rvprovider;
+package com.zoopark.rvprovider;
 
 import org.junit.Test;
 
