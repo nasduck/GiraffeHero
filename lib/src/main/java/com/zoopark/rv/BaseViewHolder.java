@@ -125,7 +125,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
-    /*public BaseViewHolder setGone(@IdRes int viewId, boolean visible) {
+    public BaseViewHolder setGone(@IdRes int viewId, boolean visible) {
         View view = getView(viewId);
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
         return this;
@@ -135,7 +135,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         View view = getView(viewId);
         view.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
         return this;
-    }*/
+    }
 
     @IntDef({View.VISIBLE, View.INVISIBLE, View.GONE})
     @Retention(RetentionPolicy.SOURCE)
@@ -144,9 +144,10 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     /**
      * 设置可见性
      * */
-    public BaseViewHolder setVibility(@IdRes int viewId, @holderVisibility int visibility) {
+    public BaseViewHolder setVisibility(@IdRes int viewId, @holderVisibility int visibility) {
         View view = getView(viewId);
         view.setVisibility(visibility);
         return this;
     }
+
 }

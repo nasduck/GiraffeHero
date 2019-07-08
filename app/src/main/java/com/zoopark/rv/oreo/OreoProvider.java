@@ -47,14 +47,14 @@ public class OreoProvider extends BaseItemProvider {
 				mIsVisibleList.set(indexPath.getRow(), !mIsVisibleList.get(indexPath.getRow()));
 				if (mIsVisibleList.get(indexPath.getRow())) {
 					holder.setText(R.id.btn_visible, mContext.getResources().getString(R.string.invisible));
-					holder.setVibility(R.id.tv_taste, View.VISIBLE);
+					holder.setVisibility(R.id.tv_taste, View.VISIBLE);
 				} else {
 					holder.setText(R.id.btn_visible, mContext.getResources().getString(R.string.visible));
-					holder.setVibility(R.id.tv_taste, View.INVISIBLE);
+					holder.setVisibility(R.id.tv_taste, View.INVISIBLE);
 				}
 				break;
 			case R.id.btn_gone:
-				holder.setVibility(R.id.tv_taste, View.GONE);
+				holder.setVisibility(R.id.tv_taste, View.GONE);
 				break;
 			default:
 				break;
