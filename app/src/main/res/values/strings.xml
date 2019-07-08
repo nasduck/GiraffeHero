@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RVProvider</string>
+    <string name="app_name">GiraffeAdapter</string>
     <string name="oreo">Oreo</string>
     <string name="complex_page">Complex Page</string>
     <string name="visible">VISIBLE</string>
