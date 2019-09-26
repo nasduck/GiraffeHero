@@ -1,6 +1,7 @@
 package com.zoopark.rv.RVAnimation.provider;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Button;
 
 import com.zoopark.rv.BaseItemProvider;
@@ -11,11 +12,11 @@ import com.zoopark.rvprovider.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OneElementProvider extends BaseItemProvider {
+public class WidthElementProvider extends BaseItemProvider {
 
     private List<Integer> mData;
 
-    public OneElementProvider(Context context) {
+    public WidthElementProvider(Context context) {
         super(context);
         mData = new ArrayList<>();
     }
@@ -27,16 +28,16 @@ public class OneElementProvider extends BaseItemProvider {
 
     @Override
     public int getLayout() {
-        return R.layout.item_element_one;
+        return R.layout.item_element_width;
     }
 
     @Override
     public void onBind(BaseViewHolder holder, IndexPath indexPath) {
-        Button view = holder.getView(R.id.button);
-        view.setText(String.valueOf(mData.get(indexPath.getRow())));
+        Button button = holder.getView(R.id.button);
+        button.setText(String.valueOf(mData.get(indexPath.getRow())));
     }
 
-    public void setData(List<Integer> data) {
-        mData = data;
+    public void setItemData(List<Integer> data) {
+        this.mData = data;
     }
 }
