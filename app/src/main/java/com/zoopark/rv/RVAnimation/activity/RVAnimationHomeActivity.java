@@ -22,14 +22,17 @@ public class RVAnimationHomeActivity extends AppCompatActivity {
     }
 
     public void onFlipAnimClick(View view) {
-
+        Intent intent = new Intent(this, RVAnimationFlipActivity.class);
+        startActivity(intent);
     }
 
     public void onScaleAnimClick(View view) {
-
+        Intent intent = new Intent(this, RVAnimationScaleActivity.class);
+        startActivity(intent);
     }
 
     public void onTranslationClick(View view) {
-
+        Intent intent = new Intent(this, RVAnimationTranslationActivity.class);
+        startActivity(intent);
     }
 }

@@ -86,7 +86,6 @@ public class RVAnimationFadeActivity extends AppCompatActivity {
                     mVerticalAdapter.setItemData(mList);
                     mRecyclerView.setLayoutManager(mLayoutManager);
                     mRecyclerView.setAdapter(mVerticalAdapter);
-
                 }
                 isVertical = !isVertical;
                 break;
