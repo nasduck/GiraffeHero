@@ -1,7 +1,9 @@
 package com.zoopark.rv;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.List;
 
 public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -21,6 +24,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private final LayoutInflater mLayoutInflater;
     private final Context mContext;
+    private int preItemCount;
 
     // Empty View
     private Boolean isShowEmptyView;
@@ -86,6 +90,18 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
+    /**
+     * todo 是否有必要添加payloads
+     *
+     * @param holder
+     * @param position
+     * @param payloads
+     */
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+        super.onBindViewHolder(holder, position, payloads);
+    }
+
     @Override
     public int getItemViewType(int position) {
         if (isShowEmptyView) {
@@ -105,6 +121,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
             return 1;
         } else {
             int itemCount = getContentItemCount();
+            this.preItemCount = itemCount;
             if (mIsLoadMoreEnable) itemCount += 1;
             return itemCount; // 注意这里返回的是总的 item 数量
         }
@@ -150,6 +167,22 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     public int getRowNumberInSection(int section) {
         return mProviderDelegate.getProvider(section).getItemCount();
     };
+
+    /**
+     * 获取除某一 Section 之外的 Item 的数量
+     *
+     * @param section
+     * @return
+     */
+    public int getExtraRowNumberInSection(int section) {
+        int totalItemCount = 0;
+        for (int i = 0; i < getSectionNumber(); i++) {
+            if (i != section) {
+                totalItemCount += getRowNumberInSection(i);
+            }
+        }
+        return totalItemCount;
+    }
 
     /**
      * 获得 position 对应的 indexPath
@@ -206,7 +239,11 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         for (int i = 0; i < section; i++) {
             startPosition += getRowNumberInSection(i);
         }
-        this.notifyItemRangeChanged(startPosition, getRowNumberInSection(section));
+        if (getRowNumberInSection(section) < (this.preItemCount - getExtraRowNumberInSection(section))) {
+            this.notifyItemRangeRemoved(startPosition, this.preItemCount - getExtraRowNumberInSection(section));
+        } else {
+            this.notifyItemRangeChanged(startPosition, getRowNumberInSection(section));
+        }
     }
 
     /**
