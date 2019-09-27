@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white">
+
+    </android.support.v7.widget.Toolbar>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/complex_page"
+        android:onClick="onComplexPageClick"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/oreo"
+        android:onClick="onOreoClick"/>
 
 	<Button
 		android:layout_width="match_parent"
@@ -16,17 +39,5 @@
 		android:layout_height="wrap_content"
 		android:onClick="onAnimationClick"
 		android:text="recyclerView animation "/>
-
-	<Button
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:text="@string/oreo"
-		android:onClick="onOreoClick"/>
-
-	<Button
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:text="@string/complex_page"
-		android:onClick="onComplexPageClick"/>
 
 </LinearLayout>

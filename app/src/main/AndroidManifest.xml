@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.zoopark.rv.empty.EmptyViewActivity"></activity>
+        <activity android:name="com.zoopark.rv.empty.EmptyViewActivity"/>
         <activity android:name="com.zoopark.rv.RVAnimation.activity.RVAnimationTranslationActivity" />
         <activity android:name="com.zoopark.rv.RVAnimation.activity.RVAnimationScaleActivity" />
         <activity android:name="com.zoopark.rv.RVAnimation.activity.RVAnimationFlipActivity" />
@@ -20,6 +20,7 @@
         <activity android:name="com.zoopark.rv.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

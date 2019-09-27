@@ -242,6 +242,8 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (getRowNumberInSection(section) < (this.preItemCount - getExtraRowNumberInSection(section))) {
             this.notifyItemRangeRemoved(startPosition, this.preItemCount - getExtraRowNumberInSection(section));
         } else {
+            Log.d("redrain", String.valueOf(startPosition));
+            Log.d("redrain", String.valueOf(getRowNumberInSection(section)));
             this.notifyItemRangeChanged(startPosition, getRowNumberInSection(section));
         }
     }
