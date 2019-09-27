@@ -21,6 +21,8 @@ public class RVAnimationHomeActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.toolbar);
         // 设置标题栏
         setSupportActionBar(mToolbar);
+
+
     }
 
     @Override
@@ -34,22 +36,18 @@ public class RVAnimationHomeActivity extends AppCompatActivity {
     }
 
     public void onFadeAnimClick(View view) {
-        Intent intent = new Intent(this, RVAnimationFadeActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, RVAnimationFadeActivity.class));
     }
 
     public void onFlipAnimClick(View view) {
-        Intent intent = new Intent(this, RVAnimationFlipActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, RVAnimationFlipActivity.class));
     }
 
     public void onScaleAnimClick(View view) {
-        Intent intent = new Intent(this, RVAnimationScaleActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, RVAnimationScaleActivity.class));
     }
 
     public void onTranslationClick(View view) {
-        Intent intent = new Intent(this, RVAnimationTranslationActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, RVAnimationTranslationActivity.class));
     }
 }

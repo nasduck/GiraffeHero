@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.zoopark.rv.RVAnimation.activity.RVAnimationHomeActivity;
+import com.zoopark.rv.empty.EmptyViewActivity;
 import com.zoopark.rvprovider.R;
 import com.zoopark.rv.complex.ComplexPageActivity;
 import com.zoopark.rv.oreo.OreoActivity;
@@ -18,9 +19,14 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 	}
 
+	/** Click *************************************************************************************/
+
+	public void onEmptyViewClick(View view) {
+		startActivity(new Intent(this, EmptyViewActivity.class));
+	}
+
 	public void onAnimationClick(View view) {
-		Intent intent = new Intent(MainActivity.this, RVAnimationHomeActivity.class);
-		startActivity(intent);
+		startActivity(new Intent(this, RVAnimationHomeActivity.class));
 	}
 
 	public void onOreoClick(View view) {
