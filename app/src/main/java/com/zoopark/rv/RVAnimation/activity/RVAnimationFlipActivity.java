@@ -8,12 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.zoopark.rv.RVAnimation.adapter.RVAnimationHorizontalAdapter;
 import com.zoopark.rv.RVAnimation.adapter.RVAnimationVerticalAdapter;
-import com.zoopark.rv.animation.FadeItemAnimator;
 import com.zoopark.rv.animation.FlipItemAnimator;
 import com.zoopark.rv.animation.enums.Benchmark;
-import com.zoopark.rv.animation.enums.SlideDirection;
 import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
@@ -30,7 +27,7 @@ public class RVAnimationFlipActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rvaniamtion_flip);
+        setContentView(R.layout.activity_rv_aniamtion_flip);
         // 绑定控件
         mRecyclerView = findViewById(R.id.recycler_view);
         mToolbar = findViewById(R.id.toolbar);

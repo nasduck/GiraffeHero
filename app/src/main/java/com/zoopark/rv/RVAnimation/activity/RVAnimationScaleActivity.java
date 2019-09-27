@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.zoopark.rv.RVAnimation.adapter.RVAnimationVerticalAdapter;
-import com.zoopark.rv.animation.FlipItemAnimator;
 import com.zoopark.rv.animation.ScaleItemAnimator;
 import com.zoopark.rv.animation.enums.Benchmark;
 import com.zoopark.rvprovider.R;
@@ -28,7 +27,7 @@ public class RVAnimationScaleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rvanimation_scale);
+        setContentView(R.layout.activity_rv_animation_scale);
         // 绑定控件
         mRecyclerView = findViewById(R.id.recycler_view);
         mToolbar = findViewById(R.id.toolbar);

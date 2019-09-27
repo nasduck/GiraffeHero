@@ -11,7 +11,6 @@ import android.view.View;
 
 import com.zoopark.rv.RVAnimation.adapter.RVAnimationHorizontalAdapter;
 import com.zoopark.rv.RVAnimation.adapter.RVAnimationVerticalAdapter;
-import com.zoopark.rv.animation.FadeItemAnimator;
 import com.zoopark.rv.animation.TranslationItemAnimator;
 import com.zoopark.rv.animation.enums.SlideDirection;
 import com.zoopark.rvprovider.R;
@@ -34,7 +33,7 @@ public class RVAnimationTranslationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rvanimation_translation);
+        setContentView(R.layout.activity_rv_animation_translation);
         // 绑定控件
         mRecyclerView = findViewById(R.id.recycler_view);
         mToolbar = findViewById(R.id.toolbar);
