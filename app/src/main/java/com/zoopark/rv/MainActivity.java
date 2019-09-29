@@ -9,7 +9,6 @@ import com.zoopark.rv.RVAnimation.activity.RVAnimationHomeActivity;
 import com.zoopark.rv.empty.EmptyViewActivity;
 import com.zoopark.rvprovider.R;
 import com.zoopark.rv.complex.ComplexPageActivity;
-import com.zoopark.rv.oreo.OreoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,10 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
 	public void onAnimationClick(View view) {
 		startActivity(new Intent(this, RVAnimationHomeActivity.class));
-	}
-
-	public void onOreoClick(View view) {
-		startActivity(new Intent(this, OreoActivity.class));
 	}
 
 	public void onComplexPageClick(View view) {

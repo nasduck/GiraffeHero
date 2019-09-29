@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:padding="16dp">
 
     <Button
@@ -10,47 +10,47 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/button_group_1"
-        android:textColor="@color/black"
+        android:background="@color/white"
         android:drawableTop="@drawable/ic_button_one_46dp"
         android:drawablePadding="8dp"
         android:gravity="center_horizontal"
-        android:background="@color/white"/>
+        android:text="@string/button_group_1"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/btn_item_two"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/button_group_2"
-        android:textColor="@color/black"
+        android:background="@color/white"
         android:drawableTop="@drawable/ic_button_two_46dp"
         android:drawablePadding="8dp"
         android:gravity="center_horizontal"
-        android:background="@color/white"/>
+        android:text="@string/button_group_2"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/btn_item_three"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/button_group_3"
-        android:textColor="@color/black"
+        android:background="@color/white"
         android:drawableTop="@drawable/ic_button_three_46dp"
         android:drawablePadding="8dp"
         android:gravity="center_horizontal"
-        android:background="@color/white"/>
+        android:text="@string/button_group_3"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/btn_item_four"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/button_group_4"
-        android:textColor="@color/black"
+        android:background="@color/white"
         android:drawableTop="@drawable/ic_button_four_46dp"
         android:drawablePadding="8dp"
         android:gravity="center_horizontal"
-        android:background="@color/white"/>
+        android:text="@string/button_group_4"
+        android:textColor="@color/black" />
 
 </LinearLayout>

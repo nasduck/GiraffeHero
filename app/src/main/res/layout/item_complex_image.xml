@@ -7,6 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_margin="16dp"
-        android:src="@color/colorPrimary"/>
+        android:src="@color/colorPrimary" />
 
 </FrameLayout>

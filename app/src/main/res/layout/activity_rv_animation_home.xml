@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
+        app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
         app:title="RecyclerView Animation"
-        app:titleTextColor="@color/white"
-        app:navigationIcon="@drawable/ic_arrow_back_white_24dp">
+        app:titleTextColor="@color/white">
 
 
     </android.support.v7.widget.Toolbar>
@@ -21,28 +21,28 @@
         android:id="@+id/btn_anim_fade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/animation_fade"
-        android:onClick="onFadeAnimClick"/>
+        android:onClick="onFadeAnimClick"
+        android:text="@string/animation_fade" />
 
     <Button
         android:id="@+id/btn_anim_flip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/animation_flip"
-        android:onClick="onFlipAnimClick"/>
+        android:onClick="onFlipAnimClick"
+        android:text="@string/animation_flip" />
 
     <Button
         android:id="@+id/btn_anim_scale"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/animation_scale"
-        android:onClick="onScaleAnimClick"/>
+        android:onClick="onScaleAnimClick"
+        android:text="@string/animation_scale" />
 
     <Button
         android:id="@+id/btn_anim_translation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/animation_translation"
-        android:onClick="onTranslationClick"/>
+        android:onClick="onTranslationClick"
+        android:text="@string/animation_translation" />
 
 </LinearLayout>

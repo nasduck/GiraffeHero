@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -18,26 +18,20 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/complex_page"
-        android:onClick="onComplexPageClick"/>
+        android:onClick="onComplexPageClick"
+        android:text="@string/complex_recycler_view" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/oreo"
-        android:onClick="onOreoClick"/>
+        android:onClick="onEmptyViewClick"
+        android:text="@string/empty_view" />
 
-	<Button
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:text="empty view"
-		android:onClick="onEmptyViewClick"/>
-
-	<Button
-		android:id="@+id/btn_rv_animation"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:onClick="onAnimationClick"
-		android:text="recyclerView animation "/>
+    <Button
+        android:id="@+id/btn_rv_animation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onAnimationClick"
+        android:text="@string/animation_recycler_view" />
 
 </LinearLayout>

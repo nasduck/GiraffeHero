@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">GiraffeAdapter</string>
-    <string name="oreo">Oreo</string>
-    <string name="complex_page">Complex Page</string>
-    <string name="visible">VISIBLE</string>
-    <string name="invisible">INVISIBLE</string>
-    <string name="gone">GONE</string>
+
+    <string name="complex_recycler_view">复杂列表</string>
+    <string name="animation_recycler_view">列表动画</string>
+    <string name="empty_view">无内容视图</string>
 
     <string name="button_group_1">item 1</string>
     <string name="button_group_2">item 2</string>
