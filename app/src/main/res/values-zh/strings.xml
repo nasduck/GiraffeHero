@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GiraffeAdapter</string>
+
+    <string name="complex_recycler_view">复杂列表</string>
+    <string name="animation_recycler_view">列表动画</string>
+    <string name="empty_view">无内容视图</string>
+
+    <string name="button_group_1">item 1</string>
+    <string name="button_group_2">item 2</string>
+    <string name="button_group_3">item 3</string>
+    <string name="button_group_4">item 4</string>
+
+    <string name="button_group_1_tip">点击了按钮item 1</string>
+    <string name="button_group_2_tip">点击了按钮item 2</string>
+    <string name="button_group_3_tip">点击了按钮item 3</string>
+    <string name="button_group_4_tip">点击了按钮item 4</string>
+
+    <string name="get_new_item">获取一个最新项目</string>
+
+    <string name="introduce_rafiki_permissions">RafikiPermissions 是为了简化 Android 危险权限动态申请操作，将权限申请判断和权限申请过程简化，将权限申请结果拆分成授予成功和授予失败两部分处理，使结果处理更富有逻辑性。组件名称 Rafiki 拉菲奇来源于狮子王里的狒狒长老，统管权限 :D</string>
+    <string name="introduce_giant_panda">GiantPandaDialog 是为了简化 Android Dialog 的调用, 同时借鉴 iOS Dialog/Alert 的创建模式来提供简洁直观的弹窗创建方式. 整个基类完全继承自 DialogFragment 来代替 Dialog 以及 AlertDialog. </string>
+    <string name="introduce_lesser_panda">LesserPandaToast 提供最简单的方法来调用各类简单的 progressHud 或 loadingToast, 同时提供自定义方法来定义不同的样式. 用户可以手动控制消失或者自动延时消失.</string>
+    <string name="introduce_new_item">正在开发新的项目</string>
+
+    <string name="button_add_data">添加数据</string>
+    <string name="button_clear_data">清除数据</string>
+
+    <string name="animation_flip">翻转动画</string>
+    <string name="animation_fade">滑动动画</string>
+    <string name="animation_scale">缩放动画</string>
+    <string name="animation_translation">滑动动画（有透明度变化）</string>
+
+    <string name="direction_left">从左到右</string>
+    <string name="direction_right">从右到左</string>
+    <string name="direction_top">从上到下</string>
+    <string name="direction_bottom">从下到上</string>
+
+    <string name="coordinate_center">中心点</string>
+    <string name="coordinate_x">x轴</string>
+    <string name="coordinate_y">y轴</string>
+
+    <string name="add">新增</string>
+    <string name="remove">移除</string>
+    <string name="move">移动</string>
+    <string name="change">变换</string>
+</resources>
