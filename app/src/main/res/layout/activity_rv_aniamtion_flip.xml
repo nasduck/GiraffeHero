@@ -27,7 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Center"
+            android:text="@string/coordinate_center"
             android:onClick="onAnimTypeClick"
             android:checked="true"/>
 
@@ -36,7 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="X"
+            android:text="@string/coordinate_x"
             android:onClick="onAnimTypeClick"/>
 
         <RadioButton
@@ -44,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Y"
+            android:text="@string/coordinate_y"
             android:onClick="onAnimTypeClick"/>
 
     </RadioGroup>
@@ -59,28 +59,28 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onAddClick"
-            android:text="add"/>
+            android:text="@string/add"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onRemove"
-            android:text="remove"/>
+            android:text="@string/remove"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onMove"
-            android:text="move"/>
+            android:text="@string/move"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onChange"
-            android:text="change"/>
+            android:text="@string/change"/>
 
     </LinearLayout>
 

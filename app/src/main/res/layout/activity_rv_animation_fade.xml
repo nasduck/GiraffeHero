@@ -27,7 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Left"
+            android:text="@string/direction_left"
             android:onClick="onAnimTypeClick"
             android:checked="true"/>
 
@@ -36,7 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Right"
+            android:text="@string/direction_right"
             android:onClick="onAnimTypeClick"/>
 
         <RadioButton
@@ -44,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Top"
+            android:text="@string/direction_top"
             android:onClick="onAnimTypeClick"/>
 
         <RadioButton
@@ -52,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Bottom"
+            android:text="@string/direction_bottom"
             android:onClick="onAnimTypeClick"/>
 
     </RadioGroup>
@@ -67,28 +67,28 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onAddClick"
-            android:text="add"/>
+            android:text="@string/add"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onRemove"
-            android:text="remove"/>
+            android:text="@string/remove"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onMove"
-            android:text="move"/>
+            android:text="@string/move"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onChange"
-            android:text="change"/>
+            android:text="@string/change"/>
 
     </LinearLayout>
 
