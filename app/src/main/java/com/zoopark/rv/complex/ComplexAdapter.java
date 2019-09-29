@@ -1,7 +1,6 @@
 package com.zoopark.rv.complex;
 
 import android.content.Context;
-import android.os.IBinder;
 
 import com.zoopark.rv.BaseAdapter;
 import com.zoopark.rv.complex.bean.ItemBean;
@@ -10,7 +9,6 @@ import com.zoopark.rv.complex.provider.DivideProvider;
 import com.zoopark.rv.complex.provider.ImageProvider;
 import com.zoopark.rv.complex.provider.OneItemProvider;
 import com.zoopark.rv.complex.provider.TitleProvider;
-import com.zoopark.rv.complex.provider.TwoItemsProvider;
 
 import java.util.List;
 

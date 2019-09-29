@@ -10,7 +10,7 @@ import com.zoopark.rvprovider.R;
 public class TitleProvider extends BaseItemProvider {
 
     public interface OnAddClickListener {
-        void onClick();
+        void onAddClick();
     }
 
     private String mTitle;
@@ -36,7 +36,7 @@ public class TitleProvider extends BaseItemProvider {
     public void onClick(BaseViewHolder holder, IndexPath indexPath, int viewId) {
         if (viewId == R.id.btn_add) {
             if (mListener != null) {
-                mListener.onClick();
+                mListener.onAddClick();
             }
         }
     }

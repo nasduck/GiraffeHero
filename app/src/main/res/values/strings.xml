@@ -5,6 +5,18 @@
     <string name="visible">VISIBLE</string>
     <string name="invisible">INVISIBLE</string>
     <string name="gone">GONE</string>
+
+    <string name="button_group_1">item 1</string>
+    <string name="button_group_2">item 2</string>
+    <string name="button_group_3">item 3</string>
+    <string name="button_group_4">item 4</string>
+
+    <string name="button_group_1_tip">点击了按钮item 1</string>
+    <string name="button_group_2_tip">点击了按钮item 2</string>
+    <string name="button_group_3_tip">点击了按钮item 3</string>
+    <string name="button_group_4_tip">点击了按钮item 4</string>
+
+    <string name="get_new_item">获取一个最新项目</string>
     
     <string name="introduce_rafiki_permissions">RafikiPermissions 是为了简化 Android 危险权限动态申请操作，将权限申请判断和权限申请过程简化，将权限申请结果拆分成授予成功和授予失败两部分处理，使结果处理更富有逻辑性。组件名称 Rafiki 拉菲奇来源于狮子王里的狒狒长老，统管权限 :D</string>
     <string name="introduce_giant_panda">GiantPandaDialog 是为了简化 Android Dialog 的调用, 同时借鉴 iOS Dialog/Alert 的创建模式来提供简洁直观的弹窗创建方式. 整个基类完全继承自 DialogFragment 来代替 Dialog 以及 AlertDialog. </string>

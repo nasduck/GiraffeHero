@@ -1,5 +1,6 @@
 package com.zoopark.rv.complex;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.zoopark.rv.BaseAdapter;
 import com.zoopark.rv.complex.bean.ItemBean;
 import com.zoopark.rv.complex.provider.TitleProvider;
 import com.zoopark.rvprovider.R;
@@ -15,7 +17,7 @@ import com.zoopark.rvprovider.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComplexPageActivity extends AppCompatActivity {
+public class ComplexPageActivity extends AppCompatActivity implements TitleProvider.OnAddClickListener, BaseAdapter.YummyAdapterLoadMoreListener {
 
     // 图片的数组
     private int[] imageArray = {R.drawable.image_rafiki_permissions, R.drawable.image_giant_panda, R.drawable.image_lesser_panda};
@@ -38,20 +40,16 @@ public class ComplexPageActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recycler_view);
         // 设置标题栏
         setSupportActionBar(mToolbar);
-
+        // 模拟数据源
         for (int i = 0; i < imageArray.length; i++) {
             mList.add(new ItemBean(imageArray[i], contentArray[i]));
         }
-
+        // 设置列表配置
         mAdapter = new ComplexAdapter(this);
-        mAdapter.setOneItemData(mList);
-        mAdapter.setAddClickListener(new TitleProvider.OnAddClickListener() {
-            @Override
-            public void onClick() {
-                mList.add(new ItemBean(R.drawable.ic_developping, R.string.introduce_new_item));
-                mAdapter.setOneItemData(mList);
-            }
-        });
+        mAdapter.setOneItemData(mList);     // 设置数据
+        mAdapter.enableLoadMore(true);      // 开启加载更多
+        mAdapter.setAddClickListener(this); // 添加增加item的监听事件
+        mAdapter.setLoadMoreListener(this); // 添加加载更多监听事件
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -66,5 +64,39 @@ public class ComplexPageActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 新增item
+     */
+    @Override
+    public void onAddClick() {
+        mList.add(new ItemBean(R.drawable.ic_developping, R.string.introduce_new_item));
+        mAdapter.setOneItemData(mList);
+    }
+
+    /**
+     * 加载监听事件
+     *
+     * 加载完成后必要要调用完成事件方法
+     * loadMoreComplete()
+     * loadMoreEnd(boolean gone)
+     * loadMoreFail()
+     */
+    @Override
+    public void onLoadMore() {
+        // 延时模拟加载
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // 加载更多拉取三条数据
+                mList.add(new ItemBean(R.drawable.ic_developping, R.string.introduce_new_item));
+                mList.add(new ItemBean(R.drawable.ic_developping, R.string.introduce_new_item));
+                mList.add(new ItemBean(R.drawable.ic_developping, R.string.introduce_new_item));
+                mAdapter.setOneItemData(mList);
+                // 加载更多完成后调用此方法
+                mAdapter.loadMoreComplete();
+            }
+        }, 1000);
     }
 }

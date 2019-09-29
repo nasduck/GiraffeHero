@@ -23,7 +23,7 @@
         android:background="@drawable/bg_theme_20"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:text="获取一个最新项目"
+        android:text="@string/get_new_item"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:layout_marginRight="16dp"/>
