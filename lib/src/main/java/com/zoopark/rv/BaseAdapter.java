@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import java.util.List;
 
 public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private SparseArray<BaseItemProvider> mItemProviders;
     protected ProviderDelegate mProviderDelegate;
 
     private final LayoutInflater mLayoutInflater;
@@ -35,7 +33,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     private boolean mIsLoadMoreLoading;
     private LoadMoreView mLoadMoreView;
     private int mPreLoadNumber = 1;
-    private YummyAdapterLoadMoreListener mLoadMoreListener;
+    private BaseAdapterLoadMoreListener mLoadMoreListener;
 
     // View Type
     public static final int EMPTY_VIEW_TYPE = -1;
@@ -55,7 +53,6 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
      */
     public void finishInitialize() {
         registerItemProvider();
-        mItemProviders = mProviderDelegate.getProviderList();
     }
 
     @Override
@@ -64,7 +61,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
             case EMPTY_VIEW_TYPE:
                 return createBaseViewHolder(mEmptyLayout);
             case LOAD_MORE_VIEW_TYPE:
-                return getLoadingViewHolder(parent);
+                return createLoadingViewHolder(parent);
             default:
                 BaseItemProvider provider = mProviderDelegate.getProvider(viewType);
                 return new BaseViewHolder(mLayoutInflater.inflate(provider.getLayout(), parent, false));
@@ -378,17 +375,17 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     //** LoadMore ********************************************************************************//
 
-    public interface YummyAdapterLoadMoreListener {
+    public interface BaseAdapterLoadMoreListener {
         void onLoadMore();
     }
 
-    public void setLoadMoreListener(YummyAdapterLoadMoreListener listener) {
+    public void setLoadMoreListener(BaseAdapterLoadMoreListener listener) {
         this.mLoadMoreListener = listener;
         mIsLoadMoreLoading = false;
     }
 
-    public void setLoadMoreView(LoadMoreView loadingView) {
-        this.mLoadMoreView = loadingView;
+    public void setLoadMoreView(LoadMoreView loadMoreView) {
+        this.mLoadMoreView = loadMoreView;
     }
 
     public void enableLoadMore(boolean enable) {
@@ -396,9 +393,8 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (mIsLoadMoreEnable == enable) return;
         mIsLoadMoreEnable = enable;
 
-        if (mLoadMoreView == null) mLoadMoreView = new DefaultLoadMoreView();
-
         if (mIsLoadMoreEnable) {
+            if (mLoadMoreView == null) mLoadMoreView = new DefaultLoadMoreView();
             mLoadMoreView.setStatus(LoadMoreView.STATUS_DEFAULT);
             notifyItemInserted(getLoadMoreViewPosition());
         } else {
@@ -410,7 +406,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         return getItemCount() - 1; // Load More View should always be the last item
     }
 
-    private BaseViewHolder getLoadingViewHolder(ViewGroup parent) {
+    private BaseViewHolder createLoadingViewHolder(ViewGroup parent) {
         View view = mLayoutInflater.inflate(mLoadMoreView.getLayoutId(), parent, false);
         BaseViewHolder holder = createBaseViewHolder(view);
         holder.itemView.setOnClickListener(new View.OnClickListener() {

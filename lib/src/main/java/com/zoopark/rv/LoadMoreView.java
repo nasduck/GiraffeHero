@@ -7,8 +7,8 @@ public abstract class LoadMoreView {
 
     public static final int STATUS_DEFAULT = 1;
     public static final int STATUS_LOADING = 2;
-    public static final int STATUS_FAIL = 3;
-    public static final int STATUS_END = 4;
+    public static final int STATUS_FAIL    = 3;
+    public static final int STATUS_END     = 4;
 
     private int mStatus = STATUS_DEFAULT;
     private boolean isLoadMoreEndGone = false;

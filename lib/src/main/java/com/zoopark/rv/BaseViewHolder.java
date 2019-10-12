@@ -34,8 +34,9 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     //* Click ************************************************************************************//
 
     @SuppressWarnings("unchecked")
-    public BaseViewHolder setClick(@IdRes final int viewId, final BaseItemProvider provider,
-								   final IndexPath indexPath) {
+    public BaseViewHolder setClick(@IdRes final int viewId,
+                                   final BaseItemProvider provider,
+                                   final IndexPath indexPath) {
         final View view = getView(viewId);
         if (view != null) {
             if (!view.isClickable()) {

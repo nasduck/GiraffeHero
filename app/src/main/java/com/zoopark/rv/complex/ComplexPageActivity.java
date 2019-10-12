@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.zoopark.rv.BaseAdapter;
@@ -17,7 +16,7 @@ import com.zoopark.rvprovider.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComplexPageActivity extends AppCompatActivity implements TitleProvider.OnAddClickListener, BaseAdapter.YummyAdapterLoadMoreListener {
+public class ComplexPageActivity extends AppCompatActivity implements TitleProvider.OnAddClickListener, BaseAdapter.BaseAdapterLoadMoreListener {
 
     // 图片的数组
     private int[] imageArray = {R.drawable.image_rafiki_permissions, R.drawable.image_giant_panda, R.drawable.image_lesser_panda};
