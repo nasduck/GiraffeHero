@@ -1,8 +1,47 @@
 <resources>
     <string name="app_name">GiraffeAdapter</string>
-    <string name="oreo">Oreo</string>
-    <string name="complex_page">Complex Page</string>
-    <string name="visible">VISIBLE</string>
-    <string name="invisible">INVISIBLE</string>
-    <string name="gone">GONE</string>
+
+    <string name="complex_recycler_view">Complex RecyclerView</string>
+    <string name="animation_recycler_view">RecyclerView Animation</string>
+    <string name="empty_view">RecyclerView Empty</string>
+
+    <string name="button_group_1">item 1</string>
+    <string name="button_group_2">item 2</string>
+    <string name="button_group_3">item 3</string>
+    <string name="button_group_4">item 4</string>
+
+    <string name="button_group_1_tip">Click item 1</string>
+    <string name="button_group_2_tip">Click item 2</string>
+    <string name="button_group_3_tip">Click item 3</string>
+    <string name="button_group_4_tip">Click item 4</string>
+
+    <string name="get_new_item">get a new project</string>
+    
+    <string name="introduce_rafiki_permissions">RafikiPermissions 是为了简化 Android 危险权限动态申请操作，将权限申请判断和权限申请过程简化，将权限申请结果拆分成授予成功和授予失败两部分处理，使结果处理更富有逻辑性。组件名称 Rafiki 拉菲奇来源于狮子王里的狒狒长老，统管权限 :D</string>
+    <string name="introduce_giant_panda">GiantPandaDialog 是为了简化 Android Dialog 的调用, 同时借鉴 iOS Dialog/Alert 的创建模式来提供简洁直观的弹窗创建方式. 整个基类完全继承自 DialogFragment 来代替 Dialog 以及 AlertDialog. </string>
+    <string name="introduce_lesser_panda">LesserPandaToast 提供最简单的方法来调用各类简单的 progressHud 或 loadingToast, 同时提供自定义方法来定义不同的样式. 用户可以手动控制消失或者自动延时消失.</string>
+    <string name="introduce_new_item">正在开发新的项目</string>
+
+    <string name="button_add_data">add data</string>
+    <string name="button_clear_data">clear data</string>
+
+    <string name="animation_flip">Flip Animation</string>
+    <string name="animation_fade">Fade Animation</string>
+    <string name="animation_scale">Scale Animation</string>
+    <string name="animation_translation">Translation Animation</string>
+
+    <string name="direction_left">left</string>
+    <string name="direction_right">right</string>
+    <string name="direction_top">top</string>
+    <string name="direction_bottom">bottom</string>
+    
+    <string name="coordinate_center">center</string>
+    <string name="coordinate_x">x</string>
+    <string name="coordinate_y">y</string>
+    
+    <string name="add">add</string>
+    <string name="remove">remove</string>
+    <string name="move">move</string>
+    <string name="change">change</string>
+
 </resources>
