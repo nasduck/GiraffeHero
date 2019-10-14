@@ -3,7 +3,7 @@ package com.zoopark.demo.animation.adapter;
 import android.content.Context;
 
 import com.zoopark.demo.animation.provider.HeightElementProvider;
-import com.zoopark.rv.BaseAdapter;
+import com.zoopark.rv.base.BaseAdapter;
 
 import java.util.List;
 

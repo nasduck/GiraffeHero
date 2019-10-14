@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.zoopark.demo.complex.bean.ItemBean;
 import com.zoopark.demo.complex.provider.TitleProvider;
-import com.zoopark.rv.BaseAdapter;
+import com.zoopark.rv.base.BaseAdapter;
 import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;

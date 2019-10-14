@@ -1,4 +1,4 @@
-package com.zoopark.rv;
+package com.zoopark.rv.base;
 
 public class IndexPath {
 

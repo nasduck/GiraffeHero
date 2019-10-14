@@ -1,6 +1,8 @@
-package com.zoopark.rv;
+package com.zoopark.rv.base;
 
 import android.util.SparseArray;
+
+import com.zoopark.rv.base.BaseItemProvider;
 
 public class ProviderDelegate {
 

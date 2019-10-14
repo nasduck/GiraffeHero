@@ -1,4 +1,4 @@
-package com.zoopark.rv;
+package com.zoopark.rv.base;
 
 import android.content.Context;
 import android.support.annotation.IdRes;

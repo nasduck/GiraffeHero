@@ -2,9 +2,9 @@ package com.zoopark.demo.complex.provider;
 
 import android.content.Context;
 
-import com.zoopark.rv.BaseItemProvider;
-import com.zoopark.rv.BaseViewHolder;
-import com.zoopark.rv.IndexPath;
+import com.zoopark.rv.base.BaseItemProvider;
+import com.zoopark.rv.base.BaseViewHolder;
+import com.zoopark.rv.base.IndexPath;
 import com.zoopark.rvprovider.R;
 
 public class DivideProvider extends BaseItemProvider {

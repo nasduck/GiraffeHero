@@ -8,7 +8,7 @@ import com.zoopark.demo.complex.provider.DivideProvider;
 import com.zoopark.demo.complex.provider.ImageProvider;
 import com.zoopark.demo.complex.provider.OneItemProvider;
 import com.zoopark.demo.complex.provider.TitleProvider;
-import com.zoopark.rv.BaseAdapter;
+import com.zoopark.rv.base.BaseAdapter;
 
 import java.util.List;
 
