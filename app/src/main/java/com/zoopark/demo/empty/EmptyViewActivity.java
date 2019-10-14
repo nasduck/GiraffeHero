@@ -8,7 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.zoopark.rv.empty.OnEmptyViewListener;
 import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
@@ -46,9 +48,14 @@ public class EmptyViewActivity extends AppCompatActivity {
         emptyView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
         // Set empty view
-        mAdapter.setEmptyView(emptyView);
+        mAdapter.setEmptyView(emptyView, new OnEmptyViewListener() {
+            @Override
+            public void onEmptyViewClick() {
+                Toast.makeText(EmptyViewActivity.this, "Click!", Toast.LENGTH_SHORT).show();
+            }
+        });
         // or you can user your own layout
-        // mAdapter.setEmptyView(R.layout.layout_empty_view, mRecyclerView);
+        //mAdapter.setEmptyView(R.layout.layout_empty_view, mRecyclerView);
         mAdapter.showEmptyView();
     }
 

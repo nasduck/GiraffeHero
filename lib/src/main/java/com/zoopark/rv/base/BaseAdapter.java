@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.zoopark.rv.empty.OnEmptyViewListener;
 import com.zoopark.rv.loadmore.DefaultLoadMoreView;
 import com.zoopark.rv.loadmore.LoadMoreView;
 
@@ -30,6 +31,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     // Empty View
     private Boolean isShowEmptyView;
     private FrameLayout mEmptyLayout;
+    private OnEmptyViewListener mEmptyViewClickListener;
 
     // Load More
     private boolean mIsLoadMoreEnable;
@@ -271,7 +273,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void setEmptyView(int layoutResId, ViewGroup viewGroup) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(layoutResId, viewGroup, false);
+        View view = mLayoutInflater.inflate(layoutResId, viewGroup, false);
         setEmptyView(view);
     }
 
@@ -288,6 +290,21 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
         mEmptyLayout.removeAllViews();
         mEmptyLayout.addView(emptyView);
+
+        // Set emptyView click listener
+        if (mEmptyViewClickListener != null) {
+            mEmptyLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mEmptyViewClickListener != null) mEmptyViewClickListener.onEmptyViewClick();
+                }
+            });
+        }
+    }
+
+    public void setEmptyView(View emptyView, OnEmptyViewListener listener) {
+        setEmptyViewListener(listener);
+        setEmptyView(emptyView);
     }
 
     public void showEmptyView() {
@@ -302,6 +319,14 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public boolean isEmptyViewShown() {
         return isShowEmptyView;
+    }
+
+    public void setEmptyViewListener(OnEmptyViewListener listener) {
+        this.mEmptyViewClickListener = listener;
+    }
+
+    public void removeEmptyViewListener() {
+        this.mEmptyViewClickListener = null;
     }
 
     /**
