@@ -14,6 +14,9 @@ import com.zoopark.rvprovider.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Demo for empty view
+ */
 public class EmptyViewActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
@@ -26,23 +29,26 @@ public class EmptyViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty_view);
-        // 绑定控件
+
+        setSupportActionBar(mToolbar);
+
         mToolbar = findViewById(R.id.toolbar);
         mRecyclerView = findViewById(R.id.recycler_view);
-        // 设置标题栏
-        setSupportActionBar(mToolbar);
 
         mAdapter = new EmptyViewAdapter(this);
         mAdapter.setData(mList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // 设置空视图页面
-        ImageView imageView = new ImageView(this);
-        imageView.setImageResource(R.drawable.ic_no_content);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        mAdapter.setEmptyView(imageView);
+        // Create empty view
+        ImageView emptyView = new ImageView(this);
+        emptyView.setImageResource(R.drawable.ic_no_content);
+        emptyView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+
+        // Set empty view
+        mAdapter.setEmptyView(emptyView);
+        // or you can user your own layout
+        // mAdapter.setEmptyView(R.layout.layout_empty_view, mRecyclerView);
         mAdapter.showEmptyView();
     }
 
