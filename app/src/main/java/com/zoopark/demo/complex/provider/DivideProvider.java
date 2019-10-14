@@ -1,4 +1,4 @@
-package com.zoopark.rv.complex.provider;
+package com.zoopark.demo.complex.provider;
 
 import android.content.Context;
 
@@ -7,15 +7,15 @@ import com.zoopark.rv.BaseViewHolder;
 import com.zoopark.rv.IndexPath;
 import com.zoopark.rvprovider.R;
 
-public class ImageProvider extends BaseItemProvider {
+public class DivideProvider extends BaseItemProvider {
 
-    public ImageProvider(Context context) {
+    public DivideProvider(Context context) {
         super(context);
     }
 
     @Override
     public int getLayout() {
-        return R.layout.item_complex_image;
+        return R.layout.item_complex_divide;
     }
 
     @Override

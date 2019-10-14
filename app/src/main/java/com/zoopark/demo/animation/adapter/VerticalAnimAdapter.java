@@ -1,17 +1,17 @@
-package com.zoopark.rv.RVAnimation.adapter;
+package com.zoopark.demo.animation.adapter;
 
 import android.content.Context;
 
+import com.zoopark.demo.animation.provider.WidthElementProvider;
 import com.zoopark.rv.BaseAdapter;
-import com.zoopark.rv.RVAnimation.provider.WidthElementProvider;
 
 import java.util.List;
 
-public class RVAnimationVerticalAdapter extends BaseAdapter {
+public class VerticalAnimAdapter extends BaseAdapter {
 
     private WidthElementProvider mWidthElementProvider;
 
-    public RVAnimationVerticalAdapter(Context context) {
+    public VerticalAnimAdapter(Context context) {
         super(context);
 
         mWidthElementProvider = new WidthElementProvider(context);

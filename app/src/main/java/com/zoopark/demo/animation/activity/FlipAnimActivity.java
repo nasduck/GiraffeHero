@@ -1,4 +1,4 @@
-package com.zoopark.rv.RVAnimation.activity;
+package com.zoopark.demo.animation.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,26 +8,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.zoopark.rv.RVAnimation.adapter.RVAnimationVerticalAdapter;
-import com.zoopark.rv.animation.ScaleItemAnimator;
+import com.zoopark.demo.animation.adapter.VerticalAnimAdapter;
+import com.zoopark.rv.animation.FlipItemAnimator;
 import com.zoopark.rv.animation.enums.Benchmark;
 import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RVAnimationScaleActivity extends AppCompatActivity {
+public class FlipAnimActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private RecyclerView mRecyclerView;
 
     private List<Integer> mList = new ArrayList<>();
-    private RVAnimationVerticalAdapter mAdapter;
+    private VerticalAnimAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rv_animation_scale);
+        setContentView(R.layout.activity_flip_anim);
         // 绑定控件
         mRecyclerView = findViewById(R.id.recycler_view);
         mToolbar = findViewById(R.id.toolbar);
@@ -41,7 +41,7 @@ public class RVAnimationScaleActivity extends AppCompatActivity {
         }
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mAdapter = new RVAnimationVerticalAdapter(this);
+        mAdapter = new VerticalAnimAdapter(this);
 
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mAdapter.setItemData(mList);
@@ -49,7 +49,7 @@ public class RVAnimationScaleActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView.setItemAnimator(new ScaleItemAnimator(Benchmark.CENTER));
+        mRecyclerView.setItemAnimator(new FlipItemAnimator(Benchmark.CENTER));
     }
 
     @Override
@@ -67,13 +67,13 @@ public class RVAnimationScaleActivity extends AppCompatActivity {
     public void onAnimTypeClick(View view) {
         switch (view.getId()) {
             case R.id.btn_center:
-                mRecyclerView.setItemAnimator(new ScaleItemAnimator(Benchmark.CENTER));
+                mRecyclerView.setItemAnimator(new FlipItemAnimator(Benchmark.CENTER));
                 break;
             case R.id.btn_x:
-                mRecyclerView.setItemAnimator(new ScaleItemAnimator(Benchmark.X));
+                mRecyclerView.setItemAnimator(new FlipItemAnimator(Benchmark.X));
                 break;
             case R.id.btn_y:
-                mRecyclerView.setItemAnimator(new ScaleItemAnimator(Benchmark.Y));
+                mRecyclerView.setItemAnimator(new FlipItemAnimator(Benchmark.Y));
                 break;
         }
     }

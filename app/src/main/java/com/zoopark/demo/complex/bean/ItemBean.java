@@ -1,4 +1,4 @@
-package com.zoopark.rv.complex.bean;
+package com.zoopark.demo.complex.bean;
 
 public class ItemBean {
 

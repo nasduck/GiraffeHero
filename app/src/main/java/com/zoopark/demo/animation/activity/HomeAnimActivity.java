@@ -1,4 +1,4 @@
-package com.zoopark.rv.RVAnimation.activity;
+package com.zoopark.demo.animation.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,14 +9,14 @@ import android.view.View;
 
 import com.zoopark.rvprovider.R;
 
-public class RVAnimationHomeActivity extends AppCompatActivity {
+public class HomeAnimActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rv_animation_home);
+        setContentView(R.layout.activity_home_anim);
         // 绑定控件
         mToolbar = findViewById(R.id.toolbar);
         // 设置标题栏
@@ -36,18 +36,18 @@ public class RVAnimationHomeActivity extends AppCompatActivity {
     }
 
     public void onFadeAnimClick(View view) {
-        startActivity(new Intent(this, RVAnimationFadeActivity.class));
+        startActivity(new Intent(this, FadeAnimActivity.class));
     }
 
     public void onFlipAnimClick(View view) {
-        startActivity(new Intent(this, RVAnimationFlipActivity.class));
+        startActivity(new Intent(this, FlipAnimActivity.class));
     }
 
     public void onScaleAnimClick(View view) {
-        startActivity(new Intent(this, RVAnimationScaleActivity.class));
+        startActivity(new Intent(this, ScaleAnimActivity.class));
     }
 
     public void onTranslationClick(View view) {
-        startActivity(new Intent(this, RVAnimationTranslationActivity.class));
+        startActivity(new Intent(this, TranslationAnimActivity.class));
     }
 }

@@ -1,4 +1,4 @@
-package com.zoopark.rv.RVAnimation.activity;
+package com.zoopark.demo.animation.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,23 +9,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.zoopark.rv.RVAnimation.adapter.RVAnimationHorizontalAdapter;
-import com.zoopark.rv.RVAnimation.adapter.RVAnimationVerticalAdapter;
-import com.zoopark.rv.animation.TranslationItemAnimator;
+import com.zoopark.demo.animation.adapter.HorizontalAnimAdapter;
+import com.zoopark.demo.animation.adapter.VerticalAnimAdapter;
+import com.zoopark.rv.animation.FadeItemAnimator;
 import com.zoopark.rv.animation.enums.SlideDirection;
 import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RVAnimationTranslationActivity extends AppCompatActivity {
+public class FadeAnimActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private RecyclerView mRecyclerView;
 
     private List<Integer> mList = new ArrayList<>();
-    private RVAnimationVerticalAdapter mVerticalAdapter;
-    private RVAnimationHorizontalAdapter mHorizontalAdapter;
+    private VerticalAnimAdapter mVerticalAdapter;
+    private HorizontalAnimAdapter mHorizontalAdapter;
     private LinearLayoutManager mLayoutManager;
 
     private boolean isVertical = true;      // 判断列表当前方向
@@ -33,7 +33,7 @@ public class RVAnimationTranslationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rv_animation_translation);
+        setContentView(R.layout.activity_fade_anim);
         // 绑定控件
         mRecyclerView = findViewById(R.id.recycler_view);
         mToolbar = findViewById(R.id.toolbar);
@@ -47,8 +47,8 @@ public class RVAnimationTranslationActivity extends AppCompatActivity {
         }
 
         mLayoutManager = new LinearLayoutManager(this);
-        mVerticalAdapter = new RVAnimationVerticalAdapter(this);
-        mHorizontalAdapter = new RVAnimationHorizontalAdapter(this);
+        mVerticalAdapter = new VerticalAnimAdapter(this);
+        mHorizontalAdapter = new HorizontalAnimAdapter(this);
 
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mVerticalAdapter.setItemData(mList);
@@ -56,9 +56,9 @@ public class RVAnimationTranslationActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mVerticalAdapter);
         // 默认从左侧进入
-        mRecyclerView.setItemAnimator(new TranslationItemAnimator(SlideDirection.LEFT));
-    }
+        mRecyclerView.setItemAnimator(new FadeItemAnimator(SlideDirection.LEFT));
 
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -98,16 +98,16 @@ public class RVAnimationTranslationActivity extends AppCompatActivity {
     public void onAnimTypeClick(View view) {
         switch (view.getId()) {
             case R.id.btn_left:
-                mRecyclerView.setItemAnimator(new TranslationItemAnimator(SlideDirection.LEFT));
+                mRecyclerView.setItemAnimator(new FadeItemAnimator(SlideDirection.LEFT));
                 break;
             case R.id.btn_right:
-                mRecyclerView.setItemAnimator(new TranslationItemAnimator(SlideDirection.RIGHT));
+                mRecyclerView.setItemAnimator(new FadeItemAnimator(SlideDirection.RIGHT));
                 break;
             case R.id.btn_top:
-                mRecyclerView.setItemAnimator(new TranslationItemAnimator(SlideDirection.TOP));
+                mRecyclerView.setItemAnimator(new FadeItemAnimator(SlideDirection.TOP));
                 break;
             case R.id.btn_bottom:
-                mRecyclerView.setItemAnimator(new TranslationItemAnimator(SlideDirection.BOTTOM));
+                mRecyclerView.setItemAnimator(new FadeItemAnimator(SlideDirection.BOTTOM));
                 break;
         }
     }

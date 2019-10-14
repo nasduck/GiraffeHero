@@ -1,14 +1,14 @@
-package com.zoopark.rv.complex;
+package com.zoopark.demo.complex;
 
 import android.content.Context;
 
+import com.zoopark.demo.complex.bean.ItemBean;
+import com.zoopark.demo.complex.provider.ButtonGroupProvider;
+import com.zoopark.demo.complex.provider.DivideProvider;
+import com.zoopark.demo.complex.provider.ImageProvider;
+import com.zoopark.demo.complex.provider.OneItemProvider;
+import com.zoopark.demo.complex.provider.TitleProvider;
 import com.zoopark.rv.BaseAdapter;
-import com.zoopark.rv.complex.bean.ItemBean;
-import com.zoopark.rv.complex.provider.ButtonGroupProvider;
-import com.zoopark.rv.complex.provider.DivideProvider;
-import com.zoopark.rv.complex.provider.ImageProvider;
-import com.zoopark.rv.complex.provider.OneItemProvider;
-import com.zoopark.rv.complex.provider.TitleProvider;
 
 import java.util.List;
 

@@ -94,7 +94,7 @@ public abstract class LoadMoreView {
 	int getLoadFailViewId();
 
     /**
-     * load end view, you can return 0
+     * load end view, return 0 if not exist
      *
      * @return
      */

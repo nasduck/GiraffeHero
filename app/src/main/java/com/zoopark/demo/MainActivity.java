@@ -1,14 +1,14 @@
-package com.zoopark.rv;
+package com.zoopark.demo;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.zoopark.rv.RVAnimation.activity.RVAnimationHomeActivity;
-import com.zoopark.rv.empty.EmptyViewActivity;
+import com.zoopark.demo.animation.activity.HomeAnimActivity;
+import com.zoopark.demo.complex.ComplexPageActivity;
+import com.zoopark.demo.empty.EmptyViewActivity;
 import com.zoopark.rvprovider.R;
-import com.zoopark.rv.complex.ComplexPageActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void onAnimationClick(View view) {
-		startActivity(new Intent(this, RVAnimationHomeActivity.class));
+		startActivity(new Intent(this, HomeAnimActivity.class));
 	}
 
 	public void onComplexPageClick(View view) {

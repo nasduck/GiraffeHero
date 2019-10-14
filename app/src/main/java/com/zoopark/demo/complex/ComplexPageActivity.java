@@ -1,4 +1,4 @@
-package com.zoopark.rv.complex;
+package com.zoopark.demo.complex;
 
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.zoopark.demo.complex.bean.ItemBean;
+import com.zoopark.demo.complex.provider.TitleProvider;
 import com.zoopark.rv.BaseAdapter;
-import com.zoopark.rv.complex.bean.ItemBean;
-import com.zoopark.rv.complex.provider.TitleProvider;
 import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;

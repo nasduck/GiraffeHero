@@ -453,7 +453,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     /**
      * Refresh end, no more data
      *
-     * @param gone if true gone the load more view
+     * @param gone if true, remove load more view
      */
     public void loadMoreEnd(boolean gone) {
         if (!mIsLoadMoreEnable) return;

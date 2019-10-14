@@ -1,9 +1,9 @@
-package com.zoopark.rv.empty;
+package com.zoopark.demo.empty;
 
 import android.content.Context;
 
+import com.zoopark.demo.animation.provider.WidthElementProvider;
 import com.zoopark.rv.BaseAdapter;
-import com.zoopark.rv.RVAnimation.provider.WidthElementProvider;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.zoopark.rv.empty;
+package com.zoopark.demo.empty;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

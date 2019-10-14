@@ -1,18 +1,17 @@
-package com.zoopark.rv.RVAnimation.adapter;
+package com.zoopark.demo.animation.adapter;
 
 import android.content.Context;
 
+import com.zoopark.demo.animation.provider.HeightElementProvider;
 import com.zoopark.rv.BaseAdapter;
-import com.zoopark.rv.RVAnimation.provider.HeightElementProvider;
-import com.zoopark.rv.RVAnimation.provider.WidthElementProvider;
 
 import java.util.List;
 
-public class RVAnimationHorizontalAdapter extends BaseAdapter {
+public class HorizontalAnimAdapter extends BaseAdapter {
 
     private HeightElementProvider mHeightElementProvider;
 
-    public RVAnimationHorizontalAdapter(Context context) {
+    public HorizontalAnimAdapter(Context context) {
         super(context);
 
         mHeightElementProvider = new HeightElementProvider(context);

@@ -1,4 +1,4 @@
-package com.zoopark.rv.complex.provider;
+package com.zoopark.demo.complex.provider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.zoopark.rv.BaseItemProvider;
 import com.zoopark.rv.BaseViewHolder;
 import com.zoopark.rv.IndexPath;
-import com.zoopark.rv.complex.bean.ItemBean;
+import com.zoopark.demo.complex.bean.ItemBean;
 import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
