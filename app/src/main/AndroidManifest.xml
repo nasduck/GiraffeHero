@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zoopark.rvprovider">
+    package="com.zoopark.rv">
 
     <application
         android:allowBackup="true"
@@ -15,7 +15,6 @@
         <activity android:name="com.zoopark.demo.animation.activity.FlipAnimActivity" />
         <activity android:name="com.zoopark.demo.animation.activity.HomeAnimActivity" />
         <activity android:name="com.zoopark.demo.complex.ComplexPageActivity" />
-        <activity android:name="com.zoopark.rv.oreo.OreoActivity" />
         <activity android:name="com.zoopark.demo.animation.activity.FadeAnimActivity" />
         <activity android:name="com.zoopark.demo.MainActivity">
             <intent-filter>

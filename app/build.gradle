@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.nasduck.rvprovider"
+        applicationId "com.zoopark.rv"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1

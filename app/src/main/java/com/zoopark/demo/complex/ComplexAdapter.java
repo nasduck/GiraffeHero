@@ -44,7 +44,7 @@ public class ComplexAdapter extends BaseAdapter {
                 mButtonGroupProvider,
                 mDivideProvider,
                 mProjectItemProvider
-                mDivideProvider);
+        );
     }
 
     public void setOneItemData(List<ItemBean> list) {

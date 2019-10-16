@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GiraffeAdapter</string>
+    <string name="app_name">Giraffe Hero Demo</string>
 
     <string name="complex_recycler_view">Complex RecyclerView</string>
     <string name="animation_recycler_view">RecyclerView Animation</string>
