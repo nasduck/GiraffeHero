@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GiraffeAdapter</string>
+    <string name="app_name">Giraffe Hero Demo</string>
 
     <string name="complex_recycler_view">复杂列表</string>
     <string name="animation_recycler_view">列表动画</string>
