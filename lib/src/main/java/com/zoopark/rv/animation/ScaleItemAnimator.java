@@ -32,16 +32,16 @@ public class ScaleItemAnimator extends BaseItemAnimator {
     }
 
     @Override
-    protected ViewPropertyAnimator addAnimation(ViewPropertyAnimator animation) {
+    protected ViewPropertyAnimator addAnimation(ViewPropertyAnimator animator) {
         switch (mMark) {
             case Y:
-                return animation.scaleY(1f);
+                return animator.scaleY(1f);
             case X:
-                return animation.scaleX(1f);
+                return animator.scaleX(1f);
             case CENTER:
-                return animation.scaleX(1f).scaleY(1f);
+                return animator.scaleX(1f).scaleY(1f);
         }
-        return animation;
+        return animator;
     }
 
     @Override
@@ -51,15 +51,65 @@ public class ScaleItemAnimator extends BaseItemAnimator {
     }
 
     @Override
-    protected ViewPropertyAnimator removeAnimation(ViewPropertyAnimator animation) {
+    protected ViewPropertyAnimator removeAnimation(ViewPropertyAnimator animator) {
         switch (mMark) {
             case Y:
-                return animation.scaleY(0f);
+                return animator.scaleY(0f);
             case X:
-                return animation.scaleX(0f);
+                return animator.scaleX(0f);
             case CENTER:
-                return animation.scaleX(0f).scaleY(0f);
+                return animator.scaleX(0f).scaleY(0f);
         }
-        return animation;
+        return animator;
+    }
+
+    @Override
+    protected boolean changeExitAnimationInit(RecyclerView.ViewHolder holder) {
+        holder.itemView.setScaleX(1f);
+        holder.itemView.setScaleY(1f);
+        return true;
+    }
+
+    @Override
+    protected boolean changeEnterAnimationInit(RecyclerView.ViewHolder holder) {
+        switch (mMark) {
+            case Y:
+                holder.itemView.setScaleY(0f);
+                break;
+            case X:
+                holder.itemView.setScaleX(0f);
+                break;
+            case CENTER:
+                holder.itemView.setScaleX(0f);
+                holder.itemView.setScaleY(0f);
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    protected ViewPropertyAnimator changeExitAnimation(ViewPropertyAnimator animator) {
+        switch (mMark) {
+            case Y:
+                return animator.scaleY(0f);
+            case X:
+                return animator.scaleX(0f);
+            case CENTER:
+                return animator.scaleX(0f).scaleY(0f);
+        }
+        return animator;
+    }
+
+    @Override
+    protected ViewPropertyAnimator changeEnterAnimation(ViewPropertyAnimator animator) {
+        switch (mMark) {
+            case Y:
+                return animator.scaleY(1f);
+            case X:
+                return animator.scaleX(1f);
+            case CENTER:
+                return animator.scaleX(1f).scaleY(1f);
+        }
+        return animator;
     }
 }

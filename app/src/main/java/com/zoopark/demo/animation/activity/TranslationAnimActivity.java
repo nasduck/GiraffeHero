@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.zoopark.demo.animation.adapter.HorizontalAnimAdapter;
 import com.zoopark.demo.animation.adapter.VerticalAnimAdapter;
+import com.zoopark.rv.animation.BaseItemAnimator;
 import com.zoopark.rv.animation.TranslationItemAnimator;
 import com.zoopark.rv.animation.enums.SlideDirection;
 import com.zoopark.rvprovider.R;
@@ -56,7 +57,11 @@ public class TranslationAnimActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mVerticalAdapter);
         // 默认从左侧进入
-        mRecyclerView.setItemAnimator(new TranslationItemAnimator(SlideDirection.LEFT));
+        BaseItemAnimator itemAnimator = new TranslationItemAnimator(SlideDirection.LEFT);
+        itemAnimator.setChangeEnterAnimDuration(1000);
+        itemAnimator.setChangeExitAnimDuration(1000);
+        itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
+        mRecyclerView.setItemAnimator(itemAnimator);
     }
 
 
@@ -96,18 +101,35 @@ public class TranslationAnimActivity extends AppCompatActivity {
     /** Click *************************************************************************************/
 
     public void onAnimTypeClick(View view) {
+        BaseItemAnimator itemAnimator;
         switch (view.getId()) {
             case R.id.btn_left:
-                mRecyclerView.setItemAnimator(new TranslationItemAnimator(SlideDirection.LEFT));
+                itemAnimator = new TranslationItemAnimator(SlideDirection.LEFT);
+                itemAnimator.setChangeEnterAnimDuration(1000);
+                itemAnimator.setChangeExitAnimDuration(1000);
+                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(itemAnimator);
                 break;
             case R.id.btn_right:
-                mRecyclerView.setItemAnimator(new TranslationItemAnimator(SlideDirection.RIGHT));
+                itemAnimator = new TranslationItemAnimator(SlideDirection.RIGHT);
+                itemAnimator.setChangeEnterAnimDuration(1000);
+                itemAnimator.setChangeExitAnimDuration(1000);
+                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(itemAnimator);
                 break;
             case R.id.btn_top:
-                mRecyclerView.setItemAnimator(new TranslationItemAnimator(SlideDirection.TOP));
+                itemAnimator = new TranslationItemAnimator(SlideDirection.TOP);
+                itemAnimator.setChangeEnterAnimDuration(1000);
+                itemAnimator.setChangeExitAnimDuration(1000);
+                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(itemAnimator);
                 break;
             case R.id.btn_bottom:
-                mRecyclerView.setItemAnimator(new TranslationItemAnimator(SlideDirection.BOTTOM));
+                itemAnimator = new TranslationItemAnimator(SlideDirection.BOTTOM);
+                itemAnimator.setChangeEnterAnimDuration(1000);
+                itemAnimator.setChangeExitAnimDuration(1000);
+                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(itemAnimator);
                 break;
         }
     }

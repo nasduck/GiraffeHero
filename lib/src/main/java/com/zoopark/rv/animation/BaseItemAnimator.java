@@ -6,7 +6,6 @@ import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.view.View;
@@ -30,6 +29,17 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
     private long mRemoveAnimDelay;
     private TimeInterpolator mRemoveAnimInterpolator;
     private AnimatorListenerAdapter mRemoveAnimListener;
+
+    // 更新动画的相关配置
+    private long mChangeExitAnimDuration;
+    private long mChangeExitAnimDelay;
+    private TimeInterpolator mChangeExitAnimInterpolator;
+    private AnimatorListenerAdapter mChangeExitAnimListener;
+
+    private long mChangeEnterAnimDuration;
+    private long mChangeEnterAnimDelay;
+    private TimeInterpolator mChangeEnterAnimInterpolator;
+    private AnimatorListenerAdapter mChangeEnterAnimListener;
 
     // 要进行动画的ViewHolder
     private ArrayList<RecyclerView.ViewHolder> mPendingRemovals = new ArrayList();
@@ -101,9 +111,21 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         this.mRemoveAnimDelay = 0;
         this.mRemoveAnimInterpolator = new LinearInterpolator();
         this.mRemoveAnimListener = null;
+
+        this.mChangeExitAnimDuration = this.getChangeDuration();
+        this.mChangeExitAnimDelay = 0;
+        this.mChangeExitAnimInterpolator = new LinearInterpolator();
+        this.mChangeExitAnimListener = null;
+
+        this.mChangeEnterAnimDuration = this.getChangeDuration();
+        this.mChangeEnterAnimDelay = 0;
+        this.mChangeEnterAnimInterpolator = new LinearInterpolator();
+        this.mChangeEnterAnimListener = null;
     }
 
-    /** 动画的控制 **********************************************************************************/
+    /**
+     * 动画的控制
+     **********************************************************************************/
 
     // 真正控制执行动画的地方
     public void runPendingAnimations() {
@@ -116,8 +138,8 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         if (removalsPending || movesPending || additionsPending || changesPending) {
             // 判断移除动画是否有正在进行的
             Iterator iteratorRemovals = this.mPendingRemovals.iterator();
-            while(iteratorRemovals.hasNext()) {
-                RecyclerView.ViewHolder holder = (RecyclerView.ViewHolder)iteratorRemovals.next();
+            while (iteratorRemovals.hasNext()) {
+                RecyclerView.ViewHolder holder = (RecyclerView.ViewHolder) iteratorRemovals.next();
                 // 调用移除动画
                 this.animateRemoveImpl(holder);
             }
@@ -138,8 +160,8 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
                     public void run() {
                         Iterator iteratorMoves = moves.iterator();
 
-                        while(iteratorMoves.hasNext()) {
-                            BaseItemAnimator.MoveInfo moveInfo = (BaseItemAnimator.MoveInfo)iteratorMoves.next();
+                        while (iteratorMoves.hasNext()) {
+                            BaseItemAnimator.MoveInfo moveInfo = (BaseItemAnimator.MoveInfo) iteratorMoves.next();
                             // 调用移动动画
                             BaseItemAnimator.this.animateMoveImpl(moveInfo.holder, moveInfo.fromX, moveInfo.fromY, moveInfo.toX, moveInfo.toY);
                         }
@@ -150,7 +172,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
                 };
                 // 如果有要移除动画的，则延迟删除动画的时间后再运行移动的动画；如果没有，则运行移动的动画
                 if (removalsPending) {
-                    View view = ((BaseItemAnimator.MoveInfo)moves.get(0)).holder.itemView;
+                    View view = ((BaseItemAnimator.MoveInfo) moves.get(0)).holder.itemView;
                     ViewCompat.postOnAnimationDelayed(view, adder, this.getRemoveDuration());
                 } else {
                     adder.run();
@@ -167,8 +189,8 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
                     public void run() {
                         Iterator iteratorChanges = changes.iterator();
 
-                        while(iteratorChanges.hasNext()) {
-                            BaseItemAnimator.ChangeInfo change = (BaseItemAnimator.ChangeInfo)iteratorChanges.next();
+                        while (iteratorChanges.hasNext()) {
+                            BaseItemAnimator.ChangeInfo change = (BaseItemAnimator.ChangeInfo) iteratorChanges.next();
                             // 调用更新动画
                             BaseItemAnimator.this.animateChangeImpl(change);
                         }
@@ -178,7 +200,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
                     }
                 };
                 if (removalsPending) {
-                    RecyclerView.ViewHolder holder = ((BaseItemAnimator.ChangeInfo)changes.get(0)).oldHolder;
+                    RecyclerView.ViewHolder holder = ((BaseItemAnimator.ChangeInfo) changes.get(0)).oldHolder;
                     ViewCompat.postOnAnimationDelayed(holder.itemView, adder, this.getRemoveDuration());
                 } else {
                     adder.run();
@@ -195,8 +217,8 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
                     public void run() {
                         Iterator iteratorAdditions = additions.iterator();
 
-                        while(iteratorAdditions.hasNext()) {
-                            RecyclerView.ViewHolder holder = (RecyclerView.ViewHolder)iteratorAdditions.next();
+                        while (iteratorAdditions.hasNext()) {
+                            RecyclerView.ViewHolder holder = (RecyclerView.ViewHolder) iteratorAdditions.next();
                             // 调用新建动画
                             BaseItemAnimator.this.animateAddImpl(holder);
                         }
@@ -213,7 +235,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
                     long moveDuration = movesPending ? this.getMoveDuration() : 0L;
                     long changeDuration = changesPending ? this.getChangeDuration() : 0L;
                     long totalDelay = removeDuration + Math.max(moveDuration, changeDuration);
-                    View view = ((RecyclerView.ViewHolder)additions.get(0)).itemView;
+                    View view = ((RecyclerView.ViewHolder) additions.get(0)).itemView;
                     ViewCompat.postOnAnimationDelayed(view, adder, totalDelay);
                 }
             }
@@ -221,7 +243,9 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         }
     }
 
-    /** 移除动画 ************************************************************************************/
+    /**
+     * 移除动画
+     ************************************************************************************/
 
     // Item移除动画的初始化
     @Override
@@ -263,7 +287,8 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
                         @Override
                         public void onAnimationCancel(Animator animator) {
                             super.onAnimationCancel(animator);
-                            if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationCancel(animator);
+                            if (mRemoveAnimListener != null)
+                                mRemoveAnimListener.onAnimationCancel(animator);
                         }
 
                         @Override
@@ -278,13 +303,15 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
                             BaseItemAnimator.this.mRemoveAnimations.remove(holder);
                             // 完全完成移除动画后的操作
                             BaseItemAnimator.this.dispatchFinishedWhenDone();
-                            if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationEnd(animator);
+                            if (mRemoveAnimListener != null)
+                                mRemoveAnimListener.onAnimationEnd(animator);
                         }
 
                         @Override
                         public void onAnimationRepeat(Animator animator) {
                             super.onAnimationRepeat(animator);
-                            if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationRepeat(animator);
+                            if (mRemoveAnimListener != null)
+                                mRemoveAnimListener.onAnimationRepeat(animator);
                         }
 
                         @Override
@@ -292,26 +319,31 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
                             super.onAnimationStart(animator);
                             // 可以在onRemoveStarting中实现移除动画开始时的逻辑
                             BaseItemAnimator.this.dispatchRemoveStarting(holder);
-                            if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationStart(animator);
+                            if (mRemoveAnimListener != null)
+                                mRemoveAnimListener.onAnimationStart(animator);
                         }
 
                         @Override
                         public void onAnimationPause(Animator animator) {
                             super.onAnimationPause(animator);
-                            if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationPause(animator);
+                            if (mRemoveAnimListener != null)
+                                mRemoveAnimListener.onAnimationPause(animator);
                         }
 
                         @Override
                         public void onAnimationResume(Animator animator) {
                             super.onAnimationResume(animator);
-                            if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationResume(animator);
+                            if (mRemoveAnimListener != null)
+                                mRemoveAnimListener.onAnimationResume(animator);
                         }
                     }).start();
         }
 
     }
 
-    /** 添加动画 ************************************************************************************/
+    /**
+     * 添加动画
+     ************************************************************************************/
 
     // item添加动画的初始化
     @Override
@@ -362,7 +394,8 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
                         public void onAnimationCancel(Animator animator) {
                             super.onAnimationCancel(animator);
                             animationEnd(view);
-                            if (mAddAnimListener != null) mAddAnimListener.onAnimationCancel(animator);
+                            if (mAddAnimListener != null)
+                                mAddAnimListener.onAnimationCancel(animator);
                         }
 
                         @Override
@@ -378,38 +411,44 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
                         @Override
                         public void onAnimationRepeat(Animator animator) {
                             super.onAnimationRepeat(animator);
-                            if (mAddAnimListener != null) mAddAnimListener.onAnimationRepeat(animator);
+                            if (mAddAnimListener != null)
+                                mAddAnimListener.onAnimationRepeat(animator);
                         }
 
                         @Override
                         public void onAnimationStart(Animator animator) {
                             super.onAnimationStart(animator);
                             BaseItemAnimator.this.dispatchAddStarting(holder);
-                            if (mAddAnimListener != null) mAddAnimListener.onAnimationStart(animator);
+                            if (mAddAnimListener != null)
+                                mAddAnimListener.onAnimationStart(animator);
                         }
 
                         @Override
                         public void onAnimationPause(Animator animator) {
                             super.onAnimationPause(animator);
-                            if (mAddAnimListener != null) mAddAnimListener.onAnimationPause(animator);
+                            if (mAddAnimListener != null)
+                                mAddAnimListener.onAnimationPause(animator);
                         }
 
                         @Override
                         public void onAnimationResume(Animator animator) {
                             super.onAnimationResume(animator);
-                            if (mAddAnimListener != null) mAddAnimListener.onAnimationResume(animator);
+                            if (mAddAnimListener != null)
+                                mAddAnimListener.onAnimationResume(animator);
                         }
                     }).start();
         }
     }
 
-    /** item的移动动画 ******************************************************************************/
+    /**
+     * item的移动动画
+     ******************************************************************************/
 
     // 移动动画的初始化
     public boolean animateMove(RecyclerView.ViewHolder holder, int fromX, int fromY, int toX, int toY) {
         View view = holder.itemView;
-        fromX += (int)holder.itemView.getTranslationX();
-        fromY += (int)holder.itemView.getTranslationY();
+        fromX += (int) holder.itemView.getTranslationX();
+        fromY += (int) holder.itemView.getTranslationY();
         // 先结束对应holder的动画
         this.resetAnimation(holder);
 
@@ -421,11 +460,11 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
             return false;
         } else {
             if (deltaX != 0) {
-                view.setTranslationX((float)(-deltaX));
+                view.setTranslationX((float) (-deltaX));
             }
 
             if (deltaY != 0) {
-                view.setTranslationY((float)(-deltaY));
+                view.setTranslationY((float) (-deltaY));
             }
             // 在要进行移动动画的list中添加对应的ViewHolder以及坐标信息
             this.mPendingMoves.add(new BaseItemAnimator.MoveInfo(holder, fromX, fromY, toX, toY));
@@ -479,7 +518,9 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         }).start();
     }
 
-    /** item的更新动画 ******************************************************************************/
+    /**
+     * item的更新动画
+     ******************************************************************************/
 
     // 更新动画的初始化
     @Override
@@ -490,17 +531,39 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
             float prevTranslationX = oldHolder.itemView.getTranslationX();
             float prevTranslationY = oldHolder.itemView.getTranslationY();
             float prevAlpha = oldHolder.itemView.getAlpha();
-            this.resetAnimation(oldHolder);
-            int deltaX = (int)((float)(toX - fromX) - prevTranslationX);
-            int deltaY = (int)((float)(toY - fromY) - prevTranslationY);
-            oldHolder.itemView.setTranslationX(prevTranslationX);
-            oldHolder.itemView.setTranslationY(prevTranslationY);
-            oldHolder.itemView.setAlpha(prevAlpha);
-            if (newHolder != null) {
-                this.resetAnimation(newHolder);
-                newHolder.itemView.setTranslationX((float)(-deltaX));
-                newHolder.itemView.setTranslationY((float)(-deltaY));
-                newHolder.itemView.setAlpha(0.0F);
+            int deltaX = (int) ((float) (toX - fromX) - prevTranslationX);
+            int deltaY = (int) ((float) (toY - fromY) - prevTranslationY);
+
+            if (changeExitAnimationInit(oldHolder)) {
+                if (newHolder != null) {
+                    if (changeEnterAnimationInit(newHolder)) {
+                        changeExitAnimationInit(oldHolder);
+                        changeEnterAnimationInit(newHolder);
+                    } else {
+                        this.resetAnimation(oldHolder);
+                        oldHolder.itemView.setTranslationX(prevTranslationX);
+                        oldHolder.itemView.setTranslationY(prevTranslationY);
+                        oldHolder.itemView.setAlpha(prevAlpha);
+
+                        this.resetAnimation(newHolder);
+                        newHolder.itemView.setTranslationX((float) (-deltaX));
+                        newHolder.itemView.setTranslationY((float) (-deltaY));
+                        newHolder.itemView.setAlpha(0.0F);
+                    }
+                } else {
+                    changeExitAnimationInit(oldHolder);
+                }
+            } else {
+                this.resetAnimation(oldHolder);
+                oldHolder.itemView.setTranslationX(prevTranslationX);
+                oldHolder.itemView.setTranslationY(prevTranslationY);
+                oldHolder.itemView.setAlpha(prevAlpha);
+                if (newHolder != null) {
+                    this.resetAnimation(newHolder);
+                    newHolder.itemView.setTranslationX((float) (-deltaX));
+                    newHolder.itemView.setTranslationY((float) (-deltaY));
+                    newHolder.itemView.setAlpha(0.0F);
+                }
             }
 
             this.mPendingChanges.add(new BaseItemAnimator.ChangeInfo(oldHolder, newHolder, fromX, fromY, toX, toY));
@@ -510,63 +573,185 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
 
     // 更新动画的动画设置
     void animateChangeImpl(final BaseItemAnimator.ChangeInfo changeInfo) {
-        RecyclerView.ViewHolder holder = changeInfo.oldHolder;
+        final RecyclerView.ViewHolder holder = changeInfo.oldHolder;
         final View view = holder == null ? null : holder.itemView;
         RecyclerView.ViewHolder newHolder = changeInfo.newHolder;
         final View newView = newHolder != null ? newHolder.itemView : null;
 
         final ViewPropertyAnimator oldViewAnimation;
         final ViewPropertyAnimator newViewAnimation;
+
         // 如果旧的ViewHolder不为null
         if (view != null) {
-            oldViewAnimation = view.animate().setDuration(this.getChangeDuration());
-            this.mChangeAnimations.add(changeInfo.oldHolder);
-            oldViewAnimation.translationX((float)(changeInfo.toX - changeInfo.fromX));
-            oldViewAnimation.translationY((float)(changeInfo.toY - changeInfo.fromY));
-            oldViewAnimation.alpha(0.0F).setListener(new AnimatorListenerAdapter() {
-                public void onAnimationStart(Animator animator) {
-                    BaseItemAnimator.this.dispatchChangeStarting(changeInfo.oldHolder, true);
-                }
+            oldViewAnimation = view.animate();
+            if (changeExitAnimation(oldViewAnimation) == null) {
+                this.mChangeAnimations.add(changeInfo.oldHolder);
+                oldViewAnimation
+                        .setDuration(this.getChangeDuration())
+                        .translationX((float) (changeInfo.toX - changeInfo.fromX))
+                        .translationY((float) (changeInfo.toY - changeInfo.fromY))
+                        .alpha(0.0F)
+                        .setListener(new AnimatorListenerAdapter() {
+                            public void onAnimationStart(Animator animator) {
+                                BaseItemAnimator.this.dispatchChangeStarting(changeInfo.oldHolder, true);
+                            }
 
-                public void onAnimationEnd(Animator animator) {
-                    oldViewAnimation.setListener(null);
-                    view.setAlpha(1.0F);
-                    view.setTranslationX(0.0F);
-                    view.setTranslationY(0.0F);
-                    BaseItemAnimator.this.dispatchChangeFinished(changeInfo.oldHolder, true);
-                    BaseItemAnimator.this.mChangeAnimations.remove(changeInfo.oldHolder);
-                    BaseItemAnimator.this.dispatchFinishedWhenDone();
-                }
-            }).start();
+                            public void onAnimationEnd(Animator animator) {
+                                oldViewAnimation.setListener(null);
+                                view.setAlpha(1.0F);
+                                view.setTranslationX(holder.itemView.getRootView().getWidth());
+                                view.setTranslationY(0.0F);
+                                BaseItemAnimator.this.dispatchChangeFinished(changeInfo.oldHolder, true);
+                                BaseItemAnimator.this.mChangeAnimations.remove(changeInfo.oldHolder);
+                                BaseItemAnimator.this.dispatchFinishedWhenDone();
+                            }
+                        }).start();
+            } else {
+                changeExitAnimation(oldViewAnimation)
+                        .setStartDelay(mChangeExitAnimDelay)
+                        .setDuration(mChangeExitAnimDuration)
+                        .setInterpolator(mChangeExitAnimInterpolator)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
+                                super.onAnimationCancel(animation);
+                                BaseItemAnimator.this.dispatchChangeStarting(changeInfo.oldHolder, true);
+                                if (mChangeExitAnimListener != null)
+                                    mChangeExitAnimListener.onAnimationCancel(animation);
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                oldViewAnimation.setListener(null);
+                                animationEnd(view);
+                                BaseItemAnimator.this.dispatchChangeFinished(changeInfo.oldHolder, true);
+                                BaseItemAnimator.this.mChangeAnimations.remove(changeInfo.oldHolder);
+                                BaseItemAnimator.this.dispatchFinishedWhenDone();
+                                if (mChangeExitAnimListener != null)
+                                    mChangeExitAnimListener.onAnimationEnd(animation);
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animator animation) {
+                                super.onAnimationRepeat(animation);
+                                if (mChangeExitAnimListener != null)
+                                    mChangeExitAnimListener.onAnimationRepeat(animation);
+                            }
+
+                            @Override
+                            public void onAnimationStart(Animator animation) {
+                                super.onAnimationStart(animation);
+                                if (mChangeExitAnimListener != null)
+                                    mChangeExitAnimListener.onAnimationStart(animation);
+                            }
+
+                            @Override
+                            public void onAnimationPause(Animator animation) {
+                                super.onAnimationPause(animation);
+                                if (mChangeExitAnimListener != null)
+                                    mChangeExitAnimListener.onAnimationPause(animation);
+                            }
+
+                            @Override
+                            public void onAnimationResume(Animator animation) {
+                                super.onAnimationResume(animation);
+                                if (mChangeExitAnimListener != null)
+                                    mChangeExitAnimListener.onAnimationResume(animation);
+                            }
+                        })
+                        .start();
+            }
         }
 
         // 如果新的ViewHolder不为null
+        // 如果设置的新元素的动画在旧元素动画之后，需要在新元素动画的delay上加上旧元素的动画时长和延时时长
         if (newView != null) {
             newViewAnimation = newView.animate();
-            this.mChangeAnimations.add(changeInfo.newHolder);
-            newViewAnimation.translationX(0.0F)
-                    .translationY(0.0F)
-                    .setDuration(this.getChangeDuration())
-                    .alpha(1.0F)
-                    .setListener(new AnimatorListenerAdapter() {
-                        public void onAnimationStart(Animator animator) {
-                            BaseItemAnimator.this.dispatchChangeStarting(changeInfo.newHolder, false);
-                        }
+            if (changeEnterAnimation(newViewAnimation) == null) {
+                this.mChangeAnimations.add(changeInfo.newHolder);
+                newViewAnimation
+                        .setDuration(this.getChangeDuration())
+                        .translationX(0.0F)
+                        .translationY(0.0F)
+                        .alpha(1.0F)
+                        .setListener(new AnimatorListenerAdapter() {
+                            public void onAnimationStart(Animator animator) {
+                                BaseItemAnimator.this.dispatchChangeStarting(changeInfo.newHolder, false);
+                            }
 
-                        public void onAnimationEnd(Animator animator) {
-                            newViewAnimation.setListener(null);
-                            newView.setAlpha(1.0F);
-                            newView.setTranslationX(0.0F);
-                            newView.setTranslationY(0.0F);
-                            BaseItemAnimator.this.dispatchChangeFinished(changeInfo.newHolder, false);
-                            BaseItemAnimator.this.mChangeAnimations.remove(changeInfo.newHolder);
-                            BaseItemAnimator.this.dispatchFinishedWhenDone();
-                        }
-                    }).start();
+                            public void onAnimationEnd(Animator animator) {
+                                newViewAnimation.setListener(null);
+                                newView.setAlpha(1.0F);
+                                newView.setTranslationX(0.0F);
+                                newView.setTranslationY(0.0F);
+                                BaseItemAnimator.this.dispatchChangeFinished(changeInfo.newHolder, false);
+                                BaseItemAnimator.this.mChangeAnimations.remove(changeInfo.newHolder);
+                                BaseItemAnimator.this.dispatchFinishedWhenDone();
+                            }
+                        }).start();
+            } else {
+                changeEnterAnimation(newViewAnimation)
+                        .setStartDelay(mChangeEnterAnimDelay)
+                        .setDuration(mChangeEnterAnimDuration)
+                        .setInterpolator(mChangeEnterAnimInterpolator)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
+                                super.onAnimationCancel(animation);
+                                if (mChangeEnterAnimListener != null)
+                                    mChangeEnterAnimListener.onAnimationCancel(animation);
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                newViewAnimation.setListener(null);
+                                animationEnd(view);
+                                BaseItemAnimator.this.dispatchChangeFinished(changeInfo.newHolder, false);
+                                BaseItemAnimator.this.mChangeAnimations.remove(changeInfo.newHolder);
+                                BaseItemAnimator.this.dispatchFinishedWhenDone();
+                                if (mChangeEnterAnimListener != null)
+                                    mChangeEnterAnimListener.onAnimationEnd(animation);
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animator animation) {
+                                super.onAnimationRepeat(animation);
+                                if (mChangeEnterAnimListener != null)
+                                    mChangeEnterAnimListener.onAnimationRepeat(animation);
+                            }
+
+                            @Override
+                            public void onAnimationStart(Animator animation) {
+                                super.onAnimationStart(animation);
+                                BaseItemAnimator.this.dispatchChangeStarting(changeInfo.newHolder, false);
+                                if (mChangeEnterAnimListener != null)
+                                    mChangeEnterAnimListener.onAnimationStart(animation);
+                            }
+
+                            @Override
+                            public void onAnimationPause(Animator animation) {
+                                super.onAnimationPause(animation);
+                                if (mChangeEnterAnimListener != null)
+                                    mChangeEnterAnimListener.onAnimationPause(animation);
+                            }
+
+                            @Override
+                            public void onAnimationResume(Animator animation) {
+                                super.onAnimationResume(animation);
+                                if (mChangeEnterAnimListener != null)
+                                    mChangeEnterAnimListener.onAnimationResume(animation);
+                            }
+                        })
+                        .start();
+            }
         }
     }
 
-    /** 动画的结束 **********************************************************************************/
+    /**
+     * 动画的结束
+     **********************************************************************************/
 
     public void endAnimation(RecyclerView.ViewHolder item) {
         // 获取对应的viewHolder，并取消动画
@@ -574,7 +759,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         view.animate().cancel();
 
         int i;
-        for(i = this.mPendingMoves.size() - 1; i >= 0; --i) {
+        for (i = this.mPendingMoves.size() - 1; i >= 0; --i) {
             BaseItemAnimator.MoveInfo moveInfo = this.mPendingMoves.get(i);
             if (moveInfo.holder == item) {
                 view.setTranslationY(0.0F);
@@ -596,7 +781,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         }
 
         ArrayList moves;
-        for(i = this.mChangesList.size() - 1; i >= 0; --i) {
+        for (i = this.mChangesList.size() - 1; i >= 0; --i) {
             moves = this.mChangesList.get(i);
             this.endChangeAnimation(moves, item);
             if (moves.isEmpty()) {
@@ -604,11 +789,11 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
             }
         }
 
-        for(i = this.mMovesList.size() - 1; i >= 0; --i) {
+        for (i = this.mMovesList.size() - 1; i >= 0; --i) {
             moves = this.mMovesList.get(i);
 
-            for(int j = moves.size() - 1; j >= 0; --j) {
-                BaseItemAnimator.MoveInfo moveInfo = (BaseItemAnimator.MoveInfo)moves.get(j);
+            for (int j = moves.size() - 1; j >= 0; --j) {
+                BaseItemAnimator.MoveInfo moveInfo = (BaseItemAnimator.MoveInfo) moves.get(j);
                 if (moveInfo.holder == item) {
                     view.setTranslationY(0.0F);
                     view.setTranslationX(0.0F);
@@ -622,7 +807,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
             }
         }
 
-        for(i = this.mAdditionsList.size() - 1; i >= 0; --i) {
+        for (i = this.mAdditionsList.size() - 1; i >= 0; --i) {
             moves = this.mAdditionsList.get(i);
             if (moves.remove(item)) {
                 view.setAlpha(1.0F);
@@ -656,7 +841,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         int count = this.mPendingMoves.size();
 
         int listCount;
-        for(listCount = count - 1; listCount >= 0; --listCount) {
+        for (listCount = count - 1; listCount >= 0; --listCount) {
             BaseItemAnimator.MoveInfo item = this.mPendingMoves.get(listCount);
             View view = item.holder.itemView;
             view.setTranslationY(0.0F);
@@ -668,7 +853,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         count = this.mPendingRemovals.size();
 
         RecyclerView.ViewHolder item;
-        for(listCount = count - 1; listCount >= 0; --listCount) {
+        for (listCount = count - 1; listCount >= 0; --listCount) {
             item = this.mPendingRemovals.get(listCount);
             this.dispatchRemoveFinished(item);
             this.mPendingRemovals.remove(listCount);
@@ -676,7 +861,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
 
         count = this.mPendingAdditions.size();
 
-        for(listCount = count - 1; listCount >= 0; --listCount) {
+        for (listCount = count - 1; listCount >= 0; --listCount) {
             item = this.mPendingAdditions.get(listCount);
             item.itemView.setAlpha(1.0F);
             this.dispatchAddFinished(item);
@@ -685,7 +870,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
 
         count = this.mPendingChanges.size();
 
-        for(listCount = count - 1; listCount >= 0; --listCount) {
+        for (listCount = count - 1; listCount >= 0; --listCount) {
             this.endChangeAnimationIfNecessary(this.mPendingChanges.get(listCount));
         }
 
@@ -696,12 +881,12 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
             int j;
             int i;
             ArrayList changes;
-            for(i = listCount - 1; i >= 0; --i) {
+            for (i = listCount - 1; i >= 0; --i) {
                 changes = this.mMovesList.get(i);
                 count = changes.size();
 
-                for(j = count - 1; j >= 0; --j) {
-                    BaseItemAnimator.MoveInfo moveInfo = (BaseItemAnimator.MoveInfo)changes.get(j);
+                for (j = count - 1; j >= 0; --j) {
+                    BaseItemAnimator.MoveInfo moveInfo = (BaseItemAnimator.MoveInfo) changes.get(j);
                     RecyclerView.ViewHolder item1 = moveInfo.holder;
                     View view = item1.itemView;
                     view.setTranslationY(0.0F);
@@ -716,12 +901,12 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
 
             listCount = this.mAdditionsList.size();
 
-            for(i = listCount - 1; i >= 0; --i) {
+            for (i = listCount - 1; i >= 0; --i) {
                 changes = this.mAdditionsList.get(i);
                 count = changes.size();
 
-                for(j = count - 1; j >= 0; --j) {
-                    RecyclerView.ViewHolder item2 = (RecyclerView.ViewHolder)changes.get(j);
+                for (j = count - 1; j >= 0; --j) {
+                    RecyclerView.ViewHolder item2 = (RecyclerView.ViewHolder) changes.get(j);
                     View view = item2.itemView;
                     view.setAlpha(1.0F);
                     this.dispatchAddFinished(item2);
@@ -734,12 +919,12 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
 
             listCount = this.mChangesList.size();
 
-            for(i = listCount - 1; i >= 0; --i) {
+            for (i = listCount - 1; i >= 0; --i) {
                 changes = this.mChangesList.get(i);
                 count = changes.size();
 
-                for(j = count - 1; j >= 0; --j) {
-                    this.endChangeAnimationIfNecessary((BaseItemAnimator.ChangeInfo)changes.get(j));
+                for (j = count - 1; j >= 0; --j) {
+                    this.endChangeAnimationIfNecessary((BaseItemAnimator.ChangeInfo) changes.get(j));
                     if (changes.isEmpty()) {
                         this.mChangesList.remove(changes);
                     }
@@ -755,7 +940,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
     }
 
     private void endChangeAnimation(List<BaseItemAnimator.ChangeInfo> infoList, RecyclerView.ViewHolder item) {
-        for(int i = infoList.size() - 1; i >= 0; --i) {
+        for (int i = infoList.size() - 1; i >= 0; --i) {
             BaseItemAnimator.ChangeInfo changeInfo = infoList.get(i);
             if (this.endChangeAnimationIfNecessary(changeInfo, item) && changeInfo.oldHolder == null && changeInfo.newHolder == null) {
                 infoList.remove(changeInfo);
@@ -833,7 +1018,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
 
     // 取消所有itemView动画
     void cancelAll(List<RecyclerView.ViewHolder> viewHolders) {
-        for(int i = viewHolders.size() - 1; i >= 0; --i) {
+        for (int i = viewHolders.size() - 1; i >= 0; --i) {
             (viewHolders.get(i)).itemView.animate().cancel();
         }
 
@@ -843,19 +1028,30 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         return !payloads.isEmpty() || super.canReuseUpdatedViewHolder(viewHolder, payloads);
     }
 
-    /** 抽象方法，用于给继承类实现具体的动画效果 **********************************************************/
+    /**
+     * 抽象方法，用于给继承类实现具体的动画效果
+     **********************************************************/
 
     protected abstract boolean addAnimationInit(final RecyclerView.ViewHolder holder);
 
-    protected abstract ViewPropertyAnimator addAnimation(ViewPropertyAnimator animation);
+    protected abstract ViewPropertyAnimator addAnimation(ViewPropertyAnimator animator);
 
     protected abstract void animationEnd(final View view);
 
-    protected abstract ViewPropertyAnimator removeAnimation(final ViewPropertyAnimator animation);
+    protected abstract ViewPropertyAnimator removeAnimation(final ViewPropertyAnimator animator);
+
+    protected abstract boolean changeExitAnimationInit(final RecyclerView.ViewHolder holder);
+
+    protected abstract boolean changeEnterAnimationInit(final RecyclerView.ViewHolder holder);
+
+    protected abstract ViewPropertyAnimator changeExitAnimation(ViewPropertyAnimator animator);
+
+    protected abstract ViewPropertyAnimator changeEnterAnimation(ViewPropertyAnimator animator);
 
 
-
-    /** setter&&getter ****************************************************************************/
+    /**
+     * setter&&getter
+     ****************************************************************************/
 
     public long getAddAnimDelay() {
         return mAddAnimDelay;
@@ -903,5 +1099,69 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
 
     public void setRemoveAnimListener(AnimatorListenerAdapter mRemoveAnimListener) {
         this.mRemoveAnimListener = mRemoveAnimListener;
+    }
+
+    public long getChangeExitAnimDuration() {
+        return mChangeExitAnimDuration;
+    }
+
+    public void setChangeExitAnimDuration(long mChangeExitAnimDuration) {
+        this.mChangeExitAnimDuration = mChangeExitAnimDuration;
+    }
+
+    public long getChangeExitAnimDelay() {
+        return mChangeExitAnimDelay;
+    }
+
+    public void setChangeExitAnimDelay(long mChangeExitAnimDelay) {
+        this.mChangeExitAnimDelay = mChangeExitAnimDelay;
+    }
+
+    public TimeInterpolator getChangeExitAnimInterpolator() {
+        return mChangeExitAnimInterpolator;
+    }
+
+    public void setChangeExitAnimInterpolator(TimeInterpolator mChangeExitAnimInterpolator) {
+        this.mChangeExitAnimInterpolator = mChangeExitAnimInterpolator;
+    }
+
+    public AnimatorListenerAdapter getChangeExitAnimListener() {
+        return mChangeExitAnimListener;
+    }
+
+    public void setChangeExitAnimListener(AnimatorListenerAdapter mChangeExitAnimListener) {
+        this.mChangeExitAnimListener = mChangeExitAnimListener;
+    }
+
+    public long getChangeEnterAnimDuration() {
+        return mChangeEnterAnimDuration;
+    }
+
+    public void setChangeEnterAnimDuration(long mChangeEnterAnimDuration) {
+        this.mChangeEnterAnimDuration = mChangeEnterAnimDuration;
+    }
+
+    public long getChangeEnterAnimDelay() {
+        return mChangeEnterAnimDelay;
+    }
+
+    public void setChangeEnterAnimDelay(long mChangeEnterAnimDelay) {
+        this.mChangeEnterAnimDelay = mChangeEnterAnimDelay;
+    }
+
+    public TimeInterpolator getChangeEnterAnimInterpolator() {
+        return mChangeEnterAnimInterpolator;
+    }
+
+    public void setChangeEnterAnimInterpolator(TimeInterpolator mChangeEnterAnimInterpolator) {
+        this.mChangeEnterAnimInterpolator = mChangeEnterAnimInterpolator;
+    }
+
+    public AnimatorListenerAdapter getChangeEnterAnimListener() {
+        return mChangeEnterAnimListener;
+    }
+
+    public void setChangeEnterAnimListener(AnimatorListenerAdapter mChangeEnterAnimListener) {
+        this.mChangeEnterAnimListener = mChangeEnterAnimListener;
     }
 }
