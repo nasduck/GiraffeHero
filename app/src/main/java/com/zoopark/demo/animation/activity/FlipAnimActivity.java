@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.zoopark.demo.animation.adapter.VerticalAnimAdapter;
+import com.zoopark.rv.animation.BaseItemAnimator;
 import com.zoopark.rv.animation.FlipItemAnimator;
 import com.zoopark.rv.animation.enums.Benchmark;
 import com.zoopark.rvprovider.R;
@@ -49,7 +50,11 @@ public class FlipAnimActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView.setItemAnimator(new FlipItemAnimator(Benchmark.CENTER));
+        BaseItemAnimator itemAnimator = new FlipItemAnimator(Benchmark.CENTER);
+        itemAnimator.setChangeEnterAnimDuration(1000);
+        itemAnimator.setChangeExitAnimDuration(1000);
+        itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
+        mRecyclerView.setItemAnimator(itemAnimator);
     }
 
     @Override
@@ -65,15 +70,28 @@ public class FlipAnimActivity extends AppCompatActivity {
     /** Click *************************************************************************************/
 
     public void onAnimTypeClick(View view) {
+        BaseItemAnimator itemAnimator;
         switch (view.getId()) {
             case R.id.btn_center:
-                mRecyclerView.setItemAnimator(new FlipItemAnimator(Benchmark.CENTER));
+                itemAnimator = new FlipItemAnimator(Benchmark.CENTER);
+                itemAnimator.setChangeEnterAnimDuration(1000);
+                itemAnimator.setChangeExitAnimDuration(1000);
+                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(itemAnimator);
                 break;
             case R.id.btn_x:
-                mRecyclerView.setItemAnimator(new FlipItemAnimator(Benchmark.X));
+                itemAnimator = new FlipItemAnimator(Benchmark.X);
+                itemAnimator.setChangeEnterAnimDuration(1000);
+                itemAnimator.setChangeExitAnimDuration(1000);
+                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(itemAnimator);
                 break;
             case R.id.btn_y:
-                mRecyclerView.setItemAnimator(new FlipItemAnimator(Benchmark.Y));
+                itemAnimator = new FlipItemAnimator(Benchmark.Y);
+                itemAnimator.setChangeEnterAnimDuration(1000);
+                itemAnimator.setChangeExitAnimDuration(1000);
+                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(itemAnimator);
                 break;
         }
     }
