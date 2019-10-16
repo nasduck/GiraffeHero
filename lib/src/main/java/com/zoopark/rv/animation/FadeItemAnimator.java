@@ -17,7 +17,7 @@ public class FadeItemAnimator extends BaseItemAnimator {
     }
 
     @Override
-    protected void addAnimationInit(RecyclerView.ViewHolder holder) {
+    protected boolean addAnimationInit(RecyclerView.ViewHolder holder) {
         holder.itemView.setAlpha(0f);
         switch (mDirection) {
             case RIGHT:
@@ -37,6 +37,7 @@ public class FadeItemAnimator extends BaseItemAnimator {
                 holder.itemView.setTranslationY(mHeight);
                 break;
         }
+        return true;
     }
 
     @Override

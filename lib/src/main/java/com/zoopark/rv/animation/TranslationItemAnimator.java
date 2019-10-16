@@ -21,7 +21,7 @@ public class TranslationItemAnimator extends BaseItemAnimator {
     }
 
     @Override
-    protected void addAnimationInit(RecyclerView.ViewHolder holder) {
+    protected boolean addAnimationInit(RecyclerView.ViewHolder holder) {
         switch (mDirection) {
             case RIGHT:
                 if (mWidth == 0) mWidth = holder.itemView.getRootView().getWidth();
@@ -40,7 +40,7 @@ public class TranslationItemAnimator extends BaseItemAnimator {
                 holder.itemView.setTranslationY(mHeight);
                 break;
         }
-
+        return true;
     }
 
     @Override

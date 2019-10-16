@@ -15,7 +15,7 @@ public class ScaleItemAnimator extends BaseItemAnimator {
     }
 
     @Override
-    protected void addAnimationInit(RecyclerView.ViewHolder holder) {
+    protected boolean addAnimationInit(RecyclerView.ViewHolder holder) {
         switch (mMark) {
             case Y:
                 holder.itemView.setScaleY(0f);
@@ -28,6 +28,7 @@ public class ScaleItemAnimator extends BaseItemAnimator {
                 holder.itemView.setScaleY(0f);
                 break;
         }
+        return true;
     }
 
     @Override

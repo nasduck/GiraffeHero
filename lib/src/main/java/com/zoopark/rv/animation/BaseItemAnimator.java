@@ -6,6 +6,7 @@ import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.view.View;
@@ -239,58 +240,75 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         // 在正在进行移除动画的ViewHolder的list中添加进行移除动画的ViewHolder
         this.mRemoveAnimations.add(holder);
         // 移除的动画设置
-        removeAnimation(animation)
-                .setDuration(this.getRemoveDuration())
-                .setStartDelay(mRemoveAnimDelay)
-                .setInterpolator(mRemoveAnimInterpolator)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationCancel(Animator animator) {
-                        super.onAnimationCancel(animator);
-                        if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationCancel(animator);
-                    }
+        if (removeAnimation(animation) == null) {
+            animation.setDuration(this.getRemoveDuration()).alpha(0.0F).setListener(new AnimatorListenerAdapter() {
+                public void onAnimationStart(Animator animator) {
+                    BaseItemAnimator.this.dispatchRemoveStarting(holder);
+                }
 
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        super.onAnimationEnd(animator);
-                        // 结束后将属性还原
-                        animation.setListener(null);
-                        animationEnd(view);
-                        // 可以在onRemoveFinished中实现移除动画结束时的逻辑
-                        BaseItemAnimator.this.dispatchRemoveFinished(holder);
-                        // 进行完动画后，将ViewHolder在对应的list中移除
-                        BaseItemAnimator.this.mRemoveAnimations.remove(holder);
-                        // 完全完成移除动画后的操作
-                        BaseItemAnimator.this.dispatchFinishedWhenDone();
-                        if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationEnd(animator);
-                    }
+                public void onAnimationEnd(Animator animator) {
+                    animation.setListener(null);
+                    view.setAlpha(1.0F);
+                    BaseItemAnimator.this.dispatchRemoveFinished(holder);
+                    BaseItemAnimator.this.mRemoveAnimations.remove(holder);
+                    BaseItemAnimator.this.dispatchFinishedWhenDone();
+                }
+            }).start();
+        } else {
+            removeAnimation(animation)
+                    .setDuration(this.getRemoveDuration())
+                    .setStartDelay(mRemoveAnimDelay)
+                    .setInterpolator(mRemoveAnimInterpolator)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationCancel(Animator animator) {
+                            super.onAnimationCancel(animator);
+                            if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationCancel(animator);
+                        }
 
-                    @Override
-                    public void onAnimationRepeat(Animator animator) {
-                        super.onAnimationRepeat(animator);
-                        if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationRepeat(animator);
-                    }
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            super.onAnimationEnd(animator);
+                            // 结束后将属性还原
+                            animation.setListener(null);
+                            animationEnd(view);
+                            // 可以在onRemoveFinished中实现移除动画结束时的逻辑
+                            BaseItemAnimator.this.dispatchRemoveFinished(holder);
+                            // 进行完动画后，将ViewHolder在对应的list中移除
+                            BaseItemAnimator.this.mRemoveAnimations.remove(holder);
+                            // 完全完成移除动画后的操作
+                            BaseItemAnimator.this.dispatchFinishedWhenDone();
+                            if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationEnd(animator);
+                        }
 
-                    @Override
-                    public void onAnimationStart(Animator animator) {
-                        super.onAnimationStart(animator);
-                        // 可以在onRemoveStarting中实现移除动画开始时的逻辑
-                        BaseItemAnimator.this.dispatchRemoveStarting(holder);
-                        if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationStart(animator);
-                    }
+                        @Override
+                        public void onAnimationRepeat(Animator animator) {
+                            super.onAnimationRepeat(animator);
+                            if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationRepeat(animator);
+                        }
 
-                    @Override
-                    public void onAnimationPause(Animator animator) {
-                        super.onAnimationPause(animator);
-                        if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationPause(animator);
-                    }
+                        @Override
+                        public void onAnimationStart(Animator animator) {
+                            super.onAnimationStart(animator);
+                            // 可以在onRemoveStarting中实现移除动画开始时的逻辑
+                            BaseItemAnimator.this.dispatchRemoveStarting(holder);
+                            if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationStart(animator);
+                        }
 
-                    @Override
-                    public void onAnimationResume(Animator animator) {
-                        super.onAnimationResume(animator);
-                        if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationResume(animator);
-                    }
-                }).start();
+                        @Override
+                        public void onAnimationPause(Animator animator) {
+                            super.onAnimationPause(animator);
+                            if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationPause(animator);
+                        }
+
+                        @Override
+                        public void onAnimationResume(Animator animator) {
+                            super.onAnimationResume(animator);
+                            if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationResume(animator);
+                        }
+                    }).start();
+        }
+
     }
 
     /** 添加动画 ************************************************************************************/
@@ -301,7 +319,11 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         // 先结束对应holder的动画
         this.resetAnimation(holder);
         // 设置对应holder的itemView初始化的状态
-        addAnimationInit(holder);
+        if (addAnimationInit(holder)) {
+            addAnimationInit(holder);
+        } else {
+            holder.itemView.setAlpha(0.0F);
+        }
         // mPendingAdditions添加进行添加动画的ViewHolder
         this.mPendingAdditions.add(holder);
         return true;
@@ -312,53 +334,73 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         final View view = holder.itemView;
         final ViewPropertyAnimator animation = view.animate();
         this.mAddAnimations.add(holder);
-        addAnimation(animation)
-                .setDuration(this.getAddDuration())
-                .setStartDelay(mAddAnimDelay)
-                .setInterpolator(mAddAnimInterpolator)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationCancel(Animator animator) {
-                        super.onAnimationCancel(animator);
-                        animationEnd(view);
-                        if (mAddAnimListener != null) mAddAnimListener.onAnimationCancel(animator);
-                    }
+        // 如果没有设置新增动画，则设置默认动画效果
+        if (addAnimation(animation) == null) {
+            animation.alpha(1.0F).setDuration(this.getAddDuration()).setListener(new AnimatorListenerAdapter() {
+                public void onAnimationStart(Animator animator) {
+                    BaseItemAnimator.this.dispatchAddStarting(holder);
+                }
 
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        super.onAnimationEnd(animator);
-                        animation.setListener(null);
-                        BaseItemAnimator.this.dispatchAddFinished(holder);
-                        BaseItemAnimator.this.mAddAnimations.remove(holder);
-                        BaseItemAnimator.this.dispatchFinishedWhenDone();
-                        if (mAddAnimListener != null) mAddAnimListener.onAnimationEnd(animator);
-                    }
+                public void onAnimationCancel(Animator animator) {
+                    view.setAlpha(1.0F);
+                }
 
-                    @Override
-                    public void onAnimationRepeat(Animator animator) {
-                        super.onAnimationRepeat(animator);
-                        if (mAddAnimListener != null) mAddAnimListener.onAnimationRepeat(animator);
-                    }
+                public void onAnimationEnd(Animator animator) {
+                    animation.setListener(null);
+                    BaseItemAnimator.this.dispatchAddFinished(holder);
+                    BaseItemAnimator.this.mAddAnimations.remove(holder);
+                    BaseItemAnimator.this.dispatchFinishedWhenDone();
+                }
+            }).start();
+        } else {
+            addAnimation(animation)
+                    .setDuration(this.getAddDuration())
+                    .setStartDelay(mAddAnimDelay)
+                    .setInterpolator(mAddAnimInterpolator)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationCancel(Animator animator) {
+                            super.onAnimationCancel(animator);
+                            animationEnd(view);
+                            if (mAddAnimListener != null) mAddAnimListener.onAnimationCancel(animator);
+                        }
 
-                    @Override
-                    public void onAnimationStart(Animator animator) {
-                        super.onAnimationStart(animator);
-                        BaseItemAnimator.this.dispatchAddStarting(holder);
-                        if (mAddAnimListener != null) mAddAnimListener.onAnimationStart(animator);
-                    }
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            super.onAnimationEnd(animator);
+                            animation.setListener(null);
+                            BaseItemAnimator.this.dispatchAddFinished(holder);
+                            BaseItemAnimator.this.mAddAnimations.remove(holder);
+                            BaseItemAnimator.this.dispatchFinishedWhenDone();
+                            if (mAddAnimListener != null) mAddAnimListener.onAnimationEnd(animator);
+                        }
 
-                    @Override
-                    public void onAnimationPause(Animator animator) {
-                        super.onAnimationPause(animator);
-                        if (mAddAnimListener != null) mAddAnimListener.onAnimationPause(animator);
-                    }
+                        @Override
+                        public void onAnimationRepeat(Animator animator) {
+                            super.onAnimationRepeat(animator);
+                            if (mAddAnimListener != null) mAddAnimListener.onAnimationRepeat(animator);
+                        }
 
-                    @Override
-                    public void onAnimationResume(Animator animator) {
-                        super.onAnimationResume(animator);
-                        if (mAddAnimListener != null) mAddAnimListener.onAnimationResume(animator);
-                    }
-                }).start();
+                        @Override
+                        public void onAnimationStart(Animator animator) {
+                            super.onAnimationStart(animator);
+                            BaseItemAnimator.this.dispatchAddStarting(holder);
+                            if (mAddAnimListener != null) mAddAnimListener.onAnimationStart(animator);
+                        }
+
+                        @Override
+                        public void onAnimationPause(Animator animator) {
+                            super.onAnimationPause(animator);
+                            if (mAddAnimListener != null) mAddAnimListener.onAnimationPause(animator);
+                        }
+
+                        @Override
+                        public void onAnimationResume(Animator animator) {
+                            super.onAnimationResume(animator);
+                            if (mAddAnimListener != null) mAddAnimListener.onAnimationResume(animator);
+                        }
+                    }).start();
+        }
     }
 
     /** item的移动动画 ******************************************************************************/
@@ -803,13 +845,15 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
 
     /** 抽象方法，用于给继承类实现具体的动画效果 **********************************************************/
 
-    protected abstract void addAnimationInit(final RecyclerView.ViewHolder holder);
+    protected abstract boolean addAnimationInit(final RecyclerView.ViewHolder holder);
 
     protected abstract ViewPropertyAnimator addAnimation(ViewPropertyAnimator animation);
 
     protected abstract void animationEnd(final View view);
 
     protected abstract ViewPropertyAnimator removeAnimation(final ViewPropertyAnimator animation);
+
+
 
     /** setter&&getter ****************************************************************************/
 

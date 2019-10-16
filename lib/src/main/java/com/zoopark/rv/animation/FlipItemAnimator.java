@@ -15,7 +15,7 @@ public class FlipItemAnimator extends BaseItemAnimator {
     }
 
     @Override
-    protected void addAnimationInit(RecyclerView.ViewHolder holder) {
+    protected boolean addAnimationInit(RecyclerView.ViewHolder holder) {
         switch (mMark) {
             case X:
                 holder.itemView.setRotationX(-90);
@@ -25,6 +25,7 @@ public class FlipItemAnimator extends BaseItemAnimator {
                 holder.itemView.setAlpha(0f);
                 break;
         }
+        return true;
     }
 
     @Override
