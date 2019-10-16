@@ -4,6 +4,7 @@ public class IndexPath {
 
     private int mSection;
     private int mRow;
+    private int mProviderSection; // Only work with header/footer
 
     public IndexPath() {}
 
@@ -26,6 +27,14 @@ public class IndexPath {
 
     public void setRow(int row) {
         this.mRow = row;
+    }
+
+    public int getProviderSection() {
+        return mProviderSection;
+    }
+
+    public void setProviderSection(int providerSection) {
+        this.mProviderSection = providerSection;
     }
 
     @Override

@@ -6,8 +6,8 @@ import com.zoopark.demo.complex.bean.ItemBean;
 import com.zoopark.demo.complex.provider.ButtonGroupProvider;
 import com.zoopark.demo.complex.provider.DivideProvider;
 import com.zoopark.demo.complex.provider.ImageProvider;
-import com.zoopark.demo.complex.provider.OneItemProvider;
-import com.zoopark.demo.complex.provider.TitleProvider;
+import com.zoopark.demo.complex.provider.ProjectItemProvider;
+import com.zoopark.demo.complex.provider.ProjectHeaderProvider;
 import com.zoopark.rv.base.BaseAdapter;
 
 import java.util.List;
@@ -17,8 +17,8 @@ public class ComplexAdapter extends BaseAdapter {
     private ImageProvider mImageProvider;
     private ButtonGroupProvider mButtonGroupProvider;
 
-    private TitleProvider mFirstTitleProvider;
-    private OneItemProvider mOneItemProvider;
+    private ProjectHeaderProvider mProjectHeaderProvider;
+    private ProjectItemProvider mProjectItemProvider;
 
     private DivideProvider mDivideProvider;
 
@@ -28,28 +28,31 @@ public class ComplexAdapter extends BaseAdapter {
         mImageProvider = new ImageProvider(context);
         mButtonGroupProvider = new ButtonGroupProvider(context);
 
-        mFirstTitleProvider = new TitleProvider(context);
-        mFirstTitleProvider.setTitle("已开发的组件库");
-        mOneItemProvider = new OneItemProvider(context);
+        mProjectHeaderProvider = new ProjectHeaderProvider(context, "已开发的组件库");
+        mProjectItemProvider = new ProjectItemProvider(context);
+        mProjectItemProvider.setHeader(mProjectHeaderProvider);
 
         mDivideProvider = new DivideProvider(context);
 
         finishInitialize();
-
     }
 
     @Override
     public void registerItemProvider() {
-        mProviderDelegate.registerProviders(mImageProvider, mButtonGroupProvider, mDivideProvider,
-                mFirstTitleProvider, mOneItemProvider);
+        mProviderDelegate.registerProviders(
+                mImageProvider,
+                mButtonGroupProvider,
+                mDivideProvider,
+                mProjectItemProvider
+                mDivideProvider);
     }
 
     public void setOneItemData(List<ItemBean> list) {
-        mOneItemProvider.setData(list);
-        this.notifySectionChanged(4);
+        mProjectItemProvider.setData(list);
+        this.notifySectionChanged(3);
     }
 
-    public void setAddClickListener(TitleProvider.OnAddClickListener listener) {
-        mFirstTitleProvider.setAddClickListener(listener);
+    public void setAddClickListener(ProjectHeaderProvider.OnAddClickListener listener) {
+        mProjectHeaderProvider.setAddClickListener(listener);
     }
 }
