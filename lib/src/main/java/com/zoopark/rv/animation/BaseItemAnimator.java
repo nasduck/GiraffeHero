@@ -10,18 +10,25 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
+import android.view.animation.LinearInterpolator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * DefaultItemAnimator源码，分析用
- */
-
 public abstract class BaseItemAnimator extends SimpleItemAnimator {
 
     private static TimeInterpolator sDefaultInterpolator;
+
+    // 新增动画的相关配置
+    private long mAddAnimDelay;
+    private TimeInterpolator mAddAnimInterpolator;
+    private AnimatorListenerAdapter mAddAnimListener;
+
+    // 移除动画的相关配置
+    private long mRemoveAnimDelay;
+    private TimeInterpolator mRemoveAnimInterpolator;
+    private AnimatorListenerAdapter mRemoveAnimListener;
 
     // 要进行动画的ViewHolder
     private ArrayList<RecyclerView.ViewHolder> mPendingRemovals = new ArrayList();
@@ -86,6 +93,13 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
 
     // 构造函数
     public BaseItemAnimator() {
+        this.mAddAnimDelay = 0;
+        this.mAddAnimInterpolator = new LinearInterpolator();
+        this.mAddAnimListener = null;
+
+        this.mRemoveAnimDelay = 0;
+        this.mRemoveAnimInterpolator = new LinearInterpolator();
+        this.mRemoveAnimListener = null;
     }
 
     /** 动画的控制 **********************************************************************************/
@@ -205,6 +219,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
 
         }
     }
+
     /** 移除动画 ************************************************************************************/
 
     // Item移除动画的初始化
@@ -226,13 +241,18 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         // 移除的动画设置
         removeAnimation(animation)
                 .setDuration(this.getRemoveDuration())
+                .setStartDelay(mRemoveAnimDelay)
+                .setInterpolator(mRemoveAnimInterpolator)
                 .setListener(new AnimatorListenerAdapter() {
-                    public void onAnimationStart(Animator animator) {
-                        // 可以在onRemoveStarting中实现移除动画开始时的逻辑
-                        BaseItemAnimator.this.dispatchRemoveStarting(holder);
+                    @Override
+                    public void onAnimationCancel(Animator animator) {
+                        super.onAnimationCancel(animator);
+                        if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationCancel(animator);
                     }
 
+                    @Override
                     public void onAnimationEnd(Animator animator) {
+                        super.onAnimationEnd(animator);
                         // 结束后将属性还原
                         animation.setListener(null);
                         animationEnd(view);
@@ -242,6 +262,33 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
                         BaseItemAnimator.this.mRemoveAnimations.remove(holder);
                         // 完全完成移除动画后的操作
                         BaseItemAnimator.this.dispatchFinishedWhenDone();
+                        if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationEnd(animator);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animator) {
+                        super.onAnimationRepeat(animator);
+                        if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationRepeat(animator);
+                    }
+
+                    @Override
+                    public void onAnimationStart(Animator animator) {
+                        super.onAnimationStart(animator);
+                        // 可以在onRemoveStarting中实现移除动画开始时的逻辑
+                        BaseItemAnimator.this.dispatchRemoveStarting(holder);
+                        if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationStart(animator);
+                    }
+
+                    @Override
+                    public void onAnimationPause(Animator animator) {
+                        super.onAnimationPause(animator);
+                        if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationPause(animator);
+                    }
+
+                    @Override
+                    public void onAnimationResume(Animator animator) {
+                        super.onAnimationResume(animator);
+                        if (mRemoveAnimListener != null) mRemoveAnimListener.onAnimationResume(animator);
                     }
                 }).start();
     }
@@ -267,22 +314,51 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         this.mAddAnimations.add(holder);
         addAnimation(animation)
                 .setDuration(this.getAddDuration())
+                .setStartDelay(mAddAnimDelay)
+                .setInterpolator(mAddAnimInterpolator)
                 .setListener(new AnimatorListenerAdapter() {
-            public void onAnimationStart(Animator animator) {
-                BaseItemAnimator.this.dispatchAddStarting(holder);
-            }
+                    @Override
+                    public void onAnimationCancel(Animator animator) {
+                        super.onAnimationCancel(animator);
+                        animationEnd(view);
+                        if (mAddAnimListener != null) mAddAnimListener.onAnimationCancel(animator);
+                    }
 
-            public void onAnimationCancel(Animator animator) {
-                animationEnd(view);
-            }
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        super.onAnimationEnd(animator);
+                        animation.setListener(null);
+                        BaseItemAnimator.this.dispatchAddFinished(holder);
+                        BaseItemAnimator.this.mAddAnimations.remove(holder);
+                        BaseItemAnimator.this.dispatchFinishedWhenDone();
+                        if (mAddAnimListener != null) mAddAnimListener.onAnimationEnd(animator);
+                    }
 
-            public void onAnimationEnd(Animator animator) {
-                animation.setListener(null);
-                BaseItemAnimator.this.dispatchAddFinished(holder);
-                BaseItemAnimator.this.mAddAnimations.remove(holder);
-                BaseItemAnimator.this.dispatchFinishedWhenDone();
-            }
-        }).start();
+                    @Override
+                    public void onAnimationRepeat(Animator animator) {
+                        super.onAnimationRepeat(animator);
+                        if (mAddAnimListener != null) mAddAnimListener.onAnimationRepeat(animator);
+                    }
+
+                    @Override
+                    public void onAnimationStart(Animator animator) {
+                        super.onAnimationStart(animator);
+                        BaseItemAnimator.this.dispatchAddStarting(holder);
+                        if (mAddAnimListener != null) mAddAnimListener.onAnimationStart(animator);
+                    }
+
+                    @Override
+                    public void onAnimationPause(Animator animator) {
+                        super.onAnimationPause(animator);
+                        if (mAddAnimListener != null) mAddAnimListener.onAnimationPause(animator);
+                    }
+
+                    @Override
+                    public void onAnimationResume(Animator animator) {
+                        super.onAnimationResume(animator);
+                        if (mAddAnimListener != null) mAddAnimListener.onAnimationResume(animator);
+                    }
+                }).start();
     }
 
     /** item的移动动画 ******************************************************************************/
@@ -725,7 +801,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         return !payloads.isEmpty() || super.canReuseUpdatedViewHolder(viewHolder, payloads);
     }
 
-
+    /** 抽象方法，用于给继承类实现具体的动画效果 **********************************************************/
 
     protected abstract void addAnimationInit(final RecyclerView.ViewHolder holder);
 
@@ -735,4 +811,53 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
 
     protected abstract ViewPropertyAnimator removeAnimation(final ViewPropertyAnimator animation);
 
+    /** setter&&getter ****************************************************************************/
+
+    public long getAddAnimDelay() {
+        return mAddAnimDelay;
+    }
+
+    public void setAddAnimDelay(long mAddAnimDelay) {
+        this.mAddAnimDelay = mAddAnimDelay;
+    }
+
+    public TimeInterpolator getAddAnimInterpolator() {
+        return mAddAnimInterpolator;
+    }
+
+    public void setAddAnimInterpolator(TimeInterpolator mAddAnimInterpolator) {
+        this.mAddAnimInterpolator = mAddAnimInterpolator;
+    }
+
+    public AnimatorListenerAdapter getAddAnimListener() {
+        return mAddAnimListener;
+    }
+
+    public void setAddAnimListener(AnimatorListenerAdapter mAddAnimListener) {
+        this.mAddAnimListener = mAddAnimListener;
+    }
+
+    public long getRemoveAnimDelay() {
+        return mRemoveAnimDelay;
+    }
+
+    public void setRemoveAnimDelay(long mRemoveAnimDelay) {
+        this.mRemoveAnimDelay = mRemoveAnimDelay;
+    }
+
+    public TimeInterpolator getRemoveAnimInterpolator() {
+        return mRemoveAnimInterpolator;
+    }
+
+    public void setRemoveAnimInterpolator(TimeInterpolator mRemoveAnimInterpolator) {
+        this.mRemoveAnimInterpolator = mRemoveAnimInterpolator;
+    }
+
+    public AnimatorListenerAdapter getRemoveAnimListener() {
+        return mRemoveAnimListener;
+    }
+
+    public void setRemoveAnimListener(AnimatorListenerAdapter mRemoveAnimListener) {
+        this.mRemoveAnimListener = mRemoveAnimListener;
+    }
 }
