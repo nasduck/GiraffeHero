@@ -9,14 +9,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.zoopark.demo.complex.bean.ItemBean;
-import com.zoopark.demo.complex.provider.TitleProvider;
+import com.zoopark.demo.complex.provider.ProjectHeaderProvider;
 import com.zoopark.rv.base.BaseAdapter;
 import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComplexPageActivity extends AppCompatActivity implements TitleProvider.OnAddClickListener, BaseAdapter.BaseAdapterLoadMoreListener {
+public class ComplexPageActivity extends AppCompatActivity implements ProjectHeaderProvider.OnAddClickListener, BaseAdapter.BaseAdapterLoadMoreListener {
 
     // 图片的数组
     private int[] imageArray = {R.drawable.image_rafiki_permissions, R.drawable.image_giant_panda, R.drawable.image_lesser_panda};

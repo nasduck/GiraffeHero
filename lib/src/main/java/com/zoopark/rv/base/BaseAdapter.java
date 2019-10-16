@@ -3,7 +3,6 @@ package com.zoopark.rv.base;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +67,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
             case LOAD_MORE_VIEW_TYPE:
                 return createLoadingViewHolder(parent);
             default:
-                BaseItemProvider provider = mProviderDelegate.getProvider(viewType);
+                BaseProvider provider = mProviderDelegate.getProvider(viewType);
                 return new BaseViewHolder(mLayoutInflater.inflate(provider.getLayout(), parent, false));
         }
     }
@@ -109,10 +108,10 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (isShowEmptyView) {
             return EMPTY_VIEW_TYPE;
         } else {
-            if (mIsLoadMoreEnable && position == getContentItemCount()) {
+            if (mIsLoadMoreEnable && position == getTotalItemCount()) {
                 return LOAD_MORE_VIEW_TYPE;
             } else {
-                return getIndexPath(position).getSection(); // todo getProvider(getIndexPath(position).getSection()).getViewType();
+                return getIndexPath(position).getProviderSection();
             }
         }
     }
@@ -122,24 +121,37 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (isShowEmptyView) {
             return 1;
         } else {
-            int itemCount = getContentItemCount();
-            this.preItemCount = itemCount;
-            if (mIsLoadMoreEnable) itemCount += 1;
-            return itemCount; // 注意这里返回的是总的 item 数量
+            int count = getTotalRowCount();
+            this.preItemCount = count;
+            if (mIsLoadMoreEnable) count += 1;
+            return count; // 注意这里返回的是总的 item 数量
         }
     }
 
     /**
-     * 返回内容 Item 的数量 (不包含 load view 等非实际内容)
+     * Return the total number of items (laodview/header/footer not included)
      *
      * @return
      */
-    public int getContentItemCount() {
-        int totalItemCount = 0;
+    public int getTotalRowCount() {
+        int count = 0;
         for (int i = 0; i < getSectionNumber(); i++) {
-            totalItemCount += getRowNumberInSection(i);
+            count += getRowCountInSection(i);
         };
-        return totalItemCount;
+        return count;
+    }
+
+    /**
+     * Return the total number of items (header/footer included)
+     *
+     * @return
+     */
+    public int getTotalItemCount() {
+        int count = 0;
+        for (int i = 0; i < getSectionNumber(); i++) {
+            count += getTotalItemCountInSection(i);
+        };
+        return count;
     }
 
     //** Abstract ********************************************************************************//
@@ -157,7 +169,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
      * @return
      */
     public int getSectionNumber() {
-        return mProviderDelegate.getProviderList().size();
+        return mProviderDelegate.getSectionList().size();
     };
 
     /**
@@ -166,8 +178,21 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
      * @param section
      * @return
      */
-    public int getRowNumberInSection(int section) {
-        return mProviderDelegate.getProvider(section).getItemCount();
+    public int getRowCountInSection(int section) {
+        return mProviderDelegate.getSection(section).getItemCount();
+    };
+
+    /**
+     * 获得对应 Section 中 Item/Header/Footer 总数量
+     *
+     * @param section
+     * @return
+     */
+    public int getTotalItemCountInSection(int section) {
+        BaseItemProvider provider = mProviderDelegate.getSection(section);
+        int count = provider.getItemCount();
+        if (provider.hasHeader()) count++;
+        return count;
     };
 
     /**
@@ -177,13 +202,23 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
      * @return
      */
     public int getExtraRowNumberInSection(int section) {
-        int totalItemCount = 0;
+        int count = 0;
         for (int i = 0; i < getSectionNumber(); i++) {
             if (i != section) {
-                totalItemCount += getRowNumberInSection(i);
+                count += getTotalItemCountInSection(i);
             }
         }
-        return totalItemCount;
+        return count;
+    }
+
+    /**
+     * Whether specified item has header
+     *
+     * @param section section
+     * @return true if has header
+     */
+    public boolean isSectionHasHeader(int section) {
+        return mProviderDelegate.getSection(section).hasHeader();
     }
 
     /**
@@ -197,14 +232,47 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         int itemCount = 0;
         int lastItemCount;
+        int sectionCount = getSectionNumber();
 
-        for (int i = 0; i < getSectionNumber(); i ++) {
+        for (int i = 0; i < sectionCount; i++) {
+
             lastItemCount = itemCount;
-            itemCount += getRowNumberInSection(i);
+
+            int sectionTotalItemCount = getTotalItemCountInSection(i);
+            itemCount += sectionTotalItemCount;
+
+            BaseItemProvider section = mProviderDelegate.getSection(i);
 
             if (itemCount > position) {
                 indexPath.setSection(i);
-                indexPath.setRow(position - lastItemCount);
+                if (position - lastItemCount == 0) { // if first one
+                    if (mProviderDelegate.getSection(i).hasHeader()) { // if first one is header
+                        indexPath.setRow(-1);
+                        indexPath.setProviderSection(mProviderDelegate.indexOfProvider(section.getHeader()));
+                    } else {
+                        indexPath.setRow(position - lastItemCount);
+                        indexPath.setProviderSection(mProviderDelegate.indexOfProvider(section));
+                    }
+                } else if (position - lastItemCount == sectionTotalItemCount) { // if last one
+                    if (mProviderDelegate.getSection(i).hasFooter()) { // if last one is footer
+                        indexPath.setRow(-2);
+                        indexPath.setProviderSection(mProviderDelegate.indexOfProvider(section.getFooter()));
+                    } else {
+                        if (mProviderDelegate.getSection(i).hasHeader()) {
+                            indexPath.setRow(position - lastItemCount - 1);
+                        } else {
+                            indexPath.setRow(position - lastItemCount);
+                        }
+                        indexPath.setProviderSection(mProviderDelegate.indexOfProvider(section));
+                    }
+                } else {
+                    if (mProviderDelegate.getSection(i).hasHeader()) {
+                        indexPath.setRow(position - lastItemCount - 1);
+                    } else {
+                        indexPath.setRow(position - lastItemCount);
+                    }
+                    indexPath.setProviderSection(mProviderDelegate.indexOfProvider(section));
+                }
                 return indexPath;
             }
         }
@@ -212,65 +280,82 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         throw new RuntimeException("IndexPath not available with position " + position);
     }
 
+    public int getSectionHeaderFooterCount(int section) {
+        int count = 0;
+        BaseItemProvider provider = mProviderDelegate.getSection(section);
+        if (provider.hasHeader()) count++;
+        if (provider.hasFooter()) count++;
+        return count;
+    }
+
     /**
-     * 获得 position 对应的 section
+     * get section with specified position
      *
-     * @param position 列表中的位置
+     * @param pos position in the list
      * @return
      */
-    public int getSection(int position) {
-        int itemCount = 0;
+    public int getSection(int pos) {
+        int count = 0;
         for (int i = 0; i < getSectionNumber(); i ++) {
-            itemCount += getRowNumberInSection(i);
+            count += getTotalItemCountInSection(i);
 
-            if (itemCount > position) {
+            if (count > pos) {
                 return i;
             }
         }
 
-        throw new RuntimeException("Section not available with position " + position);
+        throw new RuntimeException("Section not available with position " + pos);
     }
 
     /**
-     * 更新某一 section 的内容
+     * Update specified section
      *
-     * @param section
+     * @param section section
      */
     public void notifySectionChanged(int section) {
-        int startPosition = 0;
+        int pos = 0;
         for (int i = 0; i < section; i++) {
-            startPosition += getRowNumberInSection(i);
+            pos += getTotalItemCountInSection(i);
         }
-        if (getRowNumberInSection(section) < (this.preItemCount - getExtraRowNumberInSection(section))) {
-            this.notifyItemRangeRemoved(startPosition, this.preItemCount - getExtraRowNumberInSection(section));
+
+        if (isSectionHasHeader(section)) pos++;
+
+        // section item 变少
+        int sectionPreItemCount = this.preItemCount - getExtraRowNumberInSection(section);
+        if (getTotalItemCountInSection(section) < sectionPreItemCount) {
+            this.notifyItemRangeRemoved(pos, sectionPreItemCount);
         } else {
-            Log.d("redrain", String.valueOf(startPosition));
-            Log.d("redrain", String.valueOf(getRowNumberInSection(section)));
-            this.notifyItemRangeChanged(startPosition, getRowNumberInSection(section));
+            this.notifyItemRangeChanged(pos, getRowCountInSection(section));
         }
     }
 
     /**
-     * 更新某一 indexPath 的内容
+     * Update specified row
      *
-     * @param indexPath
+     * @param indexPath item location
      */
     public void notifyIndexPathChanged(IndexPath indexPath) {
-        int position = 0;
+        int pos = 0;
         for (int i = 0; i < indexPath.getSection(); i++) {
-            position += getRowNumberInSection(i);
+            pos += getTotalItemCountInSection(i);
         }
-        position += indexPath.getRow();
-        this.notifyItemChanged(position);
+        // if section has header
+        if (isSectionHasHeader(indexPath.getSection())) {
+            pos += 1;
+        }
+        pos += indexPath.getRow();
+        this.notifyItemChanged(pos);
     }
 
     public void notifySectionMoreData(int section, int itemCount) {
-        int startPosition = 0;
+        int pos = 0;
         for (int i = 0; i < section; i++) {
-            startPosition += getRowNumberInSection(i);
+            pos += getTotalItemCountInSection(i);
         }
-        this.notifyItemRangeChanged(startPosition, itemCount);
+        this.notifyItemRangeChanged(pos, itemCount);
     }
+
+    //** Empty View ******************************************************************************//
 
     public void setEmptyView(int layoutResId, ViewGroup viewGroup) {
         View view = mLayoutInflater.inflate(layoutResId, viewGroup, false);

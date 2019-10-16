@@ -3,11 +3,12 @@ package com.zoopark.demo.complex.provider;
 import android.content.Context;
 
 import com.zoopark.rv.base.BaseItemProvider;
+import com.zoopark.rv.base.BaseSectionHeaderFooter;
 import com.zoopark.rv.base.BaseViewHolder;
 import com.zoopark.rv.base.IndexPath;
 import com.zoopark.rvprovider.R;
 
-public class TitleProvider extends BaseItemProvider {
+public class ProjectHeaderProvider extends BaseSectionHeaderFooter<String> {
 
     public interface OnAddClickListener {
         void onAddClick();
@@ -17,8 +18,9 @@ public class TitleProvider extends BaseItemProvider {
 
     private OnAddClickListener mListener;
 
-    public TitleProvider(Context context) {
+    public ProjectHeaderProvider(Context context, String title) {
         super(context);
+        this.mTitle = title;
     }
 
     @Override
@@ -39,10 +41,6 @@ public class TitleProvider extends BaseItemProvider {
                 mListener.onAddClick();
             }
         }
-    }
-
-    public void setTitle(String title) {
-        this.mTitle = title;
     }
 
     public void setAddClickListener(OnAddClickListener listener) {

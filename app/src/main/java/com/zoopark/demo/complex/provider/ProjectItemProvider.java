@@ -14,11 +14,11 @@ import com.zoopark.rvprovider.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OneItemProvider extends BaseItemProvider {
+public class ProjectItemProvider extends BaseItemProvider {
 
     private List<ItemBean> mList;
 
-    public OneItemProvider(Context context) {
+    public ProjectItemProvider(Context context) {
         super(context);
         mList = new ArrayList<>();
     }

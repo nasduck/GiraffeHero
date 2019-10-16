@@ -1,28 +1,47 @@
 package com.zoopark.rv.base;
 
 import android.content.Context;
-import android.support.annotation.IdRes;
 
-public abstract class BaseItemProvider<T, V extends BaseViewHolder> {
+public abstract class BaseItemProvider<T> extends BaseProvider {
 
     public Context mContext;
+    private BaseSectionHeaderFooter mHeader;
+    private BaseSectionHeaderFooter mFooter;
 
     public BaseItemProvider(Context context) {
         this.mContext = context;
     }
 
-    public abstract int getLayout();
-
-    public abstract void onBind(V holder, IndexPath indexPath);
-
+    @Override
     public int getItemCount() {
         return 1;
     }
 
-    public void onClick(V holder, IndexPath indexPath, @IdRes int viewId) {};
-
     public void setData(T newData) {};
 
     public void addData(T moreData) {};
-}
 
+    public void setHeader(BaseSectionHeaderFooter header) {
+        this.mHeader = header;
+    }
+
+    public void setFooter(BaseSectionHeaderFooter footer) {
+        this.mFooter = footer;
+    }
+
+    public boolean hasHeader() {
+        return mHeader != null;
+    }
+
+    public boolean hasFooter() {
+        return mFooter != null;
+    }
+
+    public BaseSectionHeaderFooter getHeader() {
+        return this.mHeader;
+    }
+
+    public BaseSectionHeaderFooter getFooter() {
+        return this.mFooter;
+    }
+}

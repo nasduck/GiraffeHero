@@ -2,13 +2,12 @@ package com.zoopark.rv.base;
 
 import android.util.SparseArray;
 
-import com.zoopark.rv.base.BaseItemProvider;
-
 public class ProviderDelegate {
 
-    private SparseArray<BaseItemProvider> mProviderList = new SparseArray<>();
+    private SparseArray<BaseProvider> mProviderList = new SparseArray<>();
+    private SparseArray<BaseItemProvider> mSectionList = new SparseArray<>();
 
-    public void registerProvider(BaseItemProvider provider) {
+    public void registerProvider(BaseProvider provider) {
         if (provider == null) {
             throw new RuntimeException("ItemProvider can not be null");
         }
@@ -20,14 +19,37 @@ public class ProviderDelegate {
         }
     }
 
-    public void registerProviders(BaseItemProvider ... providerList) {
-        for (BaseItemProvider provider : providerList) {
-            registerProvider(provider);
+    public void registerSectionProvider(BaseItemProvider provider) {
+        if (provider == null) {
+            throw new RuntimeException("SectionProvider can not be null");
+        }
+
+        int key = mSectionList.size();
+
+        if (mSectionList.get(key) == null) {
+            mSectionList.put(key, provider);
         }
     }
 
-    public SparseArray<BaseItemProvider> getProviderList(){
+    public void registerProviders(BaseItemProvider ... providerList) {
+        for (BaseItemProvider provider : providerList) {
+            if (provider.hasHeader()) registerProvider(provider.getHeader());
+            registerProvider(provider);
+            if (provider.hasFooter()) registerProvider(provider.getFooter());
+            registerSectionProvider(provider);
+        }
+    }
+
+    public SparseArray<BaseProvider> getProviderList() {
         return mProviderList;
+    }
+
+    public SparseArray<BaseItemProvider> getSectionList() {
+        return mSectionList;
+    }
+
+    public int indexOfProvider(BaseProvider provider) {
+        return mProviderList.indexOfValue(provider);
     }
 
     public void clearProviderList() {
@@ -35,8 +57,17 @@ public class ProviderDelegate {
         mProviderList = new SparseArray<>();
     }
 
-    public BaseItemProvider getProvider(int section) {
-        return mProviderList.get(section);
+    public void clearSectionList() {
+        mSectionList.clear();
+        mSectionList = new SparseArray<>();
+    }
+
+    public BaseProvider getProvider(int providerIndex) {
+        return mProviderList.get(providerIndex);
+    }
+
+    public BaseItemProvider getSection(int section) {
+        return mSectionList.get(section);
     }
 
 }
