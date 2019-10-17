@@ -73,9 +73,7 @@ public class ComplexAdapter extends BaseAdapter {
 
     public void addNewsData(List<NewsBean> newData) {
         mNewsItem.addData(newData);
-
-        //notifySectionChanged(2);
-        //notifySectionMoreData(2, newData.size());
+        notifyIndexPathInserted(2);
     }
 
     /**

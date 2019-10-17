@@ -354,15 +354,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
      * @param indexPath item location
      */
     public void notifyIndexPathChanged(IndexPath indexPath) {
-        int pos = 0;
-        for (int i = 0; i < indexPath.getSection(); i++) {
-            pos += getTotalItemCountInSection(i);
-        }
-        // if section has header
-        if (isSectionHasHeader(indexPath.getSection())) {
-            pos += 1;
-        }
-        pos += indexPath.getRow();
+        int pos = getPosition(indexPath);
         this.notifyItemChanged(pos);
     }
 
@@ -372,6 +364,36 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
             pos += getTotalItemCountInSection(i);
         }
         this.notifyItemRangeChanged(pos, itemCount);
+    }
+
+    public void notifyIndexPathInserted(int section) {
+        notifyIndexPathInserted(section, getRowCountInSection(section) - 1);
+    }
+
+    public void notifyIndexPathInserted(int section, int row) {
+        int pos = getPosition(section, row);
+        this.notifyItemInserted(pos);
+    }
+
+    public void notifyIndexPathInserted(IndexPath indexPath) {
+        notifyIndexPathInserted(indexPath.getSection(), indexPath.getRow());
+    }
+
+    public int getPosition(int section, int row) {
+        int pos = 0;
+        for (int i = 0; i < section; i++) {
+            pos += getTotalItemCountInSection(i);
+        }
+        // if section has header
+        if (isSectionHasHeader(section)) {
+            pos += 1;
+        }
+        pos += row;
+        return pos;
+    }
+
+    public int getPosition(IndexPath indexPath) {
+        return getPosition(indexPath.getSection(), indexPath.getRow());
     }
 
     //** Empty View ******************************************************************************//
