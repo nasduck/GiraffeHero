@@ -9,6 +9,12 @@ import com.zoopark.rv.base.IndexPath;
 
 public class NewsHeaderProvider extends BaseSectionHeaderFooter {
 
+    public interface NewsHeaderProviderListener {
+        void onNewsHeaderAddClick();
+    };
+
+    private NewsHeaderProviderListener mListener;
+
     public NewsHeaderProvider(Context context) {
         super(context);
     }
@@ -19,5 +25,21 @@ public class NewsHeaderProvider extends BaseSectionHeaderFooter {
     }
 
     @Override
-    public void onBind(BaseViewHolder holder, IndexPath indexPath) {}
+    public void onBind(BaseViewHolder holder, IndexPath indexPath) {
+        holder.setClick(R.id.btn_add, this, indexPath);
+    }
+
+    @Override
+    public void onClick(BaseViewHolder holder, IndexPath indexPath, int viewId) {
+        if (viewId == R.id.btn_add) {
+            if (mListener != null) {
+                mListener.onNewsHeaderAddClick();
+            }
+        }
+    }
+
+    public void setListener(NewsHeaderProviderListener listener) {
+        this.mListener = listener;
+    }
+
 }

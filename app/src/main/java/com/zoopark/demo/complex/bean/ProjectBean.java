@@ -1,11 +1,11 @@
 package com.zoopark.demo.complex.bean;
 
-public class ItemBean {
+public class ProjectBean {
 
     private Integer imageId;
     private Integer content;
 
-    public ItemBean(Integer imageId, Integer content) {
+    public ProjectBean(Integer imageId, Integer content) {
         this.imageId = imageId;
         this.content = content;
     }

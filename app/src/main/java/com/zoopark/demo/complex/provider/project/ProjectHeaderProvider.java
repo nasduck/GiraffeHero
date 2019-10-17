@@ -1,4 +1,4 @@
-package com.zoopark.demo.complex.provider;
+package com.zoopark.demo.complex.provider.project;
 
 import android.content.Context;
 
@@ -9,13 +9,7 @@ import com.zoopark.rv.base.IndexPath;
 
 public class ProjectHeaderProvider extends BaseSectionHeaderFooter<String> {
 
-    public interface OnAddClickListener {
-        void onAddClick();
-    }
-
     private String mTitle;
-
-    private OnAddClickListener mListener;
 
     public ProjectHeaderProvider(Context context, String title) {
         super(context);
@@ -30,19 +24,5 @@ public class ProjectHeaderProvider extends BaseSectionHeaderFooter<String> {
     @Override
     public void onBind(BaseViewHolder holder, IndexPath indexPath) {
         holder.setText(R.id.tv_title, mTitle);
-        holder.setClick(R.id.btn_add, this, indexPath);
-    }
-
-    @Override
-    public void onClick(BaseViewHolder holder, IndexPath indexPath, int viewId) {
-        if (viewId == R.id.btn_add) {
-            if (mListener != null) {
-                mListener.onAddClick();
-            }
-        }
-    }
-
-    public void setAddClickListener(OnAddClickListener listener) {
-        this.mListener = listener;
     }
 }

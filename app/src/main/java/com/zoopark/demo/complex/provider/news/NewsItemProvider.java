@@ -1,13 +1,8 @@
 package com.zoopark.demo.complex.provider.news;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.zoopark.demo.R;
-import com.zoopark.demo.complex.bean.ItemBean;
 import com.zoopark.demo.complex.bean.NewsBean;
 import com.zoopark.rv.base.BaseItemProvider;
 import com.zoopark.rv.base.BaseViewHolder;
@@ -45,5 +40,10 @@ public class NewsItemProvider extends BaseItemProvider<List<NewsBean>> {
     @Override
     public void setData(List<NewsBean> newData) {
         this.mData = newData;
+    }
+
+    @Override
+    public void addData(List<NewsBean> moreData) {
+        this.mData.addAll(moreData);
     }
 }
