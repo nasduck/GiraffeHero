@@ -363,7 +363,9 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         for (int i = 0; i < section; i++) {
             pos += getTotalItemCountInSection(i);
         }
-        this.notifyItemRangeChanged(pos, itemCount);
+        pos += getRowCountInSection(section);
+        if (isSectionHasHeader(section)) pos++;
+        this.notifyItemRangeInserted(pos - itemCount, itemCount);
     }
 
     public void notifyIndexPathInserted(int section) {

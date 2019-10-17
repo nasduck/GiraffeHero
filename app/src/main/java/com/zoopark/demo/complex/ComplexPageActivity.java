@@ -116,9 +116,17 @@ public class ComplexPageActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onNewsHeaderAddClick() {
+    public void onNewsHeaderAddOneClick() {
         List<NewsBean> list = new ArrayList<>();
         list.add(new NewsBean("News Added", "Super Giraffe Hero!"));
+        mAdapter.addNewsData(list);
+    }
+
+    @Override
+    public void onNewsHeaderAddTwoClick() {
+        List<NewsBean> list = new ArrayList<>();
+        list.add(new NewsBean("News Double Added", "Giraffe Man!"));
+        list.add(new NewsBean("News Double Added", "Giraffe Man!"));
         mAdapter.addNewsData(list);
     }
 }
