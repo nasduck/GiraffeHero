@@ -381,6 +381,78 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         notifyIndexPathInserted(indexPath.getSection(), indexPath.getRow());
     }
 
+    /**
+     * Insert specified section's header
+     * @param section
+     */
+    public void notifyHeaderInserted(int section) {
+        if (!isSectionHasHeader(section)) {
+            this.notifyItemInserted(getPosition(section, 0) - 1);
+        } else {
+            throw new RuntimeException("This section already has a header");
+        }
+    }
+
+    /**
+     * Update specified section's header
+     * @param section
+     */
+    public void notifyHeaderChanged(int section) {
+        if (isSectionHasHeader(section)) {
+            this.notifyItemChanged(getPosition(section, 0) - 1);
+        } else {
+            this.notifyItemInserted(getPosition(section, 0) - 1);
+        }
+    }
+
+    /**
+     * Remove specified section's header
+     * @param section
+     */
+    public void notifyHeaderRemove(int section) {
+        if (isSectionHasHeader(section)) {
+            this.notifyItemRemoved(getPosition(section, 0) - 1);
+        } else {
+            throw new RuntimeException("This section does not have a header");
+        }
+    }
+
+    /**
+     * Insert specified section's footer
+     * @param section
+     */
+    public void notifyFooterInserted(int section) {
+        if (!isSectionHasFooter(section)) {
+            this.notifyItemInserted(getPosition(section, getRowCountInSection(section)));
+        } else {
+            throw new RuntimeException("This section already has a footer");
+        }
+    }
+
+    /**
+     * Update specified section's footer
+     * @param section
+     */
+    public void notifyFooterChanged(int section) {
+        if (isSectionHasFooter(section)) {
+            this.notifyItemChanged(getPosition(section, getRowCountInSection(section)));
+        } else {
+            this.notifyItemInserted(getPosition(section, getRowCountInSection(section)));
+        }
+    }
+
+    /**
+     * Remove specified section' footer
+     * @param section
+     */
+    public void notifyFooterRemove(int section) {
+        if (isSectionHasHeader(section)) {
+            this.notifyItemRemoved(getPosition(section, getRowCountInSection(section)));
+        } else {
+            throw new RuntimeException("This section does not have a footer");
+        }
+    }
+
     public int getPosition(int section, int row) {
         int pos = 0;
         for (int i = 0; i < section; i++) {
