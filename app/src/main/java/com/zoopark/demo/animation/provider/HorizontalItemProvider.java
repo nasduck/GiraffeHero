@@ -10,11 +10,11 @@ import com.zoopark.rv.base.IndexPath;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeightElementProvider extends BaseItemProvider<List<Integer>> {
+public class HorizontalItemProvider extends BaseItemProvider<List<Integer>> {
 
     private List<Integer> mData;
 
-    public HeightElementProvider(Context context) {
+    public HorizontalItemProvider(Context context) {
         super(context);
         mData = new ArrayList<>();
     }

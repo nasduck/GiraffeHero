@@ -32,10 +32,10 @@ public class EmptyViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty_view);
 
-        setSupportActionBar(mToolbar);
-
         mToolbar = findViewById(R.id.toolbar);
         mRecyclerView = findViewById(R.id.recycler_view);
+
+        setSupportActionBar(mToolbar);
 
         mAdapter = new EmptyViewAdapter(this);
         mAdapter.setData(mList);

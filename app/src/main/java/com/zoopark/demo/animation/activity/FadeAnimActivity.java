@@ -102,35 +102,35 @@ public class FadeAnimActivity extends AppCompatActivity {
     /** Click *************************************************************************************/
 
     public void onAnimTypeClick(View view) {
-        BaseItemAnimator itemAnimator;
+        BaseItemAnimator animator;
         switch (view.getId()) {
             case R.id.btn_left:
-                itemAnimator = new FadeItemAnimator(SlideDirection.LEFT);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new FadeItemAnimator(SlideDirection.LEFT);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
             case R.id.btn_right:
-                itemAnimator = new FadeItemAnimator(SlideDirection.RIGHT);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new FadeItemAnimator(SlideDirection.RIGHT);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
             case R.id.btn_top:
-                itemAnimator = new FadeItemAnimator(SlideDirection.TOP);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new FadeItemAnimator(SlideDirection.TOP);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
             case R.id.btn_bottom:
-                itemAnimator = new FadeItemAnimator(SlideDirection.BOTTOM);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new FadeItemAnimator(SlideDirection.BOTTOM);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
         }
     }

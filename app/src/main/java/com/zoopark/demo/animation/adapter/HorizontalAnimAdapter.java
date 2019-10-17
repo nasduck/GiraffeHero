@@ -2,19 +2,19 @@ package com.zoopark.demo.animation.adapter;
 
 import android.content.Context;
 
-import com.zoopark.demo.animation.provider.HeightElementProvider;
+import com.zoopark.demo.animation.provider.HorizontalItemProvider;
 import com.zoopark.rv.base.BaseAdapter;
 
 import java.util.List;
 
 public class HorizontalAnimAdapter extends BaseAdapter {
 
-    private HeightElementProvider mHeightElementProvider;
+    private HorizontalItemProvider mHeightElementProvider;
 
     public HorizontalAnimAdapter(Context context) {
         super(context);
 
-        mHeightElementProvider = new HeightElementProvider(context);
+        mHeightElementProvider = new HorizontalItemProvider(context);
 
         finishInitialize();
     }
