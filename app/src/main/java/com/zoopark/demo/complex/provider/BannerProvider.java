@@ -7,9 +7,9 @@ import com.zoopark.rv.base.BaseItemProvider;
 import com.zoopark.rv.base.BaseViewHolder;
 import com.zoopark.rv.base.IndexPath;
 
-public class ImageProvider extends BaseItemProvider {
+public class BannerProvider extends BaseItemProvider {
 
-    public ImageProvider(Context context) {
+    public BannerProvider(Context context) {
         super(context);
     }
 

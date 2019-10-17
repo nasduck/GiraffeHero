@@ -42,6 +42,7 @@ public class IndexPath {
         return "IndexPath{" +
                 "mSection=" + mSection +
                 ", mRow=" + mRow +
+                ", mProviderSection=" + mProviderSection +
                 '}';
     }
 }

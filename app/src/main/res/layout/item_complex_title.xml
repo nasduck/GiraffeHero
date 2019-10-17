@@ -21,7 +21,7 @@
         android:layout_height="40dp"
         android:layout_gravity="right|center_vertical"
         android:layout_marginRight="16dp"
-        android:background="@drawable/bg_theme_20"
+        android:background="@drawable/bg_primary_20"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:text="@string/get_new_item"

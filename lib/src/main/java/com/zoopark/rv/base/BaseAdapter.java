@@ -193,6 +193,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         BaseItemProvider provider = mProviderDelegate.getSection(section);
         int count = provider.getItemCount();
         if (provider.hasHeader()) count++;
+        if (provider.hasFooter()) count++;
         return count;
     };
 
@@ -213,13 +214,23 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     /**
-     * Whether specified item has header
+     * Whether specified section has header
      *
      * @param section section
      * @return true if has header
      */
     public boolean isSectionHasHeader(int section) {
         return mProviderDelegate.getSection(section).hasHeader();
+    }
+
+    /**
+     * Whether specified section has footer
+     *
+     * @param section section
+     * @return true if has footer
+     */
+    public boolean isSectionHasFooter(int section) {
+        return mProviderDelegate.getSection(section).hasFooter();
     }
 
     /**
@@ -246,20 +257,27 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             if (itemCount > position) {
                 indexPath.setSection(i);
-                if (position - lastItemCount == 0) { // if first one
-                    if (mProviderDelegate.getSection(i).hasHeader()) { // if first one is header
+
+                // if first one
+                if (position - lastItemCount == 0) {
+
+                    // if first one is header
+                    if (section.hasHeader()) {
                         indexPath.setRow(-1);
                         indexPath.setProviderSection(mProviderDelegate.indexOfProvider(section.getHeader()));
                     } else {
                         indexPath.setRow(position - lastItemCount);
                         indexPath.setProviderSection(mProviderDelegate.indexOfProvider(section));
                     }
-                } else if (position - lastItemCount == sectionTotalItemCount) { // if last one
-                    if (mProviderDelegate.getSection(i).hasFooter()) { // if last one is footer
+                }
+                // if last one
+                else if (position + 1 - lastItemCount == sectionTotalItemCount) {
+                    // if last one is footer
+                    if (section.hasFooter()) {
                         indexPath.setRow(-2);
                         indexPath.setProviderSection(mProviderDelegate.indexOfProvider(section.getFooter()));
                     } else {
-                        if (mProviderDelegate.getSection(i).hasHeader()) {
+                        if (section.hasHeader()) {
                             indexPath.setRow(position - lastItemCount - 1);
                         } else {
                             indexPath.setRow(position - lastItemCount);
@@ -267,7 +285,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
                         indexPath.setProviderSection(mProviderDelegate.indexOfProvider(section));
                     }
                 } else {
-                    if (mProviderDelegate.getSection(i).hasHeader()) {
+                    if (section.hasHeader()) {
                         indexPath.setRow(position - lastItemCount - 1);
                     } else {
                         indexPath.setRow(position - lastItemCount);
