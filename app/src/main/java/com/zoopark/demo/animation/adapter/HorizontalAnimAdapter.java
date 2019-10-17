@@ -21,11 +21,11 @@ public class HorizontalAnimAdapter extends BaseAdapter {
 
     @Override
     public void registerItemProvider() {
-        mProviderDelegate.registerProvider(mHeightElementProvider);
+        mProviderDelegate.registerProviders(mHeightElementProvider);
     }
 
     public void setItemData(List<Integer> list) {
-        mHeightElementProvider.setItemData(list);
+        mHeightElementProvider.setData(list);
         this.notifySectionChanged(0);
     }
 }

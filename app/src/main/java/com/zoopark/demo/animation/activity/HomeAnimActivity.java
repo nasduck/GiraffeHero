@@ -9,6 +9,9 @@ import android.view.View;
 
 import com.zoopark.demo.R;
 
+/**
+ * Home page for animation demo
+ */
 public class HomeAnimActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;

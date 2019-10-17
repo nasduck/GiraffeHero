@@ -20,10 +20,10 @@ public class EmptyViewAdapter extends BaseAdapter {
 
     @Override
     public void registerItemProvider() {
-        mProviderDelegate.registerProvider(mWidthElementProvider);
+        mProviderDelegate.registerProviders(mWidthElementProvider);
     }
 
     public void setData(List<Integer> list) {
-        mWidthElementProvider.setItemData(list);
+        mWidthElementProvider.setData(list);
     }
 }

@@ -21,11 +21,11 @@ public class VerticalAnimAdapter extends BaseAdapter {
 
     @Override
     public void registerItemProvider() {
-        mProviderDelegate.registerProvider(mWidthElementProvider);
+        mProviderDelegate.registerProviders(mWidthElementProvider);
     }
 
     public void setItemData(List<Integer> list) {
-        mWidthElementProvider.setItemData(list);
+        mWidthElementProvider.setData(list);
         this.notifySectionChanged(0);
     }
 }

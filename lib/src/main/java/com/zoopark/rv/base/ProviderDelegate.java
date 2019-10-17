@@ -7,7 +7,7 @@ public class ProviderDelegate {
     private SparseArray<BaseProvider> mProviderList = new SparseArray<>();
     private SparseArray<BaseItemProvider> mSectionList = new SparseArray<>();
 
-    public void registerProvider(BaseProvider provider) {
+    private void registerProvider(BaseProvider provider) {
         if (provider == null) {
             throw new RuntimeException("ItemProvider can not be null");
         }
@@ -19,7 +19,7 @@ public class ProviderDelegate {
         }
     }
 
-    public void registerSectionProvider(BaseItemProvider provider) {
+    private void registerSectionProvider(BaseItemProvider provider) {
         if (provider == null) {
             throw new RuntimeException("SectionProvider can not be null");
         }
