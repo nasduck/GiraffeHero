@@ -8,7 +8,6 @@ import android.view.View;
 import com.zoopark.demo.animation.activity.HomeAnimActivity;
 import com.zoopark.demo.complex.ComplexPageActivity;
 import com.zoopark.demo.empty.EmptyViewActivity;
-import com.zoopark.rvprovider.R;
 
 public class MainActivity extends AppCompatActivity {
 

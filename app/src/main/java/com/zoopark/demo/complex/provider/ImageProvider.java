@@ -1,12 +1,11 @@
 package com.zoopark.demo.complex.provider;
 
 import android.content.Context;
-import android.util.Log;
 
+import com.zoopark.demo.R;
 import com.zoopark.rv.base.BaseItemProvider;
 import com.zoopark.rv.base.BaseViewHolder;
 import com.zoopark.rv.base.IndexPath;
-import com.zoopark.rvprovider.R;
 
 public class ImageProvider extends BaseItemProvider {
 

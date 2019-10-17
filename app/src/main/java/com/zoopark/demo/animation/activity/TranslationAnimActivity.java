@@ -9,12 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.zoopark.demo.R;
 import com.zoopark.demo.animation.adapter.HorizontalAnimAdapter;
 import com.zoopark.demo.animation.adapter.VerticalAnimAdapter;
 import com.zoopark.rv.animation.BaseItemAnimator;
 import com.zoopark.rv.animation.TranslationItemAnimator;
 import com.zoopark.rv.animation.enums.SlideDirection;
-import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;

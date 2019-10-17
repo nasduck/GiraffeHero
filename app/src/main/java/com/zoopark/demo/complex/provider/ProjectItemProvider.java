@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.Toast;
 
+import com.zoopark.demo.R;
 import com.zoopark.rv.base.BaseItemProvider;
 import com.zoopark.rv.base.BaseViewHolder;
 import com.zoopark.rv.base.IndexPath;
 import com.zoopark.demo.complex.bean.ItemBean;
-import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;

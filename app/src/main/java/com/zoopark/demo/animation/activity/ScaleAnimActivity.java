@@ -8,11 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.zoopark.demo.R;
 import com.zoopark.demo.animation.adapter.VerticalAnimAdapter;
 import com.zoopark.rv.animation.BaseItemAnimator;
 import com.zoopark.rv.animation.ScaleItemAnimator;
 import com.zoopark.rv.animation.enums.Benchmark;
-import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;

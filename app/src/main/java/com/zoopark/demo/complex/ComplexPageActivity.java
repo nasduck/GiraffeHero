@@ -8,10 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.zoopark.demo.R;
 import com.zoopark.demo.complex.bean.ItemBean;
 import com.zoopark.demo.complex.provider.ProjectHeaderProvider;
 import com.zoopark.rv.base.BaseAdapter;
-import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;

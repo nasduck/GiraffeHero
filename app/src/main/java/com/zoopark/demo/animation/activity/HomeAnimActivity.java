@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.zoopark.rvprovider.R;
+import com.zoopark.demo.R;
 
 public class HomeAnimActivity extends AppCompatActivity {
 
@@ -17,12 +17,9 @@ public class HomeAnimActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_anim);
-        // 绑定控件
+
         mToolbar = findViewById(R.id.toolbar);
-        // 设置标题栏
         setSupportActionBar(mToolbar);
-
-
     }
 
     @Override
