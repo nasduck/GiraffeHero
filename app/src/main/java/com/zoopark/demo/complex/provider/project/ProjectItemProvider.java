@@ -30,13 +30,13 @@ public class ProjectItemProvider extends BaseItemProvider<List<ProjectBean>> {
 
     @Override
     public int getLayout() {
-        return R.layout.item_complex_one_item;
+        return R.layout.item_complex_project_item;
     }
 
     @Override
     public void onBind(BaseViewHolder holder, IndexPath indexPath) {
         holder.setClick(R.id.container, this, indexPath);
-        holder.setImageResource(R.id.image, mList.get(indexPath.getRow()).getImageId());
+        holder.setImageResource(R.id.iv_project_logo, mList.get(indexPath.getRow()).getImageId());
         holder.setText(R.id.tv_content, mList.get(indexPath.getRow()).getContent());
     }
 

@@ -18,7 +18,7 @@ public class ProjectHeaderProvider extends BaseSectionHeaderFooter<String> {
 
     @Override
     public int getLayout() {
-        return R.layout.item_complex_title;
+        return R.layout.item_complex_project_header;
     }
 
     @Override

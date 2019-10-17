@@ -24,6 +24,7 @@
         android:layout_height="32dp"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
         android:background="@drawable/bg_primary_16"
         android:text="Add 2"
         android:textColor="@color/white"
