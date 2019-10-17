@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Giraffe Hero Demo</string>
 
-    <string name="complex_recycler_view">Complex RecyclerView</string>
+    <string name="complex_recycler_view">Complex Page</string>
     <string name="animation_recycler_view">RecyclerView Animation</string>
-    <string name="empty_view">RecyclerView Empty</string>
+    <string name="empty_view">Empty View</string>
 
     <string name="button_group_1">item 1</string>
     <string name="button_group_2">item 2</string>
