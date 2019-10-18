@@ -3,7 +3,6 @@ package com.zoopark.rv.base;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +25,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private final LayoutInflater mLayoutInflater;
     private final Context mContext;
-    private int preItemCount;
+    private int preRowCount;
 
     // Empty View
     private Boolean isShowEmptyView;
@@ -122,8 +121,8 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (isShowEmptyView) {
             return 1;
         } else {
-            int count = getTotalRowCount();
-            this.preItemCount = count;
+            int count = getTotalItemCount();
+            this.preRowCount = getTotalRowCount();
             if (mIsLoadMoreEnable) count += 1;
             return count; // 注意这里返回的是总的 item 数量
         }
@@ -198,16 +197,16 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     };
 
     /**
-     * 获取除某一 Section 之外的 Item 的数量
+     * 获取除某一 Section 之外的 Item 的数量 (不包含 Header 和 Footer)
      *
      * @param section
      * @return
      */
-    public int getExtraRowNumberInSection(int section) {
+    public int getExtraRowCountInSection(int section) {
         int count = 0;
         for (int i = 0; i < getSectionNumber(); i++) {
             if (i != section) {
-                count += getTotalItemCountInSection(i);
+                count += getRowCountInSection(i);
             }
         }
         return count;
@@ -340,9 +339,9 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (isSectionHasHeader(section)) pos++;
 
         // section item 变少
-        int sectionPreItemCount = this.preItemCount - getExtraRowNumberInSection(section);
-        if (getTotalItemCountInSection(section) < sectionPreItemCount) {
-            this.notifyItemRangeRemoved(pos, sectionPreItemCount);
+        int sectionPreRowCount = this.preRowCount - getExtraRowCountInSection(section);
+        if (getRowCountInSection(section) < sectionPreRowCount) {
+            this.notifyItemRangeRemoved(pos, sectionPreRowCount);
         } else {
             this.notifyItemRangeChanged(pos, getRowCountInSection(section));
         }
@@ -363,8 +362,8 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         for (int i = 0; i < section; i++) {
             pos += getTotalItemCountInSection(i);
         }
-        pos += getRowCountInSection(section);
         if (isSectionHasHeader(section)) pos++;
+        pos += getRowCountInSection(section);
         this.notifyItemRangeInserted(pos - itemCount, itemCount);
     }
 
@@ -382,18 +381,6 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     /**
-     * Insert specified section's header
-     * @param section
-     */
-    public void notifyHeaderInserted(int section) {
-        if (!isSectionHasHeader(section)) {
-            this.notifyItemInserted(getPosition(section, 0) - 1);
-        } else {
-            throw new RuntimeException("This section already has a header");
-        }
-    }
-
-    /**
      * Update specified section's header
      * @param section
      */
@@ -401,31 +388,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (isSectionHasHeader(section)) {
             this.notifyItemChanged(getPosition(section, 0) - 1);
         } else {
-            this.notifyItemInserted(getPosition(section, 0) - 1);
-        }
-    }
-
-    /**
-     * Remove specified section's header
-     * @param section
-     */
-    public void notifyHeaderRemove(int section) {
-        if (isSectionHasHeader(section)) {
-            this.notifyItemRemoved(getPosition(section, 0) - 1);
-        } else {
             throw new RuntimeException("This section does not have a header");
-        }
-    }
-
-    /**
-     * Insert specified section's footer
-     * @param section
-     */
-    public void notifyFooterInserted(int section) {
-        if (!isSectionHasFooter(section)) {
-            this.notifyItemInserted(getPosition(section, getRowCountInSection(section)));
-        } else {
-            throw new RuntimeException("This section already has a footer");
         }
     }
 
@@ -437,19 +400,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (isSectionHasFooter(section)) {
             this.notifyItemChanged(getPosition(section, getRowCountInSection(section)));
         } else {
-            this.notifyItemInserted(getPosition(section, getRowCountInSection(section)));
-        }
-    }
-
-    /**
-     * Remove specified section' footer
-     * @param section
-     */
-    public void notifyFooterRemove(int section) {
-        if (isSectionHasHeader(section)) {
-            this.notifyItemRemoved(getPosition(section, getRowCountInSection(section)));
-        } else {
-            throw new RuntimeException("This section does not have a footer");
+            throw new RuntimeException("This section already has a footer");
         }
     }
 

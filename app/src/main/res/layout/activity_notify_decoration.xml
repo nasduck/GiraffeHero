@@ -10,33 +10,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        app:title="@string/app_name"
+        app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+        app:title="Header Footer Notify"
         app:titleTextColor="@color/white">
 
     </android.support.v7.widget.Toolbar>
 
     <Button
+        android:id="@+id/btn_clear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="onComplexPageClick"
-        android:text="@string/complex_recycler_view" />
+        android:onClick="onClearClick"
+        android:text="clear item"/>
 
-    <Button
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onEmptyViewClick"
-        android:text="@string/empty_view" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onAnimationClick"
-        android:text="@string/animation_recycler_view" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onNotifyHeaderFooterClick"
-        android:text="Notify Header Footer"/>
+        android:layout_height="match_parent"
+        android:background="@color/gray_bg" />
 
 </LinearLayout>

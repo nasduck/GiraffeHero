@@ -9,14 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.zoopark.demo.empty.EmptyViewActivity"/>
-        <activity android:name="com.zoopark.demo.animation.activity.TranslationAnimActivity" />
-        <activity android:name="com.zoopark.demo.animation.activity.ScaleAnimActivity" />
-        <activity android:name="com.zoopark.demo.animation.activity.FlipAnimActivity" />
-        <activity android:name="com.zoopark.demo.animation.activity.HomeAnimActivity" />
-        <activity android:name="com.zoopark.demo.complex.ComplexPageActivity" />
-        <activity android:name="com.zoopark.demo.animation.activity.FadeAnimActivity" />
-        <activity android:name="com.zoopark.demo.MainActivity">
+        <activity android:name=".notify.NotifyDecorationActivity"></activity>
+        <activity android:name=".empty.EmptyViewActivity" />
+        <activity android:name=".animation.activity.TranslationAnimActivity" />
+        <activity android:name=".animation.activity.ScaleAnimActivity" />
+        <activity android:name=".animation.activity.FlipAnimActivity" />
+        <activity android:name=".animation.activity.HomeAnimActivity" />
+        <activity android:name=".complex.ComplexPageActivity" />
+        <activity android:name=".animation.activity.FadeAnimActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
