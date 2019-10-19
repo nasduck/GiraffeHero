@@ -1,9 +1,9 @@
-package com.zoopark.demo.notify.provider;
+package com.zoopark.demo.notify.decoration.provider;
 
 import android.content.Context;
 
 import com.zoopark.demo.R;
-import com.zoopark.demo.notify.bean.DecorationBean;
+import com.zoopark.demo.notify.decoration.bean.DecorationBean;
 import com.zoopark.rv.base.BaseItemProvider;
 import com.zoopark.rv.base.BaseViewHolder;
 import com.zoopark.rv.base.IndexPath;

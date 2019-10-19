@@ -8,7 +8,8 @@ import android.view.View;
 import com.zoopark.demo.animation.activity.HomeAnimActivity;
 import com.zoopark.demo.complex.ComplexPageActivity;
 import com.zoopark.demo.empty.EmptyViewActivity;
-import com.zoopark.demo.notify.NotifyDecorationActivity;
+import com.zoopark.demo.notify.decoration.NotifyDecorationActivity;
+import com.zoopark.demo.notify.section.NotifySectionActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,5 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
 	public void onNotifyHeaderFooterClick(View view) {
 		startActivity(new Intent(this, NotifyDecorationActivity.class));
+	}
+
+	public void onNotifySectionClick(View view) {
+		startActivity(new Intent(this, NotifySectionActivity.class));
 	}
 }

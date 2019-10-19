@@ -4,6 +4,8 @@
     <string name="complex_recycler_view">Complex Page</string>
     <string name="animation_recycler_view">RecyclerView Animation</string>
     <string name="empty_view">Empty View</string>
+    <string name="notify_decoration">Notify Decoration</string>
+    <string name="notify_section">Notify Section</string>
 
     <string name="button_group_1">item 1</string>
     <string name="button_group_2">item 2</string>

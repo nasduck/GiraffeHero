@@ -1,4 +1,4 @@
-package com.zoopark.demo.notify.bean;
+package com.zoopark.demo.notify.decoration.bean;
 
 public class DecorationBean {
 

@@ -1,4 +1,4 @@
-package com.zoopark.demo.notify.provider;
+package com.zoopark.demo.notify.decoration.provider;
 
 import android.content.Context;
 

@@ -3,6 +3,7 @@ package com.zoopark.rv.base;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -191,8 +192,8 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     public int getTotalItemCountInSection(int section) {
         BaseItemProvider provider = mProviderDelegate.getSection(section);
         int count = provider.getItemCount();
-        if (provider.hasHeader()) count++;
-        if (provider.hasFooter()) count++;
+        if (provider.hasHeader()) count += provider.getHeader().getItemCount();
+        if (provider.hasFooter()) count += provider.getFooter().getItemCount();
         return count;
     };
 
@@ -325,8 +326,24 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         throw new RuntimeException("Section not available with position " + pos);
     }
 
+    private int getHeaderIndex(int section) {
+        int count = section;
+        for (int i = 0; i < section; i++) {
+            count += getSectionHeaderFooterCount(i);
+        }
+        return count;
+    }
+
+    private int getFooterIndex(int section) {
+        int count = section;
+        for (int i = 0; i <= section; i++) {
+            count += getSectionHeaderFooterCount(i);
+        }
+        return count;
+    }
+
     /**
-     * Update specified section
+     * Notify specified section
      *
      * @param section section
      */
@@ -336,19 +353,36 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
             pos += getTotalItemCountInSection(i);
         }
 
-        if (isSectionHasHeader(section)) pos++;
-
         // section item 变少
         int sectionPreRowCount = this.preRowCount - getExtraRowCountInSection(section);
-        if (getRowCountInSection(section) < sectionPreRowCount) {
-            this.notifyItemRangeRemoved(pos, sectionPreRowCount);
-        } else {
-            this.notifyItemRangeChanged(pos, getRowCountInSection(section));
+        BaseItemProvider provider = mProviderDelegate.getSection(section);
+        int sectionRowCount = getRowCountInSection(section);
+        if (sectionRowCount < sectionPreRowCount) {
+            // section 数量变到0，需要隐藏header和footer
+            if (sectionRowCount == 0) {
+                if (provider.hasHeader()) provider.getHeader().setItemCount(0);
+                if (provider.hasFooter()) provider.getFooter().setItemCount(0);
+                this.notifyItemRangeRemoved(pos, sectionPreRowCount + getSectionHeaderFooterCount(section));
+            } else {
+                if (provider.hasHeader()) pos++;
+                this.notifyItemRangeRemoved(pos, sectionPreRowCount);
+            }
+        }
+        // section item 数量不变或者变多
+        else {
+            if (sectionPreRowCount == 0) {
+                if (provider.hasHeader()) provider.getHeader().setItemCount(1);
+                if (provider.hasFooter()) provider.getFooter().setItemCount(1);
+                this.notifyItemRangeChanged(pos, getRowCountInSection(section) + getSectionHeaderFooterCount(section));
+            } else {
+                if (provider.hasHeader()) pos++;
+                this.notifyItemRangeChanged(pos, sectionPreRowCount);
+            }
         }
     }
 
     /**
-     * Update specified row
+     * Notify specified row
      *
      * @param indexPath item location
      */
@@ -357,6 +391,12 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.notifyItemChanged(pos);
     }
 
+    /**
+     * Notify more data in specified section
+     *
+     * @param section   section
+     * @param itemCount the amount of data
+     */
     public void notifySectionMoreData(int section, int itemCount) {
         int pos = 0;
         for (int i = 0; i < section; i++) {
@@ -367,22 +407,39 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.notifyItemRangeInserted(pos - itemCount, itemCount);
     }
 
+    /**
+     * Notify new data that the item reflected at the bottom of section has been newly inserted.
+     *
+     * @param section   section
+     */
     public void notifyIndexPathInserted(int section) {
         notifyIndexPathInserted(section, getRowCountInSection(section) - 1);
     }
 
+    /**
+     * Notify new data that the item reflected at the specified row of section has been newly inserted.
+     *
+     * @param section   section
+     * @param row       the position in section
+     */
     public void notifyIndexPathInserted(int section, int row) {
         int pos = getPosition(section, row);
         this.notifyItemInserted(pos);
     }
 
+    /**
+     * Notify new data that the item reflected at indexPath has been newly inserted.
+     *
+     * @param indexPath item location
+     */
     public void notifyIndexPathInserted(IndexPath indexPath) {
         notifyIndexPathInserted(indexPath.getSection(), indexPath.getRow());
     }
 
     /**
-     * Update specified section's header
-     * @param section
+     * Notify specified section's header
+     *
+     * @param section section
      */
     public void notifyHeaderChanged(int section) {
         if (isSectionHasHeader(section)) {
@@ -393,8 +450,9 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     /**
-     * Update specified section's footer
-     * @param section
+     * Notify specified section's footer
+     *
+     * @param section section
      */
     public void notifyFooterChanged(int section) {
         if (isSectionHasFooter(section)) {

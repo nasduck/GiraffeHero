@@ -5,6 +5,8 @@
     <string name="complex_recycler_view">复杂列表</string>
     <string name="animation_recycler_view">列表动画</string>
     <string name="empty_view">无内容视图</string>
+    <string name="notify_decoration">刷新header和footer</string>
+    <string name="notify_section">刷新section</string>
 
     <string name="button_group_1">item 1</string>
     <string name="button_group_2">item 2</string>

@@ -37,6 +37,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onNotifyHeaderFooterClick"
-        android:text="Notify Header Footer"/>
+        android:text="@string/notify_decoration"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onNotifySectionClick"
+        android:text="@string/notify_section"/>
 
 </LinearLayout>

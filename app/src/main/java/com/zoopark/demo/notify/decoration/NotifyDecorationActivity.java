@@ -1,4 +1,4 @@
-package com.zoopark.demo.notify;
+package com.zoopark.demo.notify.decoration;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,11 +6,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.zoopark.demo.R;
-import com.zoopark.demo.notify.bean.DecorationBean;
-import com.zoopark.demo.notify.provider.DecorationItemProvider;
+import com.zoopark.demo.notify.decoration.bean.DecorationBean;
+import com.zoopark.demo.notify.decoration.provider.DecorationItemProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,12 +51,6 @@ public class NotifyDecorationActivity extends AppCompatActivity implements Decor
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void onClearClick(View view) {
-        mList.clear();
-        mList = new ArrayList<>();
-        mAdapter.setData(mList);
     }
 
     /**
