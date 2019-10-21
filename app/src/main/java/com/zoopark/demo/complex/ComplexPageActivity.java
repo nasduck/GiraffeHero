@@ -104,13 +104,17 @@ public class ComplexPageActivity extends AppCompatActivity implements
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // 加载更多拉取三条数据
-                mProjectList.add(new ProjectBean(R.drawable.ic_developping, R.string.introduce_new_item));
-                mProjectList.add(new ProjectBean(R.drawable.ic_developping, R.string.introduce_new_item));
-                mProjectList.add(new ProjectBean(R.drawable.ic_developping, R.string.introduce_new_item));
-                mAdapter.setProjectData(mProjectList);
-                // 加载更多完成后调用此方法
-                mAdapter.loadMoreComplete();
+                if (mProjectList.size() < 20) {
+                    // 加载更多拉取三条数据
+                    mProjectList.add(new ProjectBean(R.drawable.ic_developping, R.string.introduce_new_item));
+                    mProjectList.add(new ProjectBean(R.drawable.ic_developping, R.string.introduce_new_item));
+                    mProjectList.add(new ProjectBean(R.drawable.ic_developping, R.string.introduce_new_item));
+                    mAdapter.setProjectData(mProjectList);
+                    // 加载更多完成后调用此方法
+                    mAdapter.loadMoreComplete();
+                } else {
+                    mAdapter.loadMoreEnd(false);
+                }
             }
         }, 500);
     }

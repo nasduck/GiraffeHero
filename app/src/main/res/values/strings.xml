@@ -4,6 +4,8 @@
     <string name="complex_recycler_view">Complex Page</string>
     <string name="animation_recycler_view">RecyclerView Animation</string>
     <string name="empty_view">Empty View</string>
+    <string name="notify_decoration">Notify Decoration</string>
+    <string name="notify_section">Notify Section</string>
 
     <string name="button_group_1">item 1</string>
     <string name="button_group_2">item 2</string>
@@ -16,7 +18,7 @@
     <string name="button_group_4_tip">Click item 4</string>
 
     <string name="get_new_item">get a new project</string>
-    
+
     <string name="introduce_rafiki_permissions">RafikiPermissions 是为了简化 Android 危险权限动态申请操作，将权限申请判断和权限申请过程简化，将权限申请结果拆分成授予成功和授予失败两部分处理，使结果处理更富有逻辑性。组件名称 Rafiki 拉菲奇来源于狮子王里的狒狒长老，统管权限 :D</string>
     <string name="introduce_giant_panda">GiantPandaDialog 是为了简化 Android Dialog 的调用, 同时借鉴 iOS Dialog/Alert 的创建模式来提供简洁直观的弹窗创建方式. 整个基类完全继承自 DialogFragment 来代替 Dialog 以及 AlertDialog. </string>
     <string name="introduce_lesser_panda">LesserPandaToast 提供最简单的方法来调用各类简单的 progressHud 或 loadingToast, 同时提供自定义方法来定义不同的样式. 用户可以手动控制消失或者自动延时消失.</string>
@@ -34,11 +36,11 @@
     <string name="direction_right">right</string>
     <string name="direction_top">top</string>
     <string name="direction_bottom">bottom</string>
-    
+
     <string name="coordinate_center">center</string>
     <string name="coordinate_x">x</string>
     <string name="coordinate_y">y</string>
-    
+
     <string name="add">add</string>
     <string name="remove">remove</string>
     <string name="move">move</string>

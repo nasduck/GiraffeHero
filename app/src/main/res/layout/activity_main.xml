@@ -28,10 +28,21 @@
         android:text="@string/empty_view" />
 
     <Button
-        android:id="@+id/btn_rv_animation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onAnimationClick"
         android:text="@string/animation_recycler_view" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onNotifyHeaderFooterClick"
+        android:text="@string/notify_decoration"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onNotifySectionClick"
+        android:text="@string/notify_section"/>
 
 </LinearLayout>
