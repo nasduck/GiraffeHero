@@ -1,8 +1,8 @@
-package com.zoopark.demo.animation.adapter;
+package com.zoopark.demo.animation.change.adapter;
 
 import android.content.Context;
 
-import com.zoopark.demo.animation.provider.VerticalItemProvider;
+import com.zoopark.demo.animation.change.provider.VerticalItemProvider;
 import com.zoopark.rv.base.BaseAdapter;
 
 import java.util.List;

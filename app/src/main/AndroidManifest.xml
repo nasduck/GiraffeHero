@@ -12,12 +12,12 @@
         <activity android:name=".notify.section.NotifySectionActivity"></activity>
         <activity android:name=".notify.decoration.NotifyDecorationActivity" />
         <activity android:name=".empty.EmptyViewActivity" />
-        <activity android:name=".animation.activity.TranslationAnimActivity" />
-        <activity android:name=".animation.activity.ScaleAnimActivity" />
-        <activity android:name=".animation.activity.FlipAnimActivity" />
-        <activity android:name=".animation.activity.HomeAnimActivity" />
+        <activity android:name=".animation.change.activity.TranslationAnimActivity" />
+        <activity android:name=".animation.change.activity.ScaleAnimActivity" />
+        <activity android:name=".animation.change.activity.FlipAnimActivity" />
+        <activity android:name=".animation.change.activity.HomeAnimActivity" />
         <activity android:name=".complex.ComplexPageActivity" />
-        <activity android:name=".animation.activity.FadeAnimActivity" />
+        <activity android:name=".animation.change.activity.FadeAnimActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -6,7 +6,14 @@ import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
-public abstract class BaseAnimation implements IBaseAnimation{
+public abstract class BaseAnimation {
+
+    /**
+     * set animator
+     * @param view
+     * @return
+     */
+    public abstract AnimatorSet getAnimators(View view);
 
     private long duration = 500;
     private long startDelay = 0;

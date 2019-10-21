@@ -1,4 +1,4 @@
-package com.zoopark.demo.animation.activity;
+package com.zoopark.demo.animation.change.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.zoopark.demo.R;
-import com.zoopark.demo.animation.adapter.HorizontalAnimAdapter;
-import com.zoopark.demo.animation.adapter.VerticalAnimAdapter;
-import com.zoopark.rv.animation.BaseItemAnimator;
-import com.zoopark.rv.animation.FadeItemAnimator;
+import com.zoopark.demo.animation.change.adapter.HorizontalAnimAdapter;
+import com.zoopark.demo.animation.change.adapter.VerticalAnimAdapter;
+import com.zoopark.rv.animation.change.BaseItemAnimator;
+import com.zoopark.rv.animation.change.FadeItemAnimator;
 import com.zoopark.rv.animation.enums.SlideDirection;
 
 import java.util.ArrayList;

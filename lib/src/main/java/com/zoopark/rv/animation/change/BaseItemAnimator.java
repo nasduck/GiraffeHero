@@ -1,4 +1,4 @@
-package com.zoopark.rv.animation;
+package com.zoopark.rv.animation.change;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
