@@ -1,5 +1,6 @@
 package com.zoopark.rv.base;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.zoopark.rv.animation.enter.BaseAnimation;
 import com.zoopark.rv.empty.OnEmptyViewListener;
 import com.zoopark.rv.loadmore.DefaultLoadMoreView;
 import com.zoopark.rv.loadmore.LoadMoreView;
@@ -27,6 +29,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     private final LayoutInflater mLayoutInflater;
     private final Context mContext;
     private int preRowCount;
+    private int mLastAnimPosition = -1;
 
     // Empty View
     private Boolean isShowEmptyView;
@@ -102,6 +105,20 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
         super.onBindViewHolder(holder, position, payloads);
+    }
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        if (holder.getItemViewType() != EMPTY_VIEW_TYPE && holder.getItemViewType() != LOAD_MORE_VIEW_TYPE) {
+            BaseAnimation animation = mProviderDelegate.getSection(getSection(holder.getAdapterPosition())).getAnimator();
+            if (animation != null) {
+                if (mLastAnimPosition < holder.getLayoutPosition()) {
+                    animation.getAnimators(holder.itemView).start();
+                    mLastAnimPosition = holder.getLayoutPosition();
+                }
+            }
+        }
     }
 
     @Override
@@ -348,6 +365,8 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
      * @param section section
      */
     public void notifySectionChanged(int section) {
+        mLastAnimPosition = -1;
+
         int pos = 0;
         for (int i = 0; i < section; i++) {
             pos += getTotalItemCountInSection(i);
