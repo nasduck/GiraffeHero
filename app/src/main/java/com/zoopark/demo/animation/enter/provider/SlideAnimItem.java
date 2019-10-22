@@ -14,14 +14,11 @@ import com.zoopark.rv.base.BaseItemProvider;
 import com.zoopark.rv.base.BaseViewHolder;
 import com.zoopark.rv.base.IndexPath;
 
-public class AnimCommonItem extends BaseItemProvider {
+public class SlideAnimItem extends BaseItemProvider {
 
-    // 1:scale 2:scale
-    private int mType;
-    private Benchmark mBenchmark;
     private SlideDirection mSlideDirection;
 
-    public AnimCommonItem(Context context) {
+    public SlideAnimItem(Context context) {
         super(context);
     }
 
@@ -42,24 +39,8 @@ public class AnimCommonItem extends BaseItemProvider {
 
     @Override
     public BaseAnimation getAnimator() {
-        BaseAnimation animation;
-        switch (mType) {
-            case 1:
-                animation = new ScaleInAnimation(mBenchmark);
-                return animation;
-            case 2:
-                animation = new SlideInAnimation(mSlideDirection);
-                return animation;
-        }
-        return super.getAnimator();
-    }
-
-    public void setAnimationType(int type) {
-        mType = type;
-    }
-
-    public void setScaleType(Benchmark benchmark) {
-        mBenchmark = benchmark;
+        BaseAnimation animation = new SlideInAnimation(mSlideDirection);
+        return animation;
     }
 
     public void setSlideDirection(SlideDirection direction) {

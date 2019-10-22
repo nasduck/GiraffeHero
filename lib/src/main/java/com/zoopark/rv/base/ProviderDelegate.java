@@ -1,11 +1,17 @@
 package com.zoopark.rv.base;
 
+import android.util.Log;
 import android.util.SparseArray;
+
+import com.zoopark.rv.animation.enter.BaseAnimation;
 
 public class ProviderDelegate {
 
     private SparseArray<BaseProvider> mProviderList = new SparseArray<>();
     private SparseArray<BaseItemProvider> mSectionList = new SparseArray<>();
+
+    private int mAnimationCount = 0;
+    private BaseAnimation mAnimation;
 
     private void registerProvider(BaseProvider provider) {
         if (provider == null) {
@@ -31,12 +37,20 @@ public class ProviderDelegate {
         }
     }
 
+    private void registerProviderAnimation(BaseItemProvider provider) {
+        if (provider.getAnimator() != null) {
+            mAnimationCount++;
+            mAnimation = provider.getAnimator();
+        }
+    }
+
     public void registerProviders(BaseItemProvider ... providerList) {
         for (BaseItemProvider provider : providerList) {
             if (provider.hasHeader()) registerProvider(provider.getHeader());
             registerProvider(provider);
             if (provider.hasFooter()) registerProvider(provider.getFooter());
             registerSectionProvider(provider);
+            registerProviderAnimation(provider);
         }
     }
 
@@ -70,4 +84,11 @@ public class ProviderDelegate {
         return mSectionList.get(section);
     }
 
+    public int getAnimationCount() {
+        return mAnimationCount;
+    }
+
+    public BaseAnimation getAnimation() {
+        return mAnimation;
+    }
 }

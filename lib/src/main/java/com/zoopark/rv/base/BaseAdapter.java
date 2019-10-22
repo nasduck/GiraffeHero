@@ -1,10 +1,8 @@
 package com.zoopark.rv.base;
 
-import android.animation.Animator;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +28,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     private final Context mContext;
     private int preRowCount;
     private int mLastAnimPosition = -1;
+    private BaseAnimation mAnimation;
 
     // Empty View
     private Boolean isShowEmptyView;
@@ -111,11 +110,19 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
         super.onViewAttachedToWindow(holder);
         if (holder.getItemViewType() != EMPTY_VIEW_TYPE && holder.getItemViewType() != LOAD_MORE_VIEW_TYPE) {
-            BaseAnimation animation = mProviderDelegate.getSection(getSection(holder.getAdapterPosition())).getAnimator();
-            if (animation != null) {
+            if (mProviderDelegate.getAnimationCount() == 0) {
+                mAnimation = null;
+            } else if (mProviderDelegate.getAnimationCount() == 1 && getSectionNumber() == 1) {
+                mAnimation = mProviderDelegate.getAnimation();
+            } else {
+                mAnimation = mProviderDelegate.getSection(getSection(holder.getAdapterPosition())).getAnimator();
+            }
+
+            if (mAnimation != null) {
                 if (mLastAnimPosition < holder.getLayoutPosition()) {
-                    animation.getAnimators(holder.itemView).start();
+                    mAnimation.getAnimators(holder.itemView).start();
                     mLastAnimPosition = holder.getLayoutPosition();
+                    mAnimation = null;
                 }
             }
         }

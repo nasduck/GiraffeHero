@@ -9,7 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.zoopark.demo.R;
-import com.zoopark.demo.animation.enter.adapter.EnterAnimAdapter;
+import com.zoopark.demo.animation.enter.adapter.EnterAnimScaleAdapter;
+import com.zoopark.demo.animation.enter.adapter.EnterAnimSlideAdapter;
 import com.zoopark.rv.animation.enums.Benchmark;
 
 public class EnterAnimScaleActivity extends AppCompatActivity {
@@ -17,7 +18,7 @@ public class EnterAnimScaleActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private RecyclerView mRecyclerView;
 
-    private EnterAnimAdapter mAdapter;
+    private EnterAnimScaleAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +30,7 @@ public class EnterAnimScaleActivity extends AppCompatActivity {
 
         setSupportActionBar(mToolbar);
 
-        mAdapter = new EnterAnimAdapter(this);
-        mAdapter.setAnimationType(1);
-        mAdapter.setScaleType(Benchmark.CENTER);
+        mAdapter = new EnterAnimScaleAdapter(this, Benchmark.CENTER);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
         mRecyclerView.setLayoutManager(layoutManager);
@@ -51,15 +50,16 @@ public class EnterAnimScaleActivity extends AppCompatActivity {
     public void onAnimTypeClick(View view) {
         switch (view.getId()) {
             case R.id.btn_center:
-                mAdapter.setScaleType(Benchmark.CENTER);
+                mAdapter = new EnterAnimScaleAdapter(this, Benchmark.CENTER);
                 break;
             case R.id.btn_x:
-                mAdapter.setScaleType(Benchmark.X);
+                mAdapter = new EnterAnimScaleAdapter(this, Benchmark.X);
                 break;
             case R.id.btn_y:
-                mAdapter.setScaleType(Benchmark.Y);
+                mAdapter = new EnterAnimScaleAdapter(this, Benchmark.Y);
                 break;
         }
+        mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifySectionChanged(0);
     }
 }
