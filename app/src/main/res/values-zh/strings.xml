@@ -4,6 +4,7 @@
 
     <string name="complex_recycler_view">复杂列表</string>
     <string name="animation_recycler_view">列表动画</string>
+    <string name="enter_animation">进入动画</string>
     <string name="empty_view">无内容视图</string>
     <string name="notify_decoration">刷新header和footer</string>
     <string name="notify_section">刷新section</string>

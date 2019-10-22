@@ -3,6 +3,7 @@
 
     <string name="complex_recycler_view">Complex Page</string>
     <string name="animation_recycler_view">RecyclerView Animation</string>
+    <string name="enter_animation">Enter Animation</string>
     <string name="empty_view">Empty View</string>
     <string name="notify_decoration">Notify Decoration</string>
     <string name="notify_section">Notify Section</string>

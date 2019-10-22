@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.zoopark.demo.animation.change.activity.HomeAnimActivity;
+import com.zoopark.demo.animation.enter.activity.EnterAnimHomeActivity;
 import com.zoopark.demo.complex.ComplexPageActivity;
 import com.zoopark.demo.empty.EmptyViewActivity;
 import com.zoopark.demo.notify.decoration.NotifyDecorationActivity;
@@ -39,5 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
 	public void onNotifySectionClick(View view) {
 		startActivity(new Intent(this, NotifySectionActivity.class));
+	}
+
+	public void onEnterAnimationClick(View view) {
+		startActivity(new Intent(this, EnterAnimHomeActivity.class));
 	}
 }

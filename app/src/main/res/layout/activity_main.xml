@@ -36,6 +36,12 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="onEnterAnimationClick"
+        android:text="@string/enter_animation"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="onNotifyHeaderFooterClick"
         android:text="@string/notify_decoration"/>
 

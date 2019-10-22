@@ -21,6 +21,10 @@ public class ScaleInAnimation extends BaseAnimation {
         this(Benchmark.CENTER, from);
     }
 
+    public ScaleInAnimation(Benchmark benchmark) {
+        this(benchmark, DEFAULT_SCALE_FROM);
+    }
+
     public ScaleInAnimation(Benchmark benchmark, float from) {
         this.mBenchmark = benchmark;
         this.mFrom = from;
