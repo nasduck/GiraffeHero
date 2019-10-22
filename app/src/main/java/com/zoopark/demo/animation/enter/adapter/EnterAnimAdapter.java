@@ -9,6 +9,7 @@ import com.zoopark.rv.base.BaseAdapter;
 
 public class EnterAnimAdapter extends BaseAdapter {
 
+
     private AnimCommonItem mAnimItem;
 
     public EnterAnimAdapter(Context context) {

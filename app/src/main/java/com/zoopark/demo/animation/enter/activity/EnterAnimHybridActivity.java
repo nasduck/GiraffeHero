@@ -1,26 +1,38 @@
 package com.zoopark.demo.animation.enter.activity;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.zoopark.demo.R;
+import com.zoopark.demo.animation.enter.adapter.EnterHybridAnimAdapter;
 
-public class EnterAnimHomeActivity extends AppCompatActivity {
+public class EnterAnimHybridActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
+    private RecyclerView mRecyclerView;
+
+    private EnterHybridAnimAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enter_anim_home);
+        setContentView(R.layout.activity_enter_anim_hybrid);
 
         mToolbar = findViewById(R.id.toolbar);
+        mRecyclerView = findViewById(R.id.recycler_view);
 
         setSupportActionBar(mToolbar);
+
+        mAdapter = new EnterHybridAnimAdapter(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(layoutManager);
+
     }
 
     @Override
@@ -31,17 +43,5 @@ public class EnterAnimHomeActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void onScaleAnimClick(View view) {
-        startActivity(new Intent(this, EnterAnimScaleActivity.class));
-    }
-
-    public void onSlideAnimClick(View view) {
-        startActivity(new Intent(this, EnterAnimSlideActivity.class));
-    }
-
-    public void onHybridAnimClick(View view) {
-        startActivity(new Intent(this, EnterAnimHybridActivity.class));
     }
 }

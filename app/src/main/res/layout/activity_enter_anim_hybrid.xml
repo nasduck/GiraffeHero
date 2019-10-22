@@ -11,28 +11,15 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
-        app:title="Enter Animation"
+        app:title="Hybrid Animation"
         app:titleTextColor="@color/white">
-
 
     </android.support.v7.widget.Toolbar>
 
-    <Button
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onHybridAnimClick"
-        android:text="Hybrid Animation"/>
+        android:layout_height="match_parent"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onScaleAnimClick"
-        android:text="Scale Animation"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onSlideAnimClick"
-        android:text="Slide Animation"/>
 
 </LinearLayout>
