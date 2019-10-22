@@ -22,6 +22,9 @@ public class SlideInAnimation extends BaseAnimation {
     @Override
     public AnimatorSet getAnimators(View view) {
         AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setStartDelay(getStartDelay());
+        animatorSet.setDuration(getDuration());
+        animatorSet.setInterpolator(getInterpolator());
         ObjectAnimator animator = null;
         switch (mSlideDirection) {
             case TOP:
@@ -41,9 +44,7 @@ public class SlideInAnimation extends BaseAnimation {
                 animator = ObjectAnimator.ofFloat(view, "translationX", view.getRootView().getWidth(), 0);
                 break;
         }
-        animator.setStartDelay(getStartDelay());
-        animator.setDuration(getDuration());
-        animator.setInterpolator(getInterpolator());
+
         animatorSet.play(animator);
         return animatorSet;
     }
