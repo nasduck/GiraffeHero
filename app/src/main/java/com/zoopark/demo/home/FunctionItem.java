@@ -4,11 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.zoopark.demo.R;
-import com.zoopark.demo.animation.change.activity.HomeAnimActivity;
+import com.zoopark.demo.animation.item.activity.HomeAnimActivity;
 import com.zoopark.demo.animation.enter.activity.EnterAnimHomeActivity;
 import com.zoopark.demo.complex.ComplexPageActivity;
 import com.zoopark.demo.empty.EmptyViewActivity;
-import com.zoopark.demo.notify.decoration.NotifyDecorationActivity;
+import com.zoopark.demo.notify.headerfooter.NotifyHeaderFooterActivity;
 import com.zoopark.demo.notify.section.NotifySectionActivity;
 import com.zoopark.rv.base.provider.BaseItemProvider;
 import com.zoopark.rv.base.holder.BaseViewHolder;
@@ -59,7 +59,7 @@ public class FunctionItem extends BaseItemProvider<List<FunctionBean>> {
                 mContext.startActivity(new Intent(mContext, EmptyViewActivity.class));
                 break;
             case 2:
-                mContext.startActivity(new Intent(mContext, NotifyDecorationActivity.class));
+                mContext.startActivity(new Intent(mContext, NotifyHeaderFooterActivity.class));
                 break;
             case 3:
                 mContext.startActivity(new Intent(mContext, NotifySectionActivity.class));
