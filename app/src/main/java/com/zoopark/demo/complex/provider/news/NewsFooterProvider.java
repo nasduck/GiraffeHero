@@ -7,7 +7,9 @@ import com.zoopark.rv.base.BaseSectionHeaderFooter;
 import com.zoopark.rv.base.BaseViewHolder;
 import com.zoopark.rv.base.IndexPath;
 
-public class NewsFooterProvider extends BaseSectionHeaderFooter {
+public class NewsFooterProvider extends BaseSectionHeaderFooter<String> {
+
+    private String mTitle;
 
     public NewsFooterProvider(Context context) {
         super(context);
@@ -19,5 +21,12 @@ public class NewsFooterProvider extends BaseSectionHeaderFooter {
     }
 
     @Override
-    public void onBind(BaseViewHolder holder, IndexPath indexPath) {}
+    public void onBind(BaseViewHolder holder, IndexPath indexPath) {
+        holder.setText(R.id.tv_title, mTitle);
+    }
+
+    @Override
+    public void setData(String newData) {
+        this.mTitle = newData;
+    }
 }

@@ -38,7 +38,6 @@ public class EmptyViewActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         mAdapter = new EmptyViewAdapter(this);
-        mAdapter.setData(mList);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -51,7 +50,7 @@ public class EmptyViewActivity extends AppCompatActivity {
         mAdapter.setEmptyView(emptyView, new OnEmptyViewListener() {
             @Override
             public void onEmptyViewClick() {
-                Toast.makeText(EmptyViewActivity.this, "Click!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EmptyViewActivity.this, getResources().getText(R.string.empty_click_message), Toast.LENGTH_SHORT).show();
             }
         });
         // or you can user your own layout

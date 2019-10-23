@@ -9,16 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".notify.section.NotifySectionActivity"></activity>
+        <activity android:name=".animation.enter.activity.EnterAnimHybridActivity"></activity>
+        <activity android:name=".animation.enter.activity.EnterAnimScaleActivity" />
+        <activity android:name=".animation.enter.activity.EnterAnimSlideActivity" />
+        <activity android:name=".animation.enter.activity.EnterAnimHomeActivity" />
+        <activity android:name=".notify.section.NotifySectionActivity" />
         <activity android:name=".notify.decoration.NotifyDecorationActivity" />
         <activity android:name=".empty.EmptyViewActivity" />
-        <activity android:name=".animation.activity.TranslationAnimActivity" />
-        <activity android:name=".animation.activity.ScaleAnimActivity" />
-        <activity android:name=".animation.activity.FlipAnimActivity" />
-        <activity android:name=".animation.activity.HomeAnimActivity" />
+        <activity android:name=".animation.change.activity.TranslationAnimActivity" />
+        <activity android:name=".animation.change.activity.ScaleAnimActivity" />
+        <activity android:name=".animation.change.activity.FlipAnimActivity" />
+        <activity android:name=".animation.change.activity.HomeAnimActivity" />
         <activity android:name=".complex.ComplexPageActivity" />
-        <activity android:name=".animation.activity.FadeAnimActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".animation.change.activity.FadeAnimActivity" />
+        <activity android:name=".home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
