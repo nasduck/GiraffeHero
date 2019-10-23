@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Giraffe Hero Demo</string>
+    <string name="app_name">GiraffeHero</string>
 
     <string name="recycler_view_complex">Complex Page</string>
     <string name="recycler_view_empty_view">Empty View</string>
