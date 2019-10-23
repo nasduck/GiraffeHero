@@ -2,32 +2,33 @@
 <resources>
     <string name="app_name">Giraffe Hero Demo</string>
 
-    <string name="complex_recycler_view">复杂列表</string>
-    <string name="animation_recycler_view">列表动画</string>
-    <string name="enter_animation">进入动画</string>
-    <string name="empty_view">无内容视图</string>
-    <string name="notify_decoration">刷新header和footer</string>
-    <string name="notify_section">刷新section</string>
+    <string name="recycler_view_complex">Complex Page</string>
+    <string name="recycler_view_empty_view">Empty View</string>
+    <string name="recycler_view_notify_decoration">Notify Decoration</string>
+    <string name="recycler_view_notify_section">Notify Section</string>
+    <string name="recycler_view_change_animation">Change Animation</string>
+    <string name="recycler_view_enter_animation">Enter Animation</string>
 
-    <string name="button_group_1">item 1</string>
-    <string name="button_group_2">item 2</string>
-    <string name="button_group_3">item 3</string>
-    <string name="button_group_4">item 4</string>
+    <string name="giraffe_hero_title">title</string>
+    <string name="giraffe_hero_content">content</string>
 
-    <string name="button_group_1_tip">点击了按钮item 1</string>
-    <string name="button_group_2_tip">点击了按钮item 2</string>
-    <string name="button_group_3_tip">点击了按钮item 3</string>
-    <string name="button_group_4_tip">点击了按钮item 4</string>
+    <string name="empty_button_add_data">添加数据</string>
+    <string name="empty_button_clear_data">清除数据</string>
+    <string name="empty_click_message">click!</string>
 
-    <string name="get_new_item">获取一个最新项目</string>
+    <string name="complex_button_add">新增</string>
+    <string name="complex_button_remove">移除</string>
+    <string name="complex_button_change">改变</string>
+    <string name="complex_empty_tip">当前无内容，请点击加载数据</string>
 
     <string name="introduce_rafiki_permissions">RafikiPermissions 是为了简化 Android 危险权限动态申请操作，将权限申请判断和权限申请过程简化，将权限申请结果拆分成授予成功和授予失败两部分处理，使结果处理更富有逻辑性。组件名称 Rafiki 拉菲奇来源于狮子王里的狒狒长老，统管权限 :D</string>
     <string name="introduce_giant_panda">GiantPandaDialog 是为了简化 Android Dialog 的调用, 同时借鉴 iOS Dialog/Alert 的创建模式来提供简洁直观的弹窗创建方式. 整个基类完全继承自 DialogFragment 来代替 Dialog 以及 AlertDialog. </string>
     <string name="introduce_lesser_panda">LesserPandaToast 提供最简单的方法来调用各类简单的 progressHud 或 loadingToast, 同时提供自定义方法来定义不同的样式. 用户可以手动控制消失或者自动延时消失.</string>
     <string name="introduce_new_item">正在开发新的项目</string>
 
-    <string name="button_add_data">添加数据</string>
-    <string name="button_clear_data">清除数据</string>
+    <string name="enter_animation_hybrid">多层进入动画</string>
+    <string name="enter_animation_scale">缩放进入动画</string>
+    <string name="enter_animation_slide">滑动进入动画</string>
 
     <string name="animation_flip">翻转动画</string>
     <string name="animation_fade">滑动动画</string>

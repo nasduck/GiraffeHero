@@ -14,7 +14,8 @@
         android:layout_marginLeft="16dp"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:text="Footer"/>
 
     <View
         android:layout_width="match_parent"

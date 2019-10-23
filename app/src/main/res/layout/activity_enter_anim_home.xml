@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
-        app:title="Enter Animation"
+        app:title="@string/recycler_view_enter_animation"
         app:titleTextColor="@color/white">
 
 
@@ -21,18 +21,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onHybridAnimClick"
-        android:text="Hybrid Animation"/>
+        android:text="@string/enter_animation_hybrid"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onScaleAnimClick"
-        android:text="Scale Animation"/>
+        android:text="@string/enter_animation_scale"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onSlideAnimClick"
-        android:text="Slide Animation"/>
+        android:text="@string/enter_animation_slide"/>
 
 </LinearLayout>

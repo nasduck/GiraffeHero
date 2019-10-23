@@ -5,50 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        app:title="@string/app_name"
-        app:titleTextColor="@color/white">
+        android:src="@drawable/image_giraffe"/>
 
-    </android.support.v7.widget.Toolbar>
-
-    <Button
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onComplexPageClick"
-        android:text="@string/complex_recycler_view" />
+        android:layout_height="match_parent"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onEmptyViewClick"
-        android:text="@string/empty_view" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onAnimationClick"
-        android:text="@string/animation_recycler_view" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onEnterAnimationClick"
-        android:text="@string/enter_animation"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onNotifyHeaderFooterClick"
-        android:text="@string/notify_decoration"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onNotifySectionClick"
-        android:text="@string/notify_section"/>
 
 </LinearLayout>

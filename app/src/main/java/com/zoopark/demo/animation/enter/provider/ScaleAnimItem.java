@@ -3,11 +3,9 @@ package com.zoopark.demo.animation.enter.provider;
 import android.content.Context;
 
 import com.zoopark.demo.R;
-import com.zoopark.rv.animation.enter.BaseAnimation;
+import com.zoopark.rv.animation.enter.BaseInAnimation;
 import com.zoopark.rv.animation.enter.ScaleInAnimation;
-import com.zoopark.rv.animation.enter.SlideInAnimation;
 import com.zoopark.rv.animation.enums.Benchmark;
-import com.zoopark.rv.animation.enums.SlideDirection;
 import com.zoopark.rv.base.BaseItemProvider;
 import com.zoopark.rv.base.BaseViewHolder;
 import com.zoopark.rv.base.IndexPath;
@@ -22,7 +20,7 @@ public class ScaleAnimItem extends BaseItemProvider {
 
     @Override
     public int getLayout() {
-        return R.layout.item_anim_common;
+        return R.layout.item_common;
     }
 
     @Override
@@ -36,8 +34,8 @@ public class ScaleAnimItem extends BaseItemProvider {
     }
 
     @Override
-    public BaseAnimation getAnimator() {
-        BaseAnimation animation = new ScaleInAnimation(mBenchmark);
+    public BaseInAnimation getAnimator() {
+        BaseInAnimation animation = new ScaleInAnimation(mBenchmark);
         return animation;
     }
 

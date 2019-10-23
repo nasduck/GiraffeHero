@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
-        app:title="Empty View"
+        app:title="@string/recycler_view_empty_view"
         app:titleTextColor="@color/white">
 
 
@@ -25,23 +25,28 @@
             android:id="@+id/btn_add"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
             android:onClick="onAddClick"
-            android:text="@string/button_add_data" />
+            android:text="@string/empty_button_add_data" />
 
         <Button
             android:id="@+id/btn_clear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
             android:onClick="onClearClick"
-            android:text="@string/button_clear_data" />
+            android:text="@string/empty_button_clear_data" />
 
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/gray_bg" />
 
 </LinearLayout>

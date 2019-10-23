@@ -9,23 +9,23 @@ import java.util.List;
 
 public class HorizontalAnimAdapter extends BaseAdapter {
 
-    private HorizontalItemProvider mHeightElementProvider;
+    private HorizontalItemProvider mItemProvider;
 
     public HorizontalAnimAdapter(Context context) {
         super(context);
 
-        mHeightElementProvider = new HorizontalItemProvider(context);
+        mItemProvider = new HorizontalItemProvider(context);
 
         finishInitialize();
     }
 
     @Override
     public void registerItemProvider() {
-        mProviderDelegate.registerProviders(mHeightElementProvider);
+        mProviderDelegate.registerProviders(mItemProvider);
     }
 
     public void setItemData(List<Integer> list) {
-        mHeightElementProvider.setData(list);
+        mItemProvider.setData(list);
         this.notifySectionChanged(0);
     }
 }

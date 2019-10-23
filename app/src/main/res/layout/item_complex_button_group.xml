@@ -8,46 +8,36 @@
     android:paddingBottom="16dp">
 
     <Button
-        android:id="@+id/btn_one"
+        android:id="@+id/btn_add"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:layout_weight="1"
-        android:drawableTop="@drawable/ic_button_one_46dp"
-        android:drawablePadding="8dp"
-        android:text="@string/button_group_1"
-        android:textColor="@color/black" />
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/complex_button_add"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btn_two"
+        android:id="@+id/btn_remove"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:layout_weight="1"
-        android:drawableTop="@drawable/ic_button_two_46dp"
-        android:drawablePadding="8dp"
-        android:layout_marginLeft="16dp"
-        android:text="@string/button_group_2"
-        android:textColor="@color/black" />
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/complex_button_remove"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btn_three"
+        android:id="@+id/btn_change"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:layout_weight="1"
-        android:drawableTop="@drawable/ic_button_three_46dp"
-        android:drawablePadding="8dp"
-        android:layout_marginLeft="16dp"
-        android:text="@string/button_group_3"
-        android:textColor="@color/black" />
-
-    <Button
-        android:id="@+id/btn_four"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableTop="@drawable/ic_button_four_46dp"
-        android:drawablePadding="8dp"
-        android:layout_marginLeft="16dp"
-        android:text="@string/button_group_4"
-        android:textColor="@color/black" />
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/complex_button_change"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
 </LinearLayout>

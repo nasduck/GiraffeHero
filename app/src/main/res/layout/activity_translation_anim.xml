@@ -65,28 +65,27 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
             android:onClick="onAddClick"
             android:text="@string/add" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
             android:onClick="onRemove"
             android:text="@string/remove" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:layout_weight="1"
-            android:onClick="onMove"
-            android:text="@string/move" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
             android:onClick="onChange"
             android:text="@string/change" />
 

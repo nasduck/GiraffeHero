@@ -29,7 +29,7 @@ public class FadeAnimActivity extends AppCompatActivity {
     private HorizontalAnimAdapter mHorizontalAdapter;
     private LinearLayoutManager mLayoutManager;
 
-    private boolean isVertical = true;      // 判断列表当前方向
+    private boolean isVertical = true;      // list direction
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,14 +150,6 @@ public class FadeAnimActivity extends AppCompatActivity {
             mVerticalAdapter.notifyItemRemoved(6);
         } else {
             mHorizontalAdapter.notifyItemRemoved(6);
-        }
-    }
-
-    public void onMove(View view) {
-        if (isVertical) {
-            mVerticalAdapter.notifyItemMoved(4, 6);
-        } else {
-            mHorizontalAdapter.notifyItemMoved(4, 6);
         }
     }
 

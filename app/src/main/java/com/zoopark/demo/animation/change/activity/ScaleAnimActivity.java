@@ -103,10 +103,6 @@ public class ScaleAnimActivity extends AppCompatActivity {
         mAdapter.notifyItemRemoved(6);
     }
 
-    public void onMove(View view) {
-        mAdapter.notifyItemMoved(4, 6);
-    }
-
     public void onChange(View view) {
         mList.set(5, 10000);
         mAdapter.notifyItemChanged(5);

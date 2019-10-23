@@ -7,14 +7,16 @@ import com.zoopark.rv.base.BaseSectionHeaderFooter;
 import com.zoopark.rv.base.BaseViewHolder;
 import com.zoopark.rv.base.IndexPath;
 
-public class NewsHeaderProvider extends BaseSectionHeaderFooter {
+public class NewsHeaderProvider extends BaseSectionHeaderFooter<String> {
 
     public interface NewsHeaderProviderListener {
-        void onNewsHeaderAddOneClick();
-        void onNewsHeaderAddTwoClick();
+        void onNotifyHeaderClick();
+        void onNotifyFooterClick();
     };
 
     private NewsHeaderProviderListener mListener;
+
+    private String mTitle;
 
     public NewsHeaderProvider(Context context) {
         super(context);
@@ -27,6 +29,7 @@ public class NewsHeaderProvider extends BaseSectionHeaderFooter {
 
     @Override
     public void onBind(BaseViewHolder holder, IndexPath indexPath) {
+        holder.setText(R.id.tv_title, mTitle);
         holder.setClick(R.id.btn_add_one, this, indexPath);
         holder.setClick(R.id.btn_add_two, this, indexPath);
     }
@@ -35,10 +38,10 @@ public class NewsHeaderProvider extends BaseSectionHeaderFooter {
     public void onClick(BaseViewHolder holder, IndexPath indexPath, int viewId) {
         switch (viewId) {
             case R.id.btn_add_one:
-                if (mListener != null) mListener.onNewsHeaderAddOneClick();
+                if (mListener != null) mListener.onNotifyHeaderClick();
                 break;
             case R.id.btn_add_two:
-                if (mListener != null) mListener.onNewsHeaderAddTwoClick();
+                if (mListener != null) mListener.onNotifyFooterClick();
                 break;
         }
     }
@@ -47,4 +50,8 @@ public class NewsHeaderProvider extends BaseSectionHeaderFooter {
         this.mListener = listener;
     }
 
+    @Override
+    public void setData(String newData) {
+        this.mTitle = newData;
+    }
 }

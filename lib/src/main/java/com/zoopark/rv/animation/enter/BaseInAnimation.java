@@ -6,7 +6,7 @@ import android.animation.TimeInterpolator;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
-public abstract class BaseAnimation {
+public abstract class BaseInAnimation {
 
     /**
      * set animator

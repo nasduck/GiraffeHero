@@ -1,13 +1,12 @@
 package com.zoopark.rv.animation.enter;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
 import com.zoopark.rv.animation.enums.Benchmark;
 
-public class ScaleInAnimation extends BaseAnimation {
+public class ScaleInAnimation extends BaseInAnimation {
     private static final float DEFAULT_SCALE_FROM = 0.5f;
     private final float mFrom;
 

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
-        app:title="Hybrid Animation"
+        app:title="@string/enter_animation_hybrid"
         app:titleTextColor="@color/white">
 
     </android.support.v7.widget.Toolbar>
@@ -19,7 +19,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@color/gray_bg"/>
 
 
 </LinearLayout>

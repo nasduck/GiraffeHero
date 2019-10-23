@@ -12,26 +12,21 @@ import com.zoopark.demo.animation.enter.adapter.EnterHybridAnimAdapter;
 
 public class EnterAnimHybridActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
-    private RecyclerView mRecyclerView;
-
-    private EnterHybridAnimAdapter mAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_anim_hybrid);
 
-        mToolbar = findViewById(R.id.toolbar);
-        mRecyclerView = findViewById(R.id.recycler_view);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(toolbar);
 
-        mAdapter = new EnterHybridAnimAdapter(this);
+        EnterHybridAnimAdapter adapter = new EnterHybridAnimAdapter(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(layoutManager);
 
     }
 

@@ -1,9 +1,8 @@
 package com.zoopark.rv.base;
 
-import android.util.Log;
 import android.util.SparseArray;
 
-import com.zoopark.rv.animation.enter.BaseAnimation;
+import com.zoopark.rv.animation.enter.BaseInAnimation;
 
 public class ProviderDelegate {
 
@@ -11,7 +10,7 @@ public class ProviderDelegate {
     private SparseArray<BaseItemProvider> mSectionList = new SparseArray<>();
 
     private int mAnimationCount = 0;
-    private BaseAnimation mAnimation;
+    private BaseInAnimation mAnimation;
 
     private void registerProvider(BaseProvider provider) {
         if (provider == null) {
@@ -88,7 +87,7 @@ public class ProviderDelegate {
         return mAnimationCount;
     }
 
-    public BaseAnimation getAnimation() {
+    public BaseInAnimation getAnimation() {
         return mAnimation;
     }
 }

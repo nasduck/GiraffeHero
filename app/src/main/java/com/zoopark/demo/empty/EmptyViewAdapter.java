@@ -2,28 +2,21 @@ package com.zoopark.demo.empty;
 
 import android.content.Context;
 
-import com.zoopark.demo.animation.change.provider.VerticalItemProvider;
 import com.zoopark.rv.base.BaseAdapter;
-
-import java.util.List;
 
 public class EmptyViewAdapter extends BaseAdapter {
 
-    private VerticalItemProvider mWidthElementProvider;
+    private EmptyItemProvider mItemProvider;
 
     public EmptyViewAdapter(Context context) {
         super(context);
-        mWidthElementProvider = new VerticalItemProvider(context);
+        mItemProvider = new EmptyItemProvider(context);
 
         finishInitialize();
     }
 
     @Override
     public void registerItemProvider() {
-        mProviderDelegate.registerProviders(mWidthElementProvider);
-    }
-
-    public void setData(List<Integer> list) {
-        mWidthElementProvider.setData(list);
+        mProviderDelegate.registerProviders(mItemProvider);
     }
 }

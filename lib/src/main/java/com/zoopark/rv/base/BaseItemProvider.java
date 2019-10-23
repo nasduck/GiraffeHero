@@ -2,7 +2,7 @@ package com.zoopark.rv.base;
 
 import android.content.Context;
 
-import com.zoopark.rv.animation.enter.BaseAnimation;
+import com.zoopark.rv.animation.enter.BaseInAnimation;
 
 public abstract class BaseItemProvider<T> extends BaseProvider {
 
@@ -47,7 +47,7 @@ public abstract class BaseItemProvider<T> extends BaseProvider {
         return this.mFooter;
     }
 
-    public BaseAnimation getAnimator() {
+    public BaseInAnimation getAnimator() {
         return null;
     }
 }

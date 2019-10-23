@@ -4,10 +4,9 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
-import com.zoopark.rv.animation.enter.BaseAnimation;
 import com.zoopark.rv.animation.enums.SlideDirection;
 
-public class SlideInAnimation extends BaseAnimation {
+public class SlideInAnimation extends BaseInAnimation {
 
     private SlideDirection mSlideDirection;
 

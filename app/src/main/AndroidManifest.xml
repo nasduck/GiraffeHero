@@ -22,7 +22,7 @@
         <activity android:name=".animation.change.activity.HomeAnimActivity" />
         <activity android:name=".complex.ComplexPageActivity" />
         <activity android:name=".animation.change.activity.FadeAnimActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

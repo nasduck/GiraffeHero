@@ -26,7 +26,7 @@ public class VerticalItemProvider extends BaseItemProvider<List<Integer>> {
 
     @Override
     public int getLayout() {
-        return R.layout.item_element_width;
+        return R.layout.item_element_vertical;
     }
 
     @Override

@@ -11,16 +11,14 @@ import com.zoopark.demo.R;
 
 public class EnterAnimHomeActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_anim_home);
 
-        mToolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(toolbar);
     }
 
     @Override

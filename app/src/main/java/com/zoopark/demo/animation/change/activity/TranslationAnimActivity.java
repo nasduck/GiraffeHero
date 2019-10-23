@@ -154,14 +154,6 @@ public class TranslationAnimActivity extends AppCompatActivity {
         }
     }
 
-    public void onMove(View view) {
-        if (isVertical) {
-            mVerticalAdapter.notifyItemMoved(4, 6);
-        } else {
-            mHorizontalAdapter.notifyItemMoved(4, 6);
-        }
-    }
-
     public void onChange(View view) {
         mList.set(5, 10000);
         if (isVertical) {

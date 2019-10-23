@@ -9,23 +9,23 @@ import java.util.List;
 
 public class VerticalAnimAdapter extends BaseAdapter {
 
-    private VerticalItemProvider mWidthElementProvider;
+    private VerticalItemProvider mItemProvider;
 
     public VerticalAnimAdapter(Context context) {
         super(context);
 
-        mWidthElementProvider = new VerticalItemProvider(context);
+        mItemProvider = new VerticalItemProvider(context);
 
         finishInitialize();
     }
 
     @Override
     public void registerItemProvider() {
-        mProviderDelegate.registerProviders(mWidthElementProvider);
+        mProviderDelegate.registerProviders(mItemProvider);
     }
 
     public void setItemData(List<Integer> list) {
-        mWidthElementProvider.setData(list);
+        mItemProvider.setData(list);
         this.notifySectionChanged(0);
     }
 }

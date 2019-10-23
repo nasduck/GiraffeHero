@@ -26,7 +26,7 @@ public class HorizontalItemProvider extends BaseItemProvider<List<Integer>> {
 
     @Override
     public int getLayout() {
-        return R.layout.item_element_height;
+        return R.layout.item_element_horizontal;
     }
 
     @Override
