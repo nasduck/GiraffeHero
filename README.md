@@ -6,7 +6,7 @@
 
 **GiraffeHero 【鹿男】是我们结合 iOS 和 Android 对于复杂页面的设计和理解构建出来的第三方库. 理论上任何常规复杂页面都可以通过鹿男来实现. 但和其它类似实现多样式 RecycleView 的库不同的是对于复杂页面的设计划分和理解.**
 
-在我们的构想中, 所有页面都是由至少一个 `Section` 构成的. 每个 Section 都有独立的 `Header` 和 `Footer`, 以及内部至少1个的元素构成(我们称为 `Row`):
+在我们的构想中, 所有页面都是由至少一个 `Section` 构成的. 每个 `Section` 都有独立的 `Header` 和 `Footer`, 以及内部至少1个以上的元素构成(我们称为 `Row`):
 
 // todo 复杂页面长图加标注
 
@@ -14,7 +14,7 @@
 
 当刷新页面时, 比起原生的 `notifyDataSetChanged`, `notifyItemRangeChanged` 以及 `notifyItemChanged`. 这个库可以帮助你实现单独刷新某个 `Section`, 某个 `Section` 当中的某个 `Row`. 或者仅仅是刷新这个 `Section` 独有的 `Header` 和 `Footer`. 尤其适合于页面内容是由不同的 API 返回的. 不同的 API 返回只需刷新自己对应的 `Section`. 如果个别 API 还未返回或出错, 对应的 `Section` 将不会显示.
 
-欢迎尝试[鹿男], 让每一个页面都符合代码强迫症的美学 :D
+欢迎尝试【鹿男】, 让每一个页面都符合代码强迫症的美学 :D
 
 ## 特点
 
@@ -25,6 +25,8 @@
 * 支持上拉加载更多
 * 支持列表进入动画
 * 支持列表元素动画
+
+## 使用指南
 
 ## Contributer
 
