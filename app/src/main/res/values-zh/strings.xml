@@ -9,8 +9,8 @@
     <string name="recycler_view_change_animation">Change Animation</string>
     <string name="recycler_view_enter_animation">Enter Animation</string>
 
-    <string name="giraffe_hero_title">title</string>
-    <string name="giraffe_hero_content">content</string>
+    <string name="giraffe_hero_title">Giraffe Hero</string>
+    <string name="giraffe_hero_content">【鹿男】是我们结合 iOS 和 Android 对于复杂页面的设计和理解构建出来的第三方库. 理论上任何常规复杂页面都可以通过鹿男来实现. 但和其它类似实现多样式 RecycleView 的库不同的是对于复杂页面的设计划分和理解。</string>
 
     <string name="empty_button_add_data">添加数据</string>
     <string name="empty_button_clear_data">清除数据</string>
