@@ -1,4 +1,4 @@
-package com.zoopark.rv.animation.change;
+package com.zoopark.rv.animation.item;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -6,26 +6,23 @@ import android.view.ViewPropertyAnimator;
 
 import com.zoopark.rv.animation.enums.Benchmark;
 
-public class ScaleItemAnimator extends BaseItemAnimator {
+public class FlipItemAnimator extends BaseItemAnimator {
 
     private Benchmark mMark;
 
-    public ScaleItemAnimator(Benchmark benchmark) {
-        mMark = benchmark;
+    public FlipItemAnimator(Benchmark mark) {
+        mMark = mark;
     }
 
     @Override
     protected boolean addAnimationInit(RecyclerView.ViewHolder holder) {
         switch (mMark) {
-            case Y:
-                holder.itemView.setScaleY(0f);
-                break;
             case X:
-                holder.itemView.setScaleX(0f);
+                holder.itemView.setRotationX(-90);
                 break;
-            case CENTER:
-                holder.itemView.setScaleX(0f);
-                holder.itemView.setScaleY(0f);
+            case Y:
+                holder.itemView.setRotationY(-90);
+                holder.itemView.setAlpha(0f);
                 break;
         }
         return true;
@@ -34,54 +31,53 @@ public class ScaleItemAnimator extends BaseItemAnimator {
     @Override
     protected ViewPropertyAnimator addAnimation(ViewPropertyAnimator animator) {
         switch (mMark) {
-            case Y:
-                return animator.scaleY(1f);
             case X:
-                return animator.scaleX(1f);
-            case CENTER:
-                return animator.scaleX(1f).scaleY(1f);
+                animator.rotationX(0);
+                break;
+            case Y:
+                animator.rotationY(0).alpha(1f);
+                break;
         }
         return animator;
     }
 
     @Override
     protected void animationEnd(View view) {
-        view.setScaleX(1f);
-        view.setScaleY(1f);
+        view.setRotationX(0);
+        view.setRotationY(0);
+        view.setAlpha(1f);
     }
 
     @Override
     protected ViewPropertyAnimator removeAnimation(ViewPropertyAnimator animator) {
         switch (mMark) {
-            case Y:
-                return animator.scaleY(0f);
             case X:
-                return animator.scaleX(0f);
-            case CENTER:
-                return animator.scaleX(0f).scaleY(0f);
+                animator.rotationX(-90);
+                break;
+            case Y:
+                animator.rotationY(-90).alpha(0f);
+                break;
         }
         return animator;
     }
 
     @Override
     protected boolean changeExitAnimationInit(RecyclerView.ViewHolder holder) {
-        holder.itemView.setScaleX(1f);
-        holder.itemView.setScaleY(1f);
+        holder.itemView.setRotationX(0);
+        holder.itemView.setRotationY(0);
+        holder.itemView.setAlpha(1f);
         return true;
     }
 
     @Override
     protected boolean changeEnterAnimationInit(RecyclerView.ViewHolder holder) {
+        holder.itemView.setAlpha(0f);
         switch (mMark) {
-            case Y:
-                holder.itemView.setScaleY(0f);
-                break;
             case X:
-                holder.itemView.setScaleX(0f);
+                holder.itemView.setRotationX(-180);
                 break;
-            case CENTER:
-                holder.itemView.setScaleX(0f);
-                holder.itemView.setScaleY(0f);
+            case Y:
+                holder.itemView.setRotationY(-180);
                 break;
         }
         return true;
@@ -89,26 +85,28 @@ public class ScaleItemAnimator extends BaseItemAnimator {
 
     @Override
     protected ViewPropertyAnimator changeExitAnimation(ViewPropertyAnimator animator) {
+        animator.alpha(0f);
         switch (mMark) {
-            case Y:
-                return animator.scaleY(0f);
             case X:
-                return animator.scaleX(0f);
-            case CENTER:
-                return animator.scaleX(0f).scaleY(0f);
+                animator.rotationX(-180);
+                break;
+            case Y:
+                animator.rotationY(-180);
+                break;
         }
         return animator;
     }
 
     @Override
     protected ViewPropertyAnimator changeEnterAnimation(ViewPropertyAnimator animator) {
+        animator.alpha(1f);
         switch (mMark) {
-            case Y:
-                return animator.scaleY(1f);
             case X:
-                return animator.scaleX(1f);
-            case CENTER:
-                return animator.scaleX(1f).scaleY(1f);
+                animator.rotationX(-360);
+                break;
+            case Y:
+                animator.rotationY(-360);
+                break;
         }
         return animator;
     }

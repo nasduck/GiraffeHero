@@ -1,12 +1,11 @@
 package com.zoopark.demo.complex.provider;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.zoopark.demo.R;
-import com.zoopark.rv.base.BaseItemProvider;
-import com.zoopark.rv.base.BaseViewHolder;
-import com.zoopark.rv.base.IndexPath;
+import com.zoopark.rv.base.provider.BaseItemProvider;
+import com.zoopark.rv.base.holder.BaseViewHolder;
+import com.zoopark.rv.base.model.IndexPath;
 
 public class ButtonGroupProvider extends BaseItemProvider {
 

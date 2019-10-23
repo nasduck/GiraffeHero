@@ -1,6 +1,9 @@
-package com.zoopark.rv.base;
+package com.zoopark.rv.base.provider;
 
 import android.support.annotation.IdRes;
+
+import com.zoopark.rv.base.holder.BaseViewHolder;
+import com.zoopark.rv.base.model.IndexPath;
 
 public abstract class BaseProvider {
 

@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,13 +17,8 @@ import com.zoopark.demo.complex.bean.NewsBean;
 import com.zoopark.demo.complex.loadmore.CustomLoadMoreView;
 import com.zoopark.demo.complex.provider.ButtonGroupProvider;
 import com.zoopark.demo.complex.provider.news.NewsHeaderProvider;
-import com.zoopark.demo.empty.EmptyViewActivity;
-import com.zoopark.rv.animation.change.FadeItemAnimator;
-import com.zoopark.rv.animation.change.ScaleItemAnimator;
-import com.zoopark.rv.animation.enums.Benchmark;
-import com.zoopark.rv.animation.enums.SlideDirection;
 import com.zoopark.rv.base.BaseAdapter;
-import com.zoopark.rv.base.IndexPath;
+import com.zoopark.rv.base.model.IndexPath;
 import com.zoopark.rv.empty.OnEmptyViewListener;
 
 import java.util.ArrayList;

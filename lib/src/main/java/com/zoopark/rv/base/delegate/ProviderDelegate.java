@@ -1,8 +1,10 @@
-package com.zoopark.rv.base;
+package com.zoopark.rv.base.delegate;
 
 import android.util.SparseArray;
 
 import com.zoopark.rv.animation.enter.BaseInAnimation;
+import com.zoopark.rv.base.provider.BaseItemProvider;
+import com.zoopark.rv.base.provider.BaseProvider;
 
 public class ProviderDelegate {
 

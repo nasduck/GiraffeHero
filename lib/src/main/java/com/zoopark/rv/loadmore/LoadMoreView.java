@@ -3,7 +3,7 @@ package com.zoopark.rv.loadmore;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 
-import com.zoopark.rv.base.BaseViewHolder;
+import com.zoopark.rv.base.holder.BaseViewHolder;
 
 public abstract class LoadMoreView {
 

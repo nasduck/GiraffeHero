@@ -1,4 +1,4 @@
-package com.zoopark.rv.base;
+package com.zoopark.rv.base.provider;
 
 import android.content.Context;
 

@@ -3,9 +3,9 @@ package com.zoopark.demo.empty;
 import android.content.Context;
 
 import com.zoopark.demo.R;
-import com.zoopark.rv.base.BaseItemProvider;
-import com.zoopark.rv.base.BaseViewHolder;
-import com.zoopark.rv.base.IndexPath;
+import com.zoopark.rv.base.provider.BaseItemProvider;
+import com.zoopark.rv.base.holder.BaseViewHolder;
+import com.zoopark.rv.base.model.IndexPath;
 
 public class EmptyItemProvider extends BaseItemProvider {
 

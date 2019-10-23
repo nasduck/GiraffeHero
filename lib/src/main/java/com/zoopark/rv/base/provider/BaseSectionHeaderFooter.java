@@ -1,4 +1,4 @@
-package com.zoopark.rv.base;
+package com.zoopark.rv.base.provider;
 
 import android.content.Context;
 
@@ -17,7 +17,7 @@ public abstract class BaseSectionHeaderFooter<T> extends BaseProvider {
         return this.mCount;
     }
 
-    void setItemCount(int count) {
+    public void setItemCount(int count) {
         mCount = count;
     }
 

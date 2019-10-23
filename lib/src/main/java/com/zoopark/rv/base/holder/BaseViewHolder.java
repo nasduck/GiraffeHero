@@ -1,4 +1,4 @@
-package com.zoopark.rv.base;
+package com.zoopark.rv.base.holder;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -14,6 +14,9 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.zoopark.rv.base.model.IndexPath;
+import com.zoopark.rv.base.provider.BaseProvider;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

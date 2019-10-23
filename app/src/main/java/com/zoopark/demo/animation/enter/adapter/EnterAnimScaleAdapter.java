@@ -3,7 +3,6 @@ package com.zoopark.demo.animation.enter.adapter;
 import android.content.Context;
 
 import com.zoopark.demo.animation.enter.provider.ScaleAnimItem;
-import com.zoopark.demo.animation.enter.provider.SlideAnimItem;
 import com.zoopark.rv.animation.enums.Benchmark;
 import com.zoopark.rv.base.BaseAdapter;
 

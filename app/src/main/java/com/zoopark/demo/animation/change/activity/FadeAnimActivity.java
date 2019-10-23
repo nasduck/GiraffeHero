@@ -12,8 +12,8 @@ import android.view.View;
 import com.zoopark.demo.R;
 import com.zoopark.demo.animation.change.adapter.HorizontalAnimAdapter;
 import com.zoopark.demo.animation.change.adapter.VerticalAnimAdapter;
-import com.zoopark.rv.animation.change.BaseItemAnimator;
-import com.zoopark.rv.animation.change.FadeItemAnimator;
+import com.zoopark.rv.animation.item.BaseItemAnimator;
+import com.zoopark.rv.animation.item.FadeItemAnimator;
 import com.zoopark.rv.animation.enums.SlideDirection;
 
 import java.util.ArrayList;

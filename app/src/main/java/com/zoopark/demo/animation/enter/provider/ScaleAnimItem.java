@@ -6,9 +6,9 @@ import com.zoopark.demo.R;
 import com.zoopark.rv.animation.enter.BaseInAnimation;
 import com.zoopark.rv.animation.enter.ScaleInAnimation;
 import com.zoopark.rv.animation.enums.Benchmark;
-import com.zoopark.rv.base.BaseItemProvider;
-import com.zoopark.rv.base.BaseViewHolder;
-import com.zoopark.rv.base.IndexPath;
+import com.zoopark.rv.base.provider.BaseItemProvider;
+import com.zoopark.rv.base.holder.BaseViewHolder;
+import com.zoopark.rv.base.model.IndexPath;
 
 public class ScaleAnimItem extends BaseItemProvider {
 

@@ -10,8 +10,8 @@ import android.view.View;
 
 import com.zoopark.demo.R;
 import com.zoopark.demo.animation.change.adapter.VerticalAnimAdapter;
-import com.zoopark.rv.animation.change.BaseItemAnimator;
-import com.zoopark.rv.animation.change.FlipItemAnimator;
+import com.zoopark.rv.animation.item.BaseItemAnimator;
+import com.zoopark.rv.animation.item.FlipItemAnimator;
 import com.zoopark.rv.animation.enums.Benchmark;
 
 import java.util.ArrayList;
