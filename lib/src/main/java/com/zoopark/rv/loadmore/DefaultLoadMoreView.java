@@ -1,6 +1,6 @@
 package com.zoopark.rv.loadmore;
 
-import com.zoopark.giraffe.lib.R;
+import com.zoopark.rv.R;
 
 /**
  * Default Load More View

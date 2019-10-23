@@ -8,11 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.zoopark.demo.R;
 import com.zoopark.demo.animation.adapter.VerticalAnimAdapter;
 import com.zoopark.rv.animation.BaseItemAnimator;
 import com.zoopark.rv.animation.FlipItemAnimator;
 import com.zoopark.rv.animation.enums.Benchmark;
-import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,32 +29,30 @@ public class FlipAnimActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flip_anim);
-        // 绑定控件
+
         mRecyclerView = findViewById(R.id.recycler_view);
         mToolbar = findViewById(R.id.toolbar);
 
-        // 设置标题栏
         setSupportActionBar(mToolbar);
 
-        // 添加数据源
+        // fake data
         for (int i = 0; i < 20; i++) {
             mList.add(i);
         }
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        // init adapter
         mAdapter = new VerticalAnimAdapter(this);
-
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mAdapter.setItemData(mList);
 
-        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
 
-        BaseItemAnimator itemAnimator = new FlipItemAnimator(Benchmark.CENTER);
-        itemAnimator.setChangeEnterAnimDuration(1000);
-        itemAnimator.setChangeExitAnimDuration(1000);
-        itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-        mRecyclerView.setItemAnimator(itemAnimator);
+        // init animation. flip from center
+        BaseItemAnimator animator = new FlipItemAnimator(Benchmark.CENTER);
+        animator.setChangeEnterAnimDuration(1000);
+        animator.setChangeExitAnimDuration(1000);
+        animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+        mRecyclerView.setItemAnimator(animator);
     }
 
     @Override
@@ -70,28 +68,28 @@ public class FlipAnimActivity extends AppCompatActivity {
     /** Click *************************************************************************************/
 
     public void onAnimTypeClick(View view) {
-        BaseItemAnimator itemAnimator;
+        BaseItemAnimator animator;
         switch (view.getId()) {
             case R.id.btn_center:
-                itemAnimator = new FlipItemAnimator(Benchmark.CENTER);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new FlipItemAnimator(Benchmark.CENTER);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
             case R.id.btn_x:
-                itemAnimator = new FlipItemAnimator(Benchmark.X);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new FlipItemAnimator(Benchmark.X);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
             case R.id.btn_y:
-                itemAnimator = new FlipItemAnimator(Benchmark.Y);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new FlipItemAnimator(Benchmark.Y);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
         }
     }

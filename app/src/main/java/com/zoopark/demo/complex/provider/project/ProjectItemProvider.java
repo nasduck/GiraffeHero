@@ -1,22 +1,22 @@
-package com.zoopark.demo.complex.provider;
+package com.zoopark.demo.complex.provider.project;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.widget.Toast;
 
+import com.zoopark.demo.R;
 import com.zoopark.rv.base.BaseItemProvider;
 import com.zoopark.rv.base.BaseViewHolder;
 import com.zoopark.rv.base.IndexPath;
-import com.zoopark.demo.complex.bean.ItemBean;
-import com.zoopark.rvprovider.R;
+import com.zoopark.demo.complex.bean.ProjectBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectItemProvider extends BaseItemProvider {
+public class ProjectItemProvider extends BaseItemProvider<List<ProjectBean>> {
 
-    private List<ItemBean> mList;
+    private List<ProjectBean> mList;
 
     public ProjectItemProvider(Context context) {
         super(context);
@@ -30,18 +30,19 @@ public class ProjectItemProvider extends BaseItemProvider {
 
     @Override
     public int getLayout() {
-        return R.layout.item_complex_one_item;
+        return R.layout.item_complex_project_item;
     }
 
     @Override
     public void onBind(BaseViewHolder holder, IndexPath indexPath) {
         holder.setClick(R.id.container, this, indexPath);
-        holder.setImageResource(R.id.image, mList.get(indexPath.getRow()).getImageId());
+        holder.setImageResource(R.id.iv_project_logo, mList.get(indexPath.getRow()).getImageId());
         holder.setText(R.id.tv_content, mList.get(indexPath.getRow()).getContent());
     }
 
-    public void setData(List<ItemBean> list) {
-        this.mList = list;
+    @Override
+    public void setData(List<ProjectBean> newData) {
+        this.mList = newData;
     }
 
     @Override

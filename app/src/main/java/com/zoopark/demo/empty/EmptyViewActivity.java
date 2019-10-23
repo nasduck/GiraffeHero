@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.zoopark.demo.R;
 import com.zoopark.rv.empty.OnEmptyViewListener;
-import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +32,10 @@ public class EmptyViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty_view);
 
-        setSupportActionBar(mToolbar);
-
         mToolbar = findViewById(R.id.toolbar);
         mRecyclerView = findViewById(R.id.recycler_view);
+
+        setSupportActionBar(mToolbar);
 
         mAdapter = new EmptyViewAdapter(this);
         mAdapter.setData(mList);
@@ -69,7 +69,7 @@ public class EmptyViewActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /** Click *************************************************************************************/
+    //** Click ***********************************************************************************//
 
     public void onAddClick(View view) {
         for (int i = 0; i < 20; i++) {

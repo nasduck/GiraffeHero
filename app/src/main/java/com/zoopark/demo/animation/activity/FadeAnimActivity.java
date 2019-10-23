@@ -2,7 +2,6 @@ package com.zoopark.demo.animation.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -10,12 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.zoopark.demo.R;
 import com.zoopark.demo.animation.adapter.HorizontalAnimAdapter;
 import com.zoopark.demo.animation.adapter.VerticalAnimAdapter;
 import com.zoopark.rv.animation.BaseItemAnimator;
 import com.zoopark.rv.animation.FadeItemAnimator;
 import com.zoopark.rv.animation.enums.SlideDirection;
-import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,34 +35,35 @@ public class FadeAnimActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fade_anim);
-        // 绑定控件
+
         mRecyclerView = findViewById(R.id.recycler_view);
         mToolbar = findViewById(R.id.toolbar);
 
-        // 设置标题栏
         setSupportActionBar(mToolbar);
 
-        // 添加数据源
+        // fake data
         for (int i = 0; i < 20; i++) {
             mList.add(i);
         }
 
+        // init layout manager
         mLayoutManager = new LinearLayoutManager(this);
-        mVerticalAdapter = new VerticalAnimAdapter(this);
-        mHorizontalAdapter = new HorizontalAnimAdapter(this);
-
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        // init adapter
+        mVerticalAdapter = new VerticalAnimAdapter(this);
         mVerticalAdapter.setItemData(mList);
+        mHorizontalAdapter = new HorizontalAnimAdapter(this);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mVerticalAdapter);
-        // 默认从左侧进入
-        BaseItemAnimator itemAnimator = new FadeItemAnimator(SlideDirection.LEFT);
-        itemAnimator.setChangeEnterAnimDuration(1000);
-        itemAnimator.setChangeExitAnimDuration(1000);
-        itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-        mRecyclerView.setItemAnimator(itemAnimator);
 
+        // init animation. enter from left
+        BaseItemAnimator animator = new FadeItemAnimator(SlideDirection.LEFT);
+        animator.setChangeEnterAnimDuration(1000);
+        animator.setChangeExitAnimDuration(1000);
+        animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+        mRecyclerView.setItemAnimator(animator);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class FadeAnimActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.item_direction:
-                // 切换列表方向，便于展示不同方向的进入动画
+                // Switch list direction to show different animation
                 if (isVertical) {
                     item.setIcon(getResources().getDrawable(R.drawable.ic_view_horizontal_white_24dp));
                     mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -102,35 +102,35 @@ public class FadeAnimActivity extends AppCompatActivity {
     /** Click *************************************************************************************/
 
     public void onAnimTypeClick(View view) {
-        BaseItemAnimator itemAnimator;
+        BaseItemAnimator animator;
         switch (view.getId()) {
             case R.id.btn_left:
-                itemAnimator = new FadeItemAnimator(SlideDirection.LEFT);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new FadeItemAnimator(SlideDirection.LEFT);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
             case R.id.btn_right:
-                itemAnimator = new FadeItemAnimator(SlideDirection.RIGHT);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new FadeItemAnimator(SlideDirection.RIGHT);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
             case R.id.btn_top:
-                itemAnimator = new FadeItemAnimator(SlideDirection.TOP);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new FadeItemAnimator(SlideDirection.TOP);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
             case R.id.btn_bottom:
-                itemAnimator = new FadeItemAnimator(SlideDirection.BOTTOM);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new FadeItemAnimator(SlideDirection.BOTTOM);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
         }
     }

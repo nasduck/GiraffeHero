@@ -9,12 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.zoopark.demo.R;
 import com.zoopark.demo.animation.adapter.HorizontalAnimAdapter;
 import com.zoopark.demo.animation.adapter.VerticalAnimAdapter;
 import com.zoopark.rv.animation.BaseItemAnimator;
 import com.zoopark.rv.animation.TranslationItemAnimator;
 import com.zoopark.rv.animation.enums.SlideDirection;
-import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,28 +35,30 @@ public class TranslationAnimActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_translation_anim);
-        // 绑定控件
+
         mRecyclerView = findViewById(R.id.recycler_view);
         mToolbar = findViewById(R.id.toolbar);
 
-        // 设置标题栏
         setSupportActionBar(mToolbar);
 
-        // 添加数据源
+        // fake data
         for (int i = 0; i < 20; i++) {
             mList.add(i);
         }
 
+        // init manager
         mLayoutManager = new LinearLayoutManager(this);
-        mVerticalAdapter = new VerticalAnimAdapter(this);
-        mHorizontalAdapter = new HorizontalAnimAdapter(this);
-
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        // init adapter
+        mVerticalAdapter = new VerticalAnimAdapter(this);
         mVerticalAdapter.setItemData(mList);
+        mHorizontalAdapter = new HorizontalAnimAdapter(this);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mVerticalAdapter);
-        // 默认从左侧进入
+
+        /// init animation. enter from left
         BaseItemAnimator itemAnimator = new TranslationItemAnimator(SlideDirection.LEFT);
         itemAnimator.setChangeEnterAnimDuration(1000);
         itemAnimator.setChangeExitAnimDuration(1000);
@@ -78,7 +80,7 @@ public class TranslationAnimActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.item_direction:
-                // 切换列表方向，便于展示不同方向的进入动画
+                // Switch list direction to show different animation
                 if (isVertical) {
                     item.setIcon(getResources().getDrawable(R.drawable.ic_view_horizontal_white_24dp));
                     mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -101,35 +103,35 @@ public class TranslationAnimActivity extends AppCompatActivity {
     /** Click *************************************************************************************/
 
     public void onAnimTypeClick(View view) {
-        BaseItemAnimator itemAnimator;
+        BaseItemAnimator animator;
         switch (view.getId()) {
             case R.id.btn_left:
-                itemAnimator = new TranslationItemAnimator(SlideDirection.LEFT);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new TranslationItemAnimator(SlideDirection.LEFT);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
             case R.id.btn_right:
-                itemAnimator = new TranslationItemAnimator(SlideDirection.RIGHT);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new TranslationItemAnimator(SlideDirection.RIGHT);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
             case R.id.btn_top:
-                itemAnimator = new TranslationItemAnimator(SlideDirection.TOP);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new TranslationItemAnimator(SlideDirection.TOP);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
             case R.id.btn_bottom:
-                itemAnimator = new TranslationItemAnimator(SlideDirection.BOTTOM);
-                itemAnimator.setChangeEnterAnimDuration(1000);
-                itemAnimator.setChangeExitAnimDuration(1000);
-                itemAnimator.setChangeEnterAnimDelay(itemAnimator.getChangeExitAnimDuration());
-                mRecyclerView.setItemAnimator(itemAnimator);
+                animator = new TranslationItemAnimator(SlideDirection.BOTTOM);
+                animator.setChangeEnterAnimDuration(1000);
+                animator.setChangeExitAnimDuration(1000);
+                animator.setChangeEnterAnimDelay(animator.getChangeExitAnimDuration());
+                mRecyclerView.setItemAnimator(animator);
                 break;
         }
     }

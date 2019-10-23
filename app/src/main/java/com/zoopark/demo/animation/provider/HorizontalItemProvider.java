@@ -1,21 +1,20 @@
 package com.zoopark.demo.animation.provider;
 
 import android.content.Context;
-import android.widget.Button;
 
+import com.zoopark.demo.R;
 import com.zoopark.rv.base.BaseItemProvider;
 import com.zoopark.rv.base.BaseViewHolder;
 import com.zoopark.rv.base.IndexPath;
-import com.zoopark.rvprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WidthElementProvider extends BaseItemProvider {
+public class HorizontalItemProvider extends BaseItemProvider<List<Integer>> {
 
     private List<Integer> mData;
 
-    public WidthElementProvider(Context context) {
+    public HorizontalItemProvider(Context context) {
         super(context);
         mData = new ArrayList<>();
     }
@@ -27,16 +26,16 @@ public class WidthElementProvider extends BaseItemProvider {
 
     @Override
     public int getLayout() {
-        return R.layout.item_element_width;
+        return R.layout.item_element_height;
     }
 
     @Override
     public void onBind(BaseViewHolder holder, IndexPath indexPath) {
-        Button button = holder.getView(R.id.button);
-        button.setText(String.valueOf(mData.get(indexPath.getRow())));
+        holder.setText(R.id.button, String.valueOf(mData.get(indexPath.getRow())));
     }
 
-    public void setItemData(List<Integer> data) {
-        this.mData = data;
+    @Override
+    public void setData(List<Integer> newData) {
+        this.mData = newData;
     }
 }
