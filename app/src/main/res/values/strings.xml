@@ -18,6 +18,7 @@
     <string name="complex_button_add">Add</string>
     <string name="complex_button_remove">Remove</string>
     <string name="complex_button_change">Change</string>
+    <string name="complex_project_header">Developed component library</string>
     <string name="complex_empty_tip">No content, click to load data</string>
 
     <string name="introduce_rafiki_permissions">RafikiPermissions is to simplify Android runtime permission request. The name Rafiki comes from the baboon elder who manages permission in LION KING :D</string>

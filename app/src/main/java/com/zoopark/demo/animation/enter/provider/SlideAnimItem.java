@@ -20,7 +20,7 @@ public class SlideAnimItem extends BaseItemProvider {
 
     @Override
     public int getLayout() {
-        return R.layout.item_common;
+        return R.layout.item_empty;
     }
 
     @Override

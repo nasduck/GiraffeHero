@@ -185,7 +185,7 @@ public class ComplexPageActivity extends AppCompatActivity implements
             mNewsList.set(mNewsList.size() - 1, new NewsBean("New News", "Welcome to use giraffe hero!"));
             mAdapter.notifyIndexPathChanged(new IndexPath(2, mNewsList.size() - 1));
         } else {
-            Toast.makeText(this, "当前News List为空", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "News List is empty", Toast.LENGTH_SHORT).show();
         }
     }
 }

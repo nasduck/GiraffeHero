@@ -7,37 +7,39 @@
     android:paddingRight="16dp"
     android:paddingBottom="16dp">
 
-    <Button
+    <com.zoopark.demo.complex.views.SquareButton
         android:id="@+id/btn_add"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
         android:layout_weight="1"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/bg_primary_16"
         android:text="@string/complex_button_add"
         android:textColor="@color/white"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
-    <Button
+    <com.zoopark.demo.complex.views.SquareButton
         android:id="@+id/btn_remove"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_weight="1"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/bg_primary_16"
         android:text="@string/complex_button_remove"
         android:textColor="@color/white"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
-    <Button
+    <com.zoopark.demo.complex.views.SquareButton
         android:id="@+id/btn_change"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
         android:layout_weight="1"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/bg_primary_16"
         android:text="@string/complex_button_change"
         android:textColor="@color/white"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
 </LinearLayout>

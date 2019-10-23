@@ -29,7 +29,8 @@
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
             android:onClick="onAddClick"
-            android:text="@string/empty_button_add_data" />
+            android:text="@string/empty_button_add_data"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/btn_clear"
@@ -39,7 +40,8 @@
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
             android:onClick="onClearClick"
-            android:text="@string/empty_button_clear_data" />
+            android:text="@string/empty_button_clear_data"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 

@@ -25,7 +25,7 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
-        android:background="@drawable/bg_primary_16"
+        android:background="@drawable/bg_accent_16"
         android:text="Footer"
         android:textColor="@color/white"
         android:textSize="12sp" />
@@ -38,7 +38,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="8dp"
         android:layout_toLeftOf="@id/btn_add_two"
-        android:background="@drawable/bg_primary_16"
+        android:background="@drawable/bg_accent_16"
         android:text="Header"
         android:textColor="@color/white"
         android:textSize="12sp" />

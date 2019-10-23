@@ -61,7 +61,8 @@
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
             android:onClick="onAddClick"
-            android:text="@string/add" />
+            android:text="@string/add"
+            android:textColor="@color/white"/>
 
         <Button
             android:layout_width="0dp"
@@ -70,7 +71,8 @@
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
             android:onClick="onRemove"
-            android:text="@string/remove" />
+            android:text="@string/remove"
+            android:textColor="@color/white"/>
 
         <Button
             android:layout_width="0dp"
@@ -79,7 +81,8 @@
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
             android:onClick="onChange"
-            android:text="@string/change" />
+            android:text="@string/change"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 

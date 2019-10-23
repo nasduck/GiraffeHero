@@ -19,6 +19,7 @@
     <string name="complex_button_add">新增</string>
     <string name="complex_button_remove">移除</string>
     <string name="complex_button_change">改变</string>
+    <string name="complex_project_header">已开发的组件库</string>
     <string name="complex_empty_tip">当前无内容，请点击加载数据</string>
 
     <string name="introduce_rafiki_permissions">RafikiPermissions 是为了简化 Android 危险权限动态申请操作，将权限申请判断和权限申请过程简化，将权限申请结果拆分成授予成功和授予失败两部分处理，使结果处理更富有逻辑性。组件名称 Rafiki 拉菲奇来源于狮子王里的狒狒长老，统管权限 :D</string>
