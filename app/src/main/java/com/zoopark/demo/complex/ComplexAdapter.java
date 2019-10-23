@@ -2,6 +2,7 @@ package com.zoopark.demo.complex;
 
 import android.content.Context;
 
+import com.zoopark.demo.R;
 import com.zoopark.demo.complex.bean.ProjectBean;
 import com.zoopark.demo.complex.bean.NewsBean;
 import com.zoopark.demo.complex.provider.ButtonGroupProvider;
@@ -22,6 +23,8 @@ public class ComplexAdapter extends BaseAdapter {
     private ButtonGroupProvider mButtonGroupProvider;
 
     private NewsItemProvider mNewsItem;
+    private NewsHeaderProvider mNewsHeaderProvider;
+    private NewsFooterProvider mNewsFooterProvider;
 
     private ProjectHeaderProvider mProjectHeaderProvider;
     private ProjectItemProvider mProjectItemProvider;
@@ -33,16 +36,20 @@ public class ComplexAdapter extends BaseAdapter {
 
         mImageProvider = new BannerProvider(context);
         mButtonGroupProvider = new ButtonGroupProvider(context);
+        mButtonGroupProvider.setListener((ButtonGroupProvider.OnButtonGroupClickListener) context);
 
         // News
         mNewsItem = new NewsItemProvider(context);
-        NewsHeaderProvider header = new NewsHeaderProvider(context);
-        header.setListener((NewsHeaderProvider.NewsHeaderProviderListener) context);
-        mNewsItem.setHeader(header);
-        mNewsItem.setFooter(new NewsFooterProvider(context));
+        mNewsHeaderProvider = new NewsHeaderProvider(context);
+        mNewsHeaderProvider.setListener((NewsHeaderProvider.NewsHeaderProviderListener) context);
+        mNewsHeaderProvider.setData("Notify");
+        mNewsItem.setHeader(mNewsHeaderProvider);
+        mNewsFooterProvider = new NewsFooterProvider(context);
+        mNewsFooterProvider.setData("Footer");
+        mNewsItem.setFooter(mNewsFooterProvider);
 
         // Project
-        mProjectHeaderProvider = new ProjectHeaderProvider(context, "已开发的组件库");
+        mProjectHeaderProvider = new ProjectHeaderProvider(context, context.getResources().getString(R.string.complex_project_header));
         mProjectItemProvider = new ProjectItemProvider(context);
         mProjectItemProvider.setHeader(mProjectHeaderProvider);
 
@@ -72,11 +79,6 @@ public class ComplexAdapter extends BaseAdapter {
         notifySectionChanged(2);
     }
 
-    public void addNewsData(List<NewsBean> newData) {
-        mNewsItem.addData(newData);
-        notifySectionMoreData(2, newData.size());
-    }
-
     /**
      * Set projects data
      *
@@ -86,4 +88,13 @@ public class ComplexAdapter extends BaseAdapter {
         mProjectItemProvider.setData(newData);
     }
 
+    public void notifyHeader() {
+        mNewsHeaderProvider.setData("Notified");
+        this.notifyHeaderChanged(2);
+    }
+
+    public void notifyFooter() {
+        mNewsFooterProvider.setData("Footer has notified");
+        this.notifyFooterChanged(2);
+    }
 }

@@ -57,19 +57,19 @@ public class NotifySectionActivity extends AppCompatActivity implements SectionH
     public void callGetData() {
         mFirstSectionList = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            mFirstSectionList.add(new SectionBean("title", "content"));
+            mFirstSectionList.add(new SectionBean(getResources().getString(R.string.giraffe_hero_title), getResources().getString(R.string.giraffe_hero_content)));
         }
         mAdapter.setFirstData(mFirstSectionList);
 
         mSecondSectionList = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            mSecondSectionList.add(new SectionBean("title", "content"));
+            mSecondSectionList.add(new SectionBean(getResources().getString(R.string.giraffe_hero_title), getResources().getString(R.string.giraffe_hero_content)));
         }
         mAdapter.setSecondData(mSecondSectionList);
 
         mThirdSectionList = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            mThirdSectionList.add(new SectionBean("title", "content"));
+            mThirdSectionList.add(new SectionBean(getResources().getString(R.string.giraffe_hero_title), getResources().getString(R.string.giraffe_hero_content)));
         }
         mAdapter.setThirdData(mThirdSectionList);
     }

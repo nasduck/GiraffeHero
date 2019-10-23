@@ -6,9 +6,12 @@ import android.net.Uri;
 import android.widget.Toast;
 
 import com.zoopark.demo.R;
-import com.zoopark.rv.base.BaseItemProvider;
-import com.zoopark.rv.base.BaseViewHolder;
-import com.zoopark.rv.base.IndexPath;
+import com.zoopark.rv.animation.enter.BaseInAnimation;
+import com.zoopark.rv.animation.enter.SlideInAnimation;
+import com.zoopark.rv.animation.enums.SlideDirection;
+import com.zoopark.rv.base.provider.BaseItemProvider;
+import com.zoopark.rv.base.holder.BaseViewHolder;
+import com.zoopark.rv.base.model.IndexPath;
 import com.zoopark.demo.complex.bean.ProjectBean;
 
 import java.util.ArrayList;
@@ -68,5 +71,10 @@ public class ProjectItemProvider extends BaseItemProvider<List<ProjectBean>> {
                 Toast.makeText(mContext, "敬请期待", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    @Override
+    public BaseInAnimation getAnimator() {
+        return new SlideInAnimation(SlideDirection.RIGHT);
     }
 }

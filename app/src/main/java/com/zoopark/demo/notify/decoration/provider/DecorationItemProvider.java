@@ -4,9 +4,9 @@ import android.content.Context;
 
 import com.zoopark.demo.R;
 import com.zoopark.demo.notify.decoration.bean.DecorationBean;
-import com.zoopark.rv.base.BaseItemProvider;
-import com.zoopark.rv.base.BaseViewHolder;
-import com.zoopark.rv.base.IndexPath;
+import com.zoopark.rv.base.provider.BaseItemProvider;
+import com.zoopark.rv.base.holder.BaseViewHolder;
+import com.zoopark.rv.base.model.IndexPath;
 
 import java.util.ArrayList;
 import java.util.List;

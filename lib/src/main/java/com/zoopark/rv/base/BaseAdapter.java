@@ -3,12 +3,17 @@ package com.zoopark.rv.base;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.zoopark.rv.animation.enter.BaseInAnimation;
+import com.zoopark.rv.base.provider.BaseItemProvider;
+import com.zoopark.rv.base.provider.BaseProvider;
+import com.zoopark.rv.base.holder.BaseViewHolder;
+import com.zoopark.rv.base.model.IndexPath;
+import com.zoopark.rv.base.delegate.ProviderDelegate;
 import com.zoopark.rv.empty.OnEmptyViewListener;
 import com.zoopark.rv.loadmore.DefaultLoadMoreView;
 import com.zoopark.rv.loadmore.LoadMoreView;
@@ -27,6 +32,9 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     private final LayoutInflater mLayoutInflater;
     private final Context mContext;
     private int preRowCount;
+    private int mLastAnimPosition = -1;
+    private BaseInAnimation mAnimation;
+    private boolean isNotifyAnimation = false;
 
     // Empty View
     private Boolean isShowEmptyView;
@@ -102,6 +110,28 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
         super.onBindViewHolder(holder, position, payloads);
+    }
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        if (holder.getItemViewType() != EMPTY_VIEW_TYPE && holder.getItemViewType() != LOAD_MORE_VIEW_TYPE) {
+            if (mProviderDelegate.getAnimationCount() == 0) {
+                mAnimation = null;
+            } else if (mProviderDelegate.getAnimationCount() == 1 && getSectionNumber() == 1) {
+                mAnimation = mProviderDelegate.getAnimation();
+            } else {
+                mAnimation = mProviderDelegate.getSection(getSection(holder.getAdapterPosition())).getAnimator();
+            }
+
+            if (mAnimation != null) {
+                if (mLastAnimPosition < holder.getLayoutPosition()) {
+                    mAnimation.getAnimators(holder.itemView).start();
+                    mLastAnimPosition = holder.getLayoutPosition();
+                    mAnimation = null;
+                }
+            }
+        }
     }
 
     @Override
@@ -326,20 +356,13 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
         throw new RuntimeException("Section not available with position " + pos);
     }
 
-    private int getHeaderIndex(int section) {
-        int count = section;
-        for (int i = 0; i < section; i++) {
-            count += getSectionHeaderFooterCount(i);
-        }
-        return count;
-    }
-
-    private int getFooterIndex(int section) {
-        int count = section;
-        for (int i = 0; i <= section; i++) {
-            count += getSectionHeaderFooterCount(i);
-        }
-        return count;
+    /**
+     * if notify animation when notify section
+     *
+     * @param isNotifyAnimation
+     */
+    public void setNotifyAnimation(boolean isNotifyAnimation) {
+        this.isNotifyAnimation = isNotifyAnimation;
     }
 
     /**
@@ -348,6 +371,10 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
      * @param section section
      */
     public void notifySectionChanged(int section) {
+        if (isNotifyAnimation) {
+            mLastAnimPosition = -1;
+        }
+
         int pos = 0;
         for (int i = 0; i < section; i++) {
             pos += getTotalItemCountInSection(i);
@@ -673,6 +700,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private void autoLoadMore(int position) {
 
+        if (isShowEmptyView) return;
         if (!mIsLoadMoreEnable) return;
 
         if (position < getItemCount() - mPreLoadNumber) return;

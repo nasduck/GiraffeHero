@@ -7,47 +7,39 @@
     android:paddingRight="16dp"
     android:paddingBottom="16dp">
 
-    <Button
-        android:id="@+id/btn_one"
+    <com.zoopark.demo.complex.views.SquareButton
+        android:id="@+id/btn_add"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:drawableTop="@drawable/ic_button_one_46dp"
-        android:drawablePadding="8dp"
-        android:text="@string/button_group_1"
-        android:textColor="@color/black" />
+        android:background="@drawable/bg_primary_16"
+        android:text="@string/complex_button_add"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btn_two"
+    <com.zoopark.demo.complex.views.SquareButton
+        android:id="@+id/btn_remove"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableTop="@drawable/ic_button_two_46dp"
-        android:drawablePadding="8dp"
         android:layout_marginLeft="16dp"
-        android:text="@string/button_group_2"
-        android:textColor="@color/black" />
+        android:layout_marginRight="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_primary_16"
+        android:text="@string/complex_button_remove"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btn_three"
+    <com.zoopark.demo.complex.views.SquareButton
+        android:id="@+id/btn_change"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:drawableTop="@drawable/ic_button_three_46dp"
-        android:drawablePadding="8dp"
-        android:layout_marginLeft="16dp"
-        android:text="@string/button_group_3"
-        android:textColor="@color/black" />
-
-    <Button
-        android:id="@+id/btn_four"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableTop="@drawable/ic_button_four_46dp"
-        android:drawablePadding="8dp"
-        android:layout_marginLeft="16dp"
-        android:text="@string/button_group_4"
-        android:textColor="@color/black" />
+        android:background="@drawable/bg_primary_16"
+        android:text="@string/complex_button_change"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

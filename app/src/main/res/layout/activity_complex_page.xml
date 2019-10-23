@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
-        app:title="Complex RecyclerView"
+        app:title="@string/recycler_view_complex"
         app:titleTextColor="@color/white">
 
 
