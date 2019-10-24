@@ -1057,111 +1057,111 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
         return mAddAnimDelay;
     }
 
-    public void setAddAnimDelay(long mAddAnimDelay) {
-        this.mAddAnimDelay = mAddAnimDelay;
+    public void setAddAnimDelay(long delay) {
+        this.mAddAnimDelay = delay;
     }
 
     public TimeInterpolator getAddAnimInterpolator() {
         return mAddAnimInterpolator;
     }
 
-    public void setAddAnimInterpolator(TimeInterpolator mAddAnimInterpolator) {
-        this.mAddAnimInterpolator = mAddAnimInterpolator;
+    public void setAddAnimInterpolator(TimeInterpolator interpolator) {
+        this.mAddAnimInterpolator = interpolator;
     }
 
     public AnimatorListenerAdapter getAddAnimListener() {
         return mAddAnimListener;
     }
 
-    public void setAddAnimListener(AnimatorListenerAdapter mAddAnimListener) {
-        this.mAddAnimListener = mAddAnimListener;
+    public void setAddAnimListener(AnimatorListenerAdapter listener) {
+        this.mAddAnimListener = listener;
     }
 
     public long getRemoveAnimDelay() {
         return mRemoveAnimDelay;
     }
 
-    public void setRemoveAnimDelay(long mRemoveAnimDelay) {
-        this.mRemoveAnimDelay = mRemoveAnimDelay;
+    public void setRemoveAnimDelay(long delay) {
+        this.mRemoveAnimDelay = delay;
     }
 
     public TimeInterpolator getRemoveAnimInterpolator() {
         return mRemoveAnimInterpolator;
     }
 
-    public void setRemoveAnimInterpolator(TimeInterpolator mRemoveAnimInterpolator) {
-        this.mRemoveAnimInterpolator = mRemoveAnimInterpolator;
+    public void setRemoveAnimInterpolator(TimeInterpolator interpolator) {
+        this.mRemoveAnimInterpolator = interpolator;
     }
 
     public AnimatorListenerAdapter getRemoveAnimListener() {
         return mRemoveAnimListener;
     }
 
-    public void setRemoveAnimListener(AnimatorListenerAdapter mRemoveAnimListener) {
-        this.mRemoveAnimListener = mRemoveAnimListener;
+    public void setRemoveAnimListener(AnimatorListenerAdapter listener) {
+        this.mRemoveAnimListener = listener;
     }
 
     public long getChangeExitAnimDuration() {
         return mChangeExitAnimDuration;
     }
 
-    public void setChangeExitAnimDuration(long mChangeExitAnimDuration) {
-        this.mChangeExitAnimDuration = mChangeExitAnimDuration;
+    public void setChangeExitAnimDuration(long duration) {
+        this.mChangeExitAnimDuration = duration;
     }
 
     public long getChangeExitAnimDelay() {
         return mChangeExitAnimDelay;
     }
 
-    public void setChangeExitAnimDelay(long mChangeExitAnimDelay) {
-        this.mChangeExitAnimDelay = mChangeExitAnimDelay;
+    public void setChangeExitAnimDelay(long delay) {
+        this.mChangeExitAnimDelay = delay;
     }
 
     public TimeInterpolator getChangeExitAnimInterpolator() {
         return mChangeExitAnimInterpolator;
     }
 
-    public void setChangeExitAnimInterpolator(TimeInterpolator mChangeExitAnimInterpolator) {
-        this.mChangeExitAnimInterpolator = mChangeExitAnimInterpolator;
+    public void setChangeExitAnimInterpolator(TimeInterpolator interpolator) {
+        this.mChangeExitAnimInterpolator = interpolator;
     }
 
     public AnimatorListenerAdapter getChangeExitAnimListener() {
         return mChangeExitAnimListener;
     }
 
-    public void setChangeExitAnimListener(AnimatorListenerAdapter mChangeExitAnimListener) {
-        this.mChangeExitAnimListener = mChangeExitAnimListener;
+    public void setChangeExitAnimListener(AnimatorListenerAdapter listener) {
+        this.mChangeExitAnimListener = listener;
     }
 
     public long getChangeEnterAnimDuration() {
         return mChangeEnterAnimDuration;
     }
 
-    public void setChangeEnterAnimDuration(long mChangeEnterAnimDuration) {
-        this.mChangeEnterAnimDuration = mChangeEnterAnimDuration;
+    public void setChangeEnterAnimDuration(long duration) {
+        this.mChangeEnterAnimDuration = duration;
     }
 
     public long getChangeEnterAnimDelay() {
         return mChangeEnterAnimDelay;
     }
 
-    public void setChangeEnterAnimDelay(long mChangeEnterAnimDelay) {
-        this.mChangeEnterAnimDelay = mChangeEnterAnimDelay;
+    public void setChangeEnterAnimDelay(long delay) {
+        this.mChangeEnterAnimDelay = delay;
     }
 
     public TimeInterpolator getChangeEnterAnimInterpolator() {
         return mChangeEnterAnimInterpolator;
     }
 
-    public void setChangeEnterAnimInterpolator(TimeInterpolator mChangeEnterAnimInterpolator) {
-        this.mChangeEnterAnimInterpolator = mChangeEnterAnimInterpolator;
+    public void setChangeEnterAnimInterpolator(TimeInterpolator interpolator) {
+        this.mChangeEnterAnimInterpolator = interpolator;
     }
 
     public AnimatorListenerAdapter getChangeEnterAnimListener() {
         return mChangeEnterAnimListener;
     }
 
-    public void setChangeEnterAnimListener(AnimatorListenerAdapter mChangeEnterAnimListener) {
-        this.mChangeEnterAnimListener = mChangeEnterAnimListener;
+    public void setChangeEnterAnimListener(AnimatorListenerAdapter listener) {
+        this.mChangeEnterAnimListener = listener;
     }
 }
