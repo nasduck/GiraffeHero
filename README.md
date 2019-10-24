@@ -4,21 +4,33 @@
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)&ensp;
 [![API](https://img.shields.io/badge/License-Apche2.0-brightgreen.svg?style=flat)](https://github.com/nasduck/GiraffeHero/blob/master/LICENSE)
 
-**GiraffeHero 【鹿男】是我们结合 iOS 和 Android 对于复杂页面的设计和理解构建出来的第三方库. 理论上任何常规复杂页面都可以通过鹿男来实现. 但和其它类似实现多样式 RecycleView 的库不同的是对于复杂页面的设计划分和理解.**
+**GiraffeHero is a third-party lib built with iOS and Android’s design and understanding of complex pages. In theory, any complex page can be built by GiraffeHero. However, unlike other libs in implementing multi-type RecycleView, GiraffeHero has different design and understanding of complex pages.**
 
-在我们的构想中, 所有页面都是由至少一个 `Section` 构成的. 每个 `Section` 都有独立的 `Header` 和 `Footer`, 以及内部至少1个以上的元素构成(我们称为 `Row`):
+In our conception, all pages are made up of at least one `Section`. Each `Section` has a separate `Header` and `Footer`, and at least one element inside (we call it `Row`):
 
-#### GiraffeHero 结构示意图：
-![示意图](https://github.com/nasduck/GiraffeHero/blob/dev/art/section%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg?raw=true)
+#### GiraffeHero structure diagram：
+![diagram](https://github.com/nasduck/GiraffeHero/blob/dev/art/section%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg?raw=true)
 
-理论上不同的 `Section` 代码逻辑应该是完全独立的, 可以由不同的人员去开发和维护, 当然也可以在不同的页面间复用. 
+Theoretically, code logic of different Section could be completely decoupled, which can be developed and maintained by different people, and it can also be reused among different pages.
 
-当刷新页面时, 比起原生的 `notifyDataSetChanged`, `notifyItemRangeChanged` 以及 `notifyItemChanged`. 这个库可以帮助你实现单独刷新某个 `Section`, 某个 `Section` 当中的某个 `Row`. 或者仅仅是刷新这个 `Section` 独有的 `Header` 和 `Footer`. 尤其适合于页面内容是由不同的 API 返回的. 不同的 API 返回只需刷新自己对应的 `Section`. 如果个别 API 还未返回或出错, 对应的 `Section` 将不会显示.
+Compared to the native `notifyDataSetChanged`, `notifyItemRangeChanged` and `notifyItemChanged`, this lib can help you to refresh a Section, a Row in a Section or just refresh the Header and Footer of a Section. It is especially suitable for page content that is returned by different APIs. Different APIs only need to refresh their corresponding Section when data returned. If one API return errors or just not returned, the corresponding Section will not be displayed.
 
-欢迎尝试【鹿男】, 让每一个页面都符合代码强迫症的美学 :D
+Welcome to use GiraffeHero, making every page meets the aesthetics of code obsession. :D
 
-## 依赖
-步骤一：在项目的build.gradle中添加jitpack
+## Features
+
+* Brand new complex pages implement concept and refresh mechanism
+* Each Section is completely decoupled and can be reused in different pages
+* Each Section has separate Header and Footer
+* Support empty view for pages without content 
+* Support for loading more
+* Support list animation
+* Support item animation
+
+## Dependency
+
+Step 1: Add `jitpack` to `build.gradle`.
+
 ```
 allprojects {
 	repositories {
@@ -27,28 +39,20 @@ allprojects {
 	}
 }
 ```
-步骤二：添加依赖项
+
+Step 2: Add dependencies:
+
 ```
    implementation 'com.github.nasduck:GiraffeHero:1.1.0'
 ```
 
-## 特点
+## User Guide
 
-* 全新的复杂页面实现理念和刷新机制
-* 各区块代码完全解耦, 可多页面复用
-* 支持每个区块都有独立的 Header 和 Footer
-* 支持页面无内容提示
-* 支持上拉加载更多
-* 支持列表进入动画
-* 支持列表元素动画
+Please check [Wiki](https://github.com/nasduck/GiraffeHero/wiki)
 
-## 使用指南
+## Suggestion&Question
 
-请查看[Wiki指南](https://github.com/nasduck/GiraffeHero/wiki)
-
-## 建议&疑问
-
-欢迎发送邮件到 dongchuanyz@163.com
+Welcome to send emails to dongchuanyz@163.com
 
 ## Contributer
 
