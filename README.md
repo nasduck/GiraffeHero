@@ -4,6 +4,8 @@
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)&ensp;
 [![API](https://img.shields.io/badge/License-Apche2.0-brightgreen.svg?style=flat)](https://github.com/nasduck/GiraffeHero/blob/master/LICENSE)
 
+>[中文文档](https://github.com/nasduck/GiraffeHero/blob/dev/README-CN.md)
+
 **GiraffeHero is a third-party lib built with iOS and Android’s design and understanding of complex pages. In theory, any complex page can be built by GiraffeHero. However, unlike other libs in implementing multi-type RecycleView, GiraffeHero has different design and understanding of complex pages.**
 
 In our conception, all pages are made up of at least one `Section`. Each `Section` has a separate `Header` and `Footer`, and at least one element inside (we call it `Row`):
