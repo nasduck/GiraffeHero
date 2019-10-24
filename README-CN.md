@@ -42,6 +42,25 @@ allprojects {
 * 支持列表进入动画
 * 支持列表元素动画
 
+## 依赖
+
+Step 1: 在 `build.gradle` 中添加 `jitpack`:
+
+```
+allprojects {
+	repositories {
+		...
+		maven { url 'https://www.jitpack.io' }
+	}
+}
+```
+
+Step 2: 添加依赖:
+
+```
+   implementation 'com.github.nasduck:GiraffeHero:1.1.0'
+```
+
 ## 使用指南
 
 请查看[Wiki指南](https://github.com/nasduck/GiraffeHero/wiki)
