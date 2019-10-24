@@ -8,7 +8,8 @@
 
 在我们的构想中, 所有页面都是由至少一个 `Section` 构成的. 每个 `Section` 都有独立的 `Header` 和 `Footer`, 以及内部至少1个以上的元素构成(我们称为 `Row`):
 
-// todo 复杂页面长图加标注
+#### GiraffeHero 结构示意图：
+![示意图](https://github.com/nasduck/GiraffeHero/blob/dev/art/section%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg?raw=true)
 
 理论上不同的 `Section` 代码逻辑应该是完全独立的, 可以由不同的人员去开发和维护, 当然也可以在不同的页面间复用. 
 
@@ -27,6 +28,12 @@
 * 支持列表元素动画
 
 ## 使用指南
+
+请查看[Wiki指南](https://github.com/nasduck/GiraffeHero/wiki)
+
+## 建议&疑问
+
+欢迎发送邮件到 dongchuanyz@163.com
 
 ## Contributer
 

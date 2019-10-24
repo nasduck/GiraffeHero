@@ -1,4 +1,4 @@
-package com.zoopark.demo.animation.change.provider;
+package com.zoopark.demo.animation.item.provider;
 
 import android.content.Context;
 
@@ -10,11 +10,11 @@ import com.zoopark.rv.base.model.IndexPath;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VerticalItemProvider extends BaseItemProvider<List<Integer>> {
+public class HorizontalItemProvider extends BaseItemProvider<List<Integer>> {
 
     private List<Integer> mData;
 
-    public VerticalItemProvider(Context context) {
+    public HorizontalItemProvider(Context context) {
         super(context);
         mData = new ArrayList<>();
     }
@@ -26,7 +26,7 @@ public class VerticalItemProvider extends BaseItemProvider<List<Integer>> {
 
     @Override
     public int getLayout() {
-        return R.layout.item_element_vertical;
+        return R.layout.item_element_horizontal;
     }
 
     @Override

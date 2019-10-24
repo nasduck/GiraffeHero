@@ -10,8 +10,8 @@ public class FlipItemAnimator extends BaseItemAnimator {
 
     private Benchmark mMark;
 
-    public FlipItemAnimator(Benchmark mark) {
-        mMark = mark;
+    public FlipItemAnimator(Benchmark benchmark) {
+        mMark = benchmark;
     }
 
     @Override
