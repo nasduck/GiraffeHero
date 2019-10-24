@@ -17,6 +17,21 @@
 
 欢迎尝试【鹿男】, 让每一个页面都符合代码强迫症的美学 :D
 
+## 依赖
+步骤一：在项目的build.gradle中添加jitpack
+```
+allprojects {
+	repositories {
+		...
+		maven { url 'https://www.jitpack.io' }
+	}
+}
+```
+步骤二：添加依赖项
+```
+   implementation 'com.github.nasduck:GiraffeHero:1.1.0'
+```
+
 ## 特点
 
 * 全新的复杂页面实现理念和刷新机制
