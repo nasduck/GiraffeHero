@@ -29,6 +29,12 @@
 
 ## 使用指南
 
+请查看[Wiki指南](https://github.com/nasduck/GiraffeHero/wiki)
+
+## 建议&疑问
+
+欢迎发送邮件到 dongchuanyz@163.com
+
 ## Contributer
 
 * [Chuan DONG](https://github.com/DONGChuan)
