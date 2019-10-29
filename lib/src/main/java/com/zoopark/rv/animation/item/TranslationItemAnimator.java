@@ -16,8 +16,8 @@ public class TranslationItemAnimator extends BaseItemAnimator {
     private int mHeight = 0;
     private SlideDirection mDirection;
 
-    public TranslationItemAnimator(SlideDirection style) {
-        mDirection = style;
+    public TranslationItemAnimator(SlideDirection direction) {
+        mDirection = direction;
     }
 
     @Override

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
-        app:title="Flip Animation"
+        app:title="@string/animation_flip"
         app:titleTextColor="@color/white">
 
 

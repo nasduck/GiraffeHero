@@ -1,4 +1,4 @@
-package com.zoopark.demo.notify.decoration.provider;
+package com.zoopark.demo.notify.headerfooter.provider;
 
 import android.content.Context;
 
@@ -7,11 +7,11 @@ import com.zoopark.rv.base.provider.BaseSectionHeaderFooter;
 import com.zoopark.rv.base.holder.BaseViewHolder;
 import com.zoopark.rv.base.model.IndexPath;
 
-public class DecorationHeaderProvider extends BaseSectionHeaderFooter<String> {
+public class HeaderProvider extends BaseSectionHeaderFooter<String> {
 
     private String mTitle;
 
-    public DecorationHeaderProvider(Context context) {
+    public HeaderProvider(Context context) {
         super(context);
     }
 

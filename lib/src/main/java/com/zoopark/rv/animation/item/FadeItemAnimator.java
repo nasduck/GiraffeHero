@@ -12,8 +12,8 @@ public class FadeItemAnimator extends BaseItemAnimator {
     private int mHeight;
     private SlideDirection mDirection;
 
-    public FadeItemAnimator(SlideDirection style) {
-        mDirection = style;
+    public FadeItemAnimator(SlideDirection direction) {
+        mDirection = direction;
     }
 
     @Override

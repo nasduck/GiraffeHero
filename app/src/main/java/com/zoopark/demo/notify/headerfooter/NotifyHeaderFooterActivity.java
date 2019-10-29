@@ -1,4 +1,4 @@
-package com.zoopark.demo.notify.decoration;
+package com.zoopark.demo.notify.headerfooter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,20 +8,20 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.zoopark.demo.R;
-import com.zoopark.demo.notify.decoration.bean.DecorationBean;
-import com.zoopark.demo.notify.decoration.provider.DecorationItemProvider;
+import com.zoopark.demo.notify.headerfooter.bean.HeaderFooterBean;
+import com.zoopark.demo.notify.headerfooter.provider.ItemProvider;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotifyDecorationActivity extends AppCompatActivity implements DecorationItemProvider.onNotifyHeaderFooterListener {
+public class NotifyHeaderFooterActivity extends AppCompatActivity implements ItemProvider.onNotifyHeaderFooterListener {
 
     private Toolbar mToolbar;
     private RecyclerView mRecyclerView;
 
-    private NotifyDecorationAdapter mAdapter;
+    private NotifyHeaderFooterAdapter mAdapter;
 
-    private List<DecorationBean> mList;
+    private List<HeaderFooterBean> mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class NotifyDecorationActivity extends AppCompatActivity implements Decor
         setSupportActionBar(mToolbar);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mAdapter = new NotifyDecorationAdapter(this);
+        mAdapter = new NotifyHeaderFooterAdapter(this);
         mAdapter.setNotifyHeaderFooterListener(this);
 
         mRecyclerView.setLayoutManager(layoutManager);
@@ -58,8 +58,8 @@ public class NotifyDecorationActivity extends AppCompatActivity implements Decor
      */
     private void callApiGetData() {
         mList = new ArrayList<>();
-        mList.add(new DecorationBean("notify header", "notify"));
-        mList.add(new DecorationBean("notify footer", "notify"));
+        mList.add(new HeaderFooterBean("notify header", "notify"));
+        mList.add(new HeaderFooterBean("notify footer", "notify"));
         mAdapter.setData(mList);
     }
 

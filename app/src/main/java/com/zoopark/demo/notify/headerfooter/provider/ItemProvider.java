@@ -1,9 +1,9 @@
-package com.zoopark.demo.notify.decoration.provider;
+package com.zoopark.demo.notify.headerfooter.provider;
 
 import android.content.Context;
 
 import com.zoopark.demo.R;
-import com.zoopark.demo.notify.decoration.bean.DecorationBean;
+import com.zoopark.demo.notify.headerfooter.bean.HeaderFooterBean;
 import com.zoopark.rv.base.provider.BaseItemProvider;
 import com.zoopark.rv.base.holder.BaseViewHolder;
 import com.zoopark.rv.base.model.IndexPath;
@@ -11,7 +11,7 @@ import com.zoopark.rv.base.model.IndexPath;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DecorationItemProvider extends BaseItemProvider<List<DecorationBean>> {
+public class ItemProvider extends BaseItemProvider<List<HeaderFooterBean>> {
 
     public interface onNotifyHeaderFooterListener {
         void onNotifyHeader();
@@ -20,9 +20,9 @@ public class DecorationItemProvider extends BaseItemProvider<List<DecorationBean
 
     private onNotifyHeaderFooterListener mListener;
 
-    private List<DecorationBean> mData;
+    private List<HeaderFooterBean> mData;
 
-    public DecorationItemProvider(Context context) {
+    public ItemProvider(Context context) {
         super(context);
         mData = new ArrayList<>();
     }
@@ -45,7 +45,7 @@ public class DecorationItemProvider extends BaseItemProvider<List<DecorationBean
     }
 
     @Override
-    public void setData(List<DecorationBean> newData) {
+    public void setData(List<HeaderFooterBean> newData) {
         super.setData(newData);
         mData = newData;
     }

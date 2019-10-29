@@ -1,4 +1,4 @@
-package com.zoopark.demo.animation.change.activity;
+package com.zoopark.demo.animation.item.activity;
 
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;

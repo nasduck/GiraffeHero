@@ -1,11 +1,11 @@
-package com.zoopark.demo.notify.decoration.bean;
+package com.zoopark.demo.notify.headerfooter.bean;
 
-public class DecorationBean {
+public class HeaderFooterBean {
 
     private String title;
     private String btnTitle;
 
-    public DecorationBean(String title, String btnTitle) {
+    public HeaderFooterBean(String title, String btnTitle) {
         this.title = title;
         this.btnTitle = btnTitle;
     }
