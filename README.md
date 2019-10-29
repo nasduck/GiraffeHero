@@ -61,6 +61,7 @@ Welcome to send emails to dongchuanyz@163.com
 * [Chuan DONG](https://github.com/DONGChuan)
 * [Lihao Zhou](https://github.com/redrain39)
 * [Si Cheng](1103990937@qq.com)(Art Designer)
+* [Xiaoliang Yang](https://github.com/sohnyi)
 
 ## LICENSE
 ```
